@@ -80,59 +80,59 @@ function Brand({ footer = false }) {
   );
 }
 
-function BusinessPlatformVisual() {
+function OrbVisual() {
+  const particles = Array.from({ length: 74 }, (_, i) => {
+    const angle = i * 2.399963229728653;
+    const distance = Math.sqrt((i + 0.5) / 74);
+    return {
+      x: 330 + Math.cos(angle) * (74 + distance * 145),
+      y: 263 + Math.sin(angle) * (27 + distance * 106),
+      r: i % 9 === 0 ? 1.5 : 0.8,
+      opacity: 0.22 + ((i * 7) % 10) / 15
+    };
+  });
   return (
-    <div className="platform-scene" aria-label="Ilustración conceptual de un sistema empresarial de MUVORY">
-      <div className="platform-aura" aria-hidden="true" />
-      <div className="platform-window">
-        <div className="platform-topbar">
-          <span className="platform-dots" aria-hidden="true"><i/><i/><i/></span>
-          <span className="platform-top-title">MUVORY <b>STUDIO</b></span>
-          <span className="platform-concept">VISTA CONCEPTUAL</span>
-        </div>
-        <div className="platform-body">
-          <div className="platform-side" aria-hidden="true">
-            <span className="platform-side-mark">M</span>
-            <span className="platform-side-item active"><Icon name="layers" size={16}/></span>
-            <span className="platform-side-item"><Icon name="chart" size={16}/></span>
-            <span className="platform-side-item"><Icon name="workflow" size={16}/></span>
-            <span className="platform-side-item"><Icon name="spark" size={16}/></span>
-          </div>
-          <div className="platform-content">
-            <div className="platform-title-row">
-              <div><span className="platform-caption">INTELIGENCIA DE NEGOCIO</span><strong>Una vista. Más claridad.</strong></div>
-              <span className="platform-pill"><span/> Datos conectados</span>
-            </div>
-            <div className="platform-metrics">
-              <div><small>Ventas</small><div className="metric-line long"/><div className="metric-line short"/></div>
-              <div><small>Clientes</small><div className="metric-line mid"/><div className="metric-line short"/></div>
-              <div><small>Operaciones</small><div className="metric-line long"/><div className="metric-line tiny"/></div>
-            </div>
-            <div className="platform-charts">
-              <div className="platform-chart">
-                <div className="platform-chart-title"><span>Visión comercial</span><Icon name="arrowUp" size={14}/></div>
-                <div className="chart-grid" aria-hidden="true">
-                  <svg viewBox="0 0 340 128" preserveAspectRatio="none">
-                    <defs><linearGradient id="muvory-chart-fill" x1="0" y1="0" x2="0" y2="1"><stop stopColor="#67E4DB" stopOpacity=".34"/><stop offset="1" stopColor="#67E4DB" stopOpacity="0"/></linearGradient></defs>
-                    <path d="M0 116 L0 96 C30 87 42 109 65 83 S106 94 129 61 S160 80 189 50 S221 63 244 38 S290 62 340 13 L340 128 L0 128Z" fill="url(#muvory-chart-fill)"/>
-                    <path d="M0 96 C30 87 42 109 65 83 S106 94 129 61 S160 80 189 50 S221 63 244 38 S290 62 340 13" fill="none" stroke="#6CE4DD" strokeWidth="3" strokeLinecap="round"/>
-                  </svg>
-                </div>
-                <div className="chart-labels"><span>ENE</span><span>MAR</span><span>MAY</span><span>JUL</span></div>
-              </div>
-              <div className="platform-flow">
-                <div className="platform-chart-title"><span>Automatización</span><Icon name="workflow" size={14}/></div>
-                <div className="flow-pill"><i/> Captación</div>
-                <span className="flow-stem"/>
-                <div className="flow-pill"><i/> CRM</div>
-                <span className="flow-stem"/>
-                <div className="flow-pill accent"><i/> Seguimiento</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="ai-float"><span className="ai-float-icon"><Icon name="spark" size={22}/></span><div><small>AGENTES IA</small><strong>Automatización con propósito</strong></div></div>
+    <div className="orb-scene" aria-label="Ilustración abstracta de conexiones digitales e inteligencia artificial" role="img">
+      <svg viewBox="0 0 660 540" className="orb-svg" aria-hidden="true" focusable="false">
+        <defs>
+          <radialGradient id="orb-core" cx="33%" cy="25%" r="75%">
+            <stop offset="0%" stopColor="#A4FFFF" stopOpacity=".46" />
+            <stop offset="21%" stopColor="#2B91A0" stopOpacity=".46" />
+            <stop offset="50%" stopColor="#0B394C" stopOpacity=".72" />
+            <stop offset="81%" stopColor="#011721" stopOpacity=".95" />
+            <stop offset="100%" stopColor="#65DFDA" stopOpacity=".58" />
+          </radialGradient>
+          <radialGradient id="orb-halo">
+            <stop offset="0%" stopColor="#2CE2DD" stopOpacity=".38" />
+            <stop offset="100%" stopColor="#2CE2DD" stopOpacity="0" />
+          </radialGradient>
+          <linearGradient id="orb-wave" x1="45" y1="255" x2="610" y2="255" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#52DADE" stopOpacity="0"/>
+            <stop offset="32%" stopColor="#67E7E7" stopOpacity=".48"/>
+            <stop offset="58%" stopColor="#D4FFFF" stopOpacity=".96"/>
+            <stop offset="86%" stopColor="#65DBE6" stopOpacity=".64"/>
+            <stop offset="100%" stopColor="#55D5DF" stopOpacity="0"/>
+          </linearGradient>
+          <filter id="orb-soft-glow" x="-70%" y="-70%" width="240%" height="240%">
+            <feGaussianBlur stdDeviation="12"/>
+          </filter>
+        </defs>
+        <ellipse cx="350" cy="288" rx="246" ry="205" fill="url(#orb-halo)"/>
+        <ellipse cx="346" cy="458" rx="176" ry="12" fill="#48C7CD" opacity=".20" filter="url(#orb-soft-glow)"/>
+        <circle cx="348" cy="252" r="174" fill="url(#orb-core)" stroke="#8DEBEA" strokeOpacity=".41" strokeWidth="1.4"/>
+        <ellipse cx="342" cy="254" rx="175" ry="173" stroke="#A9F0EE" strokeOpacity=".30" strokeWidth="1" fill="none"/>
+        <ellipse cx="348" cy="252" rx="88" ry="174" stroke="#9FE5E3" strokeOpacity=".22" fill="none" transform="rotate(24 348 252)"/>
+        <ellipse cx="348" cy="252" rx="162" ry="55" stroke="#9FE5E3" strokeOpacity=".22" fill="none" transform="rotate(-19 348 252)"/>
+        <path d="M55 292 C168 378 219 182 311 268 S468 311 606 181" stroke="url(#orb-wave)" strokeWidth="26" strokeOpacity=".20" strokeLinecap="round" fill="none" filter="url(#orb-soft-glow)"/>
+        <path d="M55 292 C168 378 219 182 311 268 S468 311 606 181" stroke="url(#orb-wave)" strokeWidth="3" strokeLinecap="round" fill="none"/>
+        <path d="M58 333 C204 389 217 185 345 258 S494 303 629 228" stroke="#8BF2EF" strokeOpacity=".50" strokeWidth="1.25" fill="none"/>
+        <path d="M97 365 C252 374 247 189 358 269 S504 326 611 244" stroke="#66CBD7" strokeOpacity=".34" strokeWidth="1" fill="none"/>
+        <ellipse cx="346" cy="275" rx="267" ry="100" transform="rotate(-22 346 275)" stroke="#89E8EA" strokeOpacity=".42" strokeWidth="1.8" fill="none" strokeDasharray="600 850"/>
+        <ellipse cx="346" cy="275" rx="266" ry="98" transform="rotate(-22 346 275)" stroke="#86E8E6" strokeOpacity=".12" fill="none"/>
+        {particles.map((p,i)=><circle key={i} cx={p.x} cy={p.y} r={p.r} fill="#A5FFFF" opacity={p.opacity}/>)}
+        <circle cx="348" cy="252" r="176" stroke="#B6FCF7" strokeOpacity=".13" strokeWidth="5" fill="none" filter="url(#orb-soft-glow)"/>
+      </svg>
+      <span className="orb-lightline" aria-hidden="true" />
     </div>
   );
 }
@@ -219,28 +219,26 @@ function App() {
       </header>
 
       <main id="contenido">
-        <section id="inicio" className="hero hero-v2 section-anchor">
+        <section id="inicio" className="hero hero-v3 section-anchor">
           <div className="hero-glow" />
           <div className="container hero-grid">
             <div className="hero-copy">
-              <div className="eyebrow"><span className="eyebrow-line" /> SOFTWARE · DATOS · AUTOMATIZACIÓN · IA</div>
-              <h1>Menos procesos manuales. <span>Más negocio.</span></h1>
-              <p className="hero-description">Diseñamos software, dashboards y agentes de inteligencia artificial para que tu empresa gane control, ahorre tiempo y crezca con tecnología a su medida.</p>
+              <div className="eyebrow"><span className="eyebrow-line" /> SOFTWARE · AUTOMATIZACIÓN · AGENTES IA</div>
+              <h1>Tecnología que impulsa <span>la eficiencia de tu negocio.</span></h1>
+              <p className="hero-description">Creamos software, dashboards y automatizaciones inteligentes para que tu empresa trabaje con más control, menos tareas manuales y mejores decisiones.</p>
               <div className="hero-actions">
-                <a className="button button-primary" href="#contacto">Hablemos de tu empresa <Icon name="arrowUp" size={18}/></a>
-                <a className="button button-outline" href="#casos">Explorar aplicaciones <Icon name="arrow" size={18}/></a>
+                <a className="button button-primary" href="#contacto">Conversemos sobre tu proyecto <Icon name="arrowUp" size={18}/></a>
+                <a className="button button-outline" href="#soluciones">Explorar soluciones <Icon name="arrow" size={18}/></a>
               </div>
-              <div className="hero-caption"><span className="mini-line" /> Tecnología útil. Procesos simples. Crecimiento real.</div>
             </div>
-            <BusinessPlatformVisual />
+            <OrbVisual />
           </div>
-          <div className="container hero-bottom"><span>SOFTWARE EMPRESARIAL</span><span>ANALÍTICA Y DASHBOARDS</span><span>AGENTES Y AUTOMATIZACIÓN</span><span>DESARROLLO WEB</span></div>
         </section>
 
         <section className="section section-solutions section-anchor" id="soluciones">
           <div className="container">
             <div className="section-heading">
-              <div><p className="section-kicker">QUÉ HACEMOS</p><h2>Soluciones para que tu empresa <em>avance.</em></h2></div>
+              <div><p className="section-kicker">QUÉ HACEMOS</p><h2>Soluciones digitales <em>de alto impacto.</em></h2></div>
               <p>Desde una necesidad puntual hasta una solución digital integral. Diseñamos cada proyecto según los desafíos de tu negocio.</p>
             </div>
             <div className="services-grid">
@@ -259,7 +257,7 @@ function App() {
         <section className="section section-cases section-anchor" id="casos">
           <div className="container">
             <div className="cases-head">
-              <div><p className="section-kicker">TECNOLOGÍA APLICADA</p><h2>No vendemos herramientas. <em>Resolvemos necesidades.</em></h2></div>
+              <div><p className="section-kicker">TECNOLOGÍA APLICADA</p><h2>Tecnología aplicada <em>a desafíos reales.</em></h2></div>
               <p>Ejemplos de lo que podemos diseñar para tu empresa. Cada implementación se define según el alcance y la viabilidad técnica.</p>
             </div>
             <div className="cases-grid">
@@ -275,7 +273,7 @@ function App() {
           <div className="container agents-layout">
             <div className="agents-intro">
               <p className="section-kicker">INTELIGENCIA ARTIFICIAL APLICADA</p>
-              <h2>Agentes de IA para tareas que <em>no deberían frenarte.</em></h2>
+              <h2>Agentes de IA <em>para tu empresa.</em></h2>
               <p>Exploramos, diseñamos e implementamos asistentes conectados a los procesos y la información autorizada de cada empresa, con supervisión humana cuando corresponde.</p>
               <a className="text-link" href="#contacto">Cuéntanos qué necesitas automatizar <Icon name="arrow" size={18}/></a>
             </div>
