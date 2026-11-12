@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
 :root {
   font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: #eaf4f7;
@@ -320,4 +321,68 @@ h2 em { color: #83ded9; font-style: normal; }
  .cases-grid { grid-template-columns: 1fr; }
  .case-card { min-height: 245px; }
  .section-cases { padding: 73px 0; }
+}
+
+
+/* MUVORY V3 — Minimalismo futurista elegante */
+:root {
+  font-family: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 400;
+}
+body { font-weight: 400; }
+h1, h2, h3 { font-family: 'Outfit', 'Segoe UI', sans-serif; }
+h2 { font-weight: 360; letter-spacing: -.033em; line-height: 1.2; }
+h3 { font-weight: 510; }
+.hero-v3 { min-height: auto; background: radial-gradient(ellipse 42% 72% at 80% 44%, rgba(8, 93, 117, .25), transparent 82%), radial-gradient(ellipse 50% 54% at 10% 95%, rgba(2, 36, 54, .22), transparent 90%), #030b15; }
+.hero-v3 .hero-grid { grid-template-columns: 1.02fr .98fr; min-height: 565px; gap: 30px; }
+.hero-v3 .hero-copy { padding: 86px 0 100px; }
+.hero-v3 h1 { max-width: 640px; font-family: 'Outfit','Segoe UI', sans-serif; font-weight: 310; font-size: clamp(48px, 4.45vw, 67px); letter-spacing: -.038em; line-height: 1.18; margin-bottom: 24px; }
+.hero-v3 h1 span { color: #7de6de; }
+.hero-v3 .hero-description { max-width: 575px; font-size: 16px; line-height: 1.82; font-weight: 380; color: #b6cdd7; }
+.hero-v3 .eyebrow { font-size: 10px; letter-spacing: .20em; font-weight: 630; margin-bottom: 28px; }
+.hero-v3 .hero-actions { margin-top: 32px; }
+.orb-scene { position: relative; width: 100%; height: 520px; min-width: 0; display: grid; place-items: center; overflow: visible; pointer-events: none; }
+.orb-svg { width: min(100%, 650px); height: auto; max-height: 520px; overflow: visible; filter: drop-shadow(0 0 40px rgba(20, 202, 207, .13)); animation: orb-hover 12s ease-in-out infinite alternate; }
+.orb-lightline { position: absolute; width: 79%; height: 1px; bottom: 58px; left: 12%; background: linear-gradient(90deg, transparent, rgba(129, 237, 236, .32), transparent); box-shadow: 0 0 18px rgba(124, 245, 233, .36); }
+@keyframes orb-hover { from { transform: translateY(0); } to { transform: translateY(-11px); } }
+.section-solutions { padding: 88px 0 92px; background: #061622; }
+.section-solutions .section-heading { margin-bottom: 37px; }
+.section-solutions .section-heading h2 { max-width: 640px; }
+.section-solutions h2, .section-cases h2, .section-agents h2, .section-sectors h2, .section-approach h2, .section-contact h2 { font-size: clamp(31px, 3.1vw, 47px); font-weight: 350; }
+.service-card { background: linear-gradient(155deg, rgba(14, 56, 68, .43), rgba(4, 19, 30, .68)); border-color: rgba(116, 198, 204, .23); min-height: 290px; box-shadow: inset 0 1px rgba(171, 255, 247, .035); }
+.service-card h3 { font-size: 18px; font-weight: 530; }
+.service-card p, .case-card p, .agent-item p { font-weight: 380; }
+.service-icon { border-color: rgba(134, 226, 219, .2); background: rgba(28, 90, 104, .19); }
+.section-cases { padding: 90px 0; }
+.case-card { min-height: 255px; }
+.case-card h3 { font-size: 22px; }
+.section-agents { padding: 94px 0; }
+.section-agents h2 { max-width: 570px; }
+.section-kicker { font-weight: 630; }
+.button { font-weight: 600; letter-spacing: .002em; }
+.hero-v3 .button-primary { background: #87e3dc; }
+.hero-v3 .button-outline { border-color: rgba(136, 225, 225, .48); }
+@media (max-width: 860px) {
+ .hero-v3 .hero-grid { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+ .hero-v3 .hero-copy { padding: 63px 0 12px; }
+ .hero-v3 h1 { max-width: 700px; }
+ .orb-scene { height: 410px; }
+ .orb-svg { max-height: 420px; }
+ .orb-lightline { bottom: 30px; }
+ .section-solutions { padding: 76px 0; }
+}
+@media (max-width: 540px) {
+ .hero-v3 .hero-copy { padding: 48px 0 10px; }
+ .hero-v3 h1 { font-size: clamp(38px, 10vw, 51px); letter-spacing: -.036em; font-weight: 330; }
+ .hero-v3 .hero-description { font-size: 14px; line-height: 1.8; }
+ .hero-v3 .hero-actions { gap: 11px; }
+ .orb-scene { height: 295px; margin: -10px 0 7px; }
+ .orb-svg { width: 115%; max-width: none; }
+ .orb-lightline { bottom: 12px; }
+ .section-solutions, .section-cases, .section-agents { padding: 67px 0; }
+ .section-solutions h2, .section-cases h2, .section-agents h2, .section-sectors h2, .section-approach h2, .section-contact h2 { font-size: 34px; }
+ .service-card { min-height: 245px; }
+}
+@media (prefers-reduced-motion: reduce) {
+ .orb-svg { animation: none; }
 }
