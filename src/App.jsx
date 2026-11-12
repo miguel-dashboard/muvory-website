@@ -5,28 +5,28 @@ const services = [
     number: '01',
     icon: 'layers',
     title: 'Software empresarial',
-    description: 'Sistemas a medida para organizar operaciones, clientes, productos y procesos en un mismo lugar.',
+    description: 'Centraliza la información de tu empresa y reduce el desorden de los procesos manuales.',
     tag: 'Desarrollo a medida'
   },
   {
     number: '02',
     icon: 'chart',
     title: 'Dashboards y analítica',
-    description: 'Información ordenada, indicadores útiles y visibilidad para decidir con mayor claridad.',
+    description: 'Transforma datos dispersos en una visión clara de ventas, clientes y operación.',
     tag: 'Datos y gestión'
   },
   {
     number: '03',
     icon: 'workflow',
     title: 'Automatización',
-    description: 'Integramos herramientas y automatizamos tareas repetitivas para liberar tiempo de tu equipo.',
+    description: 'Conecta herramientas y libera horas de trabajo manual con flujos más eficientes.',
     tag: 'Procesos conectados'
   },
   {
     number: '04',
     icon: 'globe',
     title: 'Web y plataformas',
-    description: 'Experiencias digitales profesionales para presentar tus servicios y conectar con clientes.',
+    description: 'Convierte tu presencia digital en una puerta de entrada para nuevos clientes.',
     tag: 'Presencia digital'
   }
 ];
@@ -80,45 +80,59 @@ function Brand({ footer = false }) {
   );
 }
 
-function RobotIllustration() {
+function BusinessPlatformVisual() {
   return (
-    <div className="hero-art" aria-hidden="true">
-      <div className="halo halo-one" />
-      <div className="halo halo-two" />
-      <svg className="robot-svg" viewBox="0 0 520 570" fill="none">
-        <defs>
-          <linearGradient id="headSurface" x1="140" y1="90" x2="395" y2="375" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#D8E6ED" /><stop offset=".48" stopColor="#8299A9" /><stop offset="1" stopColor="#324F62" />
-          </linearGradient>
-          <linearGradient id="bodySurface" x1="146" y1="363" x2="408" y2="546" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#92AFBD" /><stop offset="1" stopColor="#1A4152" />
-          </linearGradient>
-          <linearGradient id="face" x1="174" y1="156" x2="360" y2="320" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#0A2733" /><stop offset="1" stopColor="#020E18" />
-          </linearGradient>
-          <filter id="eyeGlow" x="-100%" y="-100%" width="300%" height="300%">
-            <feGaussianBlur stdDeviation="7" result="blur" /><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-        </defs>
-        <ellipse cx="268" cy="533" rx="171" ry="18" fill="#0CB4BD" opacity=".12"/>
-        <path d="M166 405c18-29 48-46 95-48 47-2 86 13 111 48 23 31 33 76 39 126H112c5-48 25-93 54-126Z" fill="url(#bodySurface)" stroke="#6994A6" strokeWidth="2"/>
-        <path d="M157 466h214" stroke="#D3E6EC" opacity=".14" strokeWidth="2"/>
-        <path d="M233 355h68v43c0 22-68 22-68 0v-43Z" fill="#1B3749" stroke="#719AAB" strokeWidth="2"/>
-        <rect x="121" y="86" width="286" height="292" rx="135" fill="url(#headSurface)" stroke="#D3E7F0" strokeOpacity=".68" strokeWidth="2.5"/>
-        <path d="M147 211c0-68 46-105 119-105 77 0 119 43 119 105v50c0 63-52 99-118 99-70 0-120-41-120-99v-50Z" fill="url(#face)" stroke="#356173" strokeWidth="5"/>
-        <path d="M161 193c17-47 53-68 107-68 55 0 91 20 104 68" stroke="#74E2E3" strokeOpacity=".17" strokeWidth="3"/>
-        <path d="M199 254c11-14 29-14 40 0M292 254c11-14 29-14 40 0" stroke="#7FF4EA" strokeWidth="8" strokeLinecap="round" filter="url(#eyeGlow)"/>
-        <path d="M248 299c12 8 26 8 39 0" stroke="#78E8E3" strokeWidth="4" strokeLinecap="round" opacity=".75"/>
-        <rect x="105" y="202" width="38" height="78" rx="19" fill="#244A60" stroke="#B4CDD7" strokeWidth="3"/>
-        <rect x="386" y="202" width="38" height="78" rx="19" fill="#244A60" stroke="#B4CDD7" strokeWidth="3"/>
-        <circle cx="124" cy="241" r="11" stroke="#69DBD9" strokeWidth="4" opacity=".85"/>
-        <circle cx="405" cy="241" r="11" stroke="#69DBD9" strokeWidth="4" opacity=".85"/>
-        <circle cx="267" cy="443" r="18" stroke="#7CE5DC" strokeWidth="3" opacity=".6"/>
-        <circle cx="267" cy="443" r="7" fill="#7CE5DC" opacity=".65"/>
-      </svg>
-      <span className="art-orbit orbit-first" />
-      <span className="art-orbit orbit-second" />
-      <div className="art-label"><span className="status-dot" /> Inteligencia aplicada</div>
+    <div className="platform-scene" aria-label="Ilustración conceptual de un sistema empresarial de MUVORY">
+      <div className="platform-aura" aria-hidden="true" />
+      <div className="platform-window">
+        <div className="platform-topbar">
+          <span className="platform-dots" aria-hidden="true"><i/><i/><i/></span>
+          <span className="platform-top-title">MUVORY <b>STUDIO</b></span>
+          <span className="platform-concept">VISTA CONCEPTUAL</span>
+        </div>
+        <div className="platform-body">
+          <div className="platform-side" aria-hidden="true">
+            <span className="platform-side-mark">M</span>
+            <span className="platform-side-item active"><Icon name="layers" size={16}/></span>
+            <span className="platform-side-item"><Icon name="chart" size={16}/></span>
+            <span className="platform-side-item"><Icon name="workflow" size={16}/></span>
+            <span className="platform-side-item"><Icon name="spark" size={16}/></span>
+          </div>
+          <div className="platform-content">
+            <div className="platform-title-row">
+              <div><span className="platform-caption">INTELIGENCIA DE NEGOCIO</span><strong>Una vista. Más claridad.</strong></div>
+              <span className="platform-pill"><span/> Datos conectados</span>
+            </div>
+            <div className="platform-metrics">
+              <div><small>Ventas</small><div className="metric-line long"/><div className="metric-line short"/></div>
+              <div><small>Clientes</small><div className="metric-line mid"/><div className="metric-line short"/></div>
+              <div><small>Operaciones</small><div className="metric-line long"/><div className="metric-line tiny"/></div>
+            </div>
+            <div className="platform-charts">
+              <div className="platform-chart">
+                <div className="platform-chart-title"><span>Visión comercial</span><Icon name="arrowUp" size={14}/></div>
+                <div className="chart-grid" aria-hidden="true">
+                  <svg viewBox="0 0 340 128" preserveAspectRatio="none">
+                    <defs><linearGradient id="muvory-chart-fill" x1="0" y1="0" x2="0" y2="1"><stop stopColor="#67E4DB" stopOpacity=".34"/><stop offset="1" stopColor="#67E4DB" stopOpacity="0"/></linearGradient></defs>
+                    <path d="M0 116 L0 96 C30 87 42 109 65 83 S106 94 129 61 S160 80 189 50 S221 63 244 38 S290 62 340 13 L340 128 L0 128Z" fill="url(#muvory-chart-fill)"/>
+                    <path d="M0 96 C30 87 42 109 65 83 S106 94 129 61 S160 80 189 50 S221 63 244 38 S290 62 340 13" fill="none" stroke="#6CE4DD" strokeWidth="3" strokeLinecap="round"/>
+                  </svg>
+                </div>
+                <div className="chart-labels"><span>ENE</span><span>MAR</span><span>MAY</span><span>JUL</span></div>
+              </div>
+              <div className="platform-flow">
+                <div className="platform-chart-title"><span>Automatización</span><Icon name="workflow" size={14}/></div>
+                <div className="flow-pill"><i/> Captación</div>
+                <span className="flow-stem"/>
+                <div className="flow-pill"><i/> CRM</div>
+                <span className="flow-stem"/>
+                <div className="flow-pill accent"><i/> Seguimiento</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="ai-float"><span className="ai-float-icon"><Icon name="spark" size={22}/></span><div><small>AGENTES IA</small><strong>Automatización con propósito</strong></div></div>
     </div>
   );
 }
@@ -205,22 +219,22 @@ function App() {
       </header>
 
       <main id="contenido">
-        <section id="inicio" className="hero section-anchor">
+        <section id="inicio" className="hero hero-v2 section-anchor">
           <div className="hero-glow" />
           <div className="container hero-grid">
             <div className="hero-copy">
-              <div className="eyebrow"><span className="eyebrow-line" /> SOFTWARE · AUTOMATIZACIÓN · IA</div>
-              <h1>Tecnología que <span>impulsa negocios.</span></h1>
-              <p className="hero-description">Creamos soluciones digitales que simplifican procesos, conectan información y abren nuevas oportunidades para tu empresa.</p>
+              <div className="eyebrow"><span className="eyebrow-line" /> SOFTWARE · DATOS · AUTOMATIZACIÓN · IA</div>
+              <h1>Menos procesos manuales. <span>Más negocio.</span></h1>
+              <p className="hero-description">Diseñamos software, dashboards y agentes de inteligencia artificial para que tu empresa gane control, ahorre tiempo y crezca con tecnología a su medida.</p>
               <div className="hero-actions">
-                <a className="button button-primary" href="#contacto">Conversemos sobre tu proyecto <Icon name="arrowUp" size={18}/></a>
-                <a className="button button-outline" href="#soluciones">Explorar soluciones <Icon name="arrow" size={18}/></a>
+                <a className="button button-primary" href="#contacto">Hablemos de tu empresa <Icon name="arrowUp" size={18}/></a>
+                <a className="button button-outline" href="#casos">Explorar aplicaciones <Icon name="arrow" size={18}/></a>
               </div>
-              <div className="hero-caption"><span className="mini-line" /> Soluciones pensadas para problemas reales.</div>
+              <div className="hero-caption"><span className="mini-line" /> Tecnología útil. Procesos simples. Crecimiento real.</div>
             </div>
-            <RobotIllustration />
+            <BusinessPlatformVisual />
           </div>
-          <div className="container hero-bottom"><span>DESARROLLO A MEDIDA</span><span>DATOS Y ANALÍTICA</span><span>AUTOMATIZACIÓN INTELIGENTE</span></div>
+          <div className="container hero-bottom"><span>SOFTWARE EMPRESARIAL</span><span>ANALÍTICA Y DASHBOARDS</span><span>AGENTES Y AUTOMATIZACIÓN</span><span>DESARROLLO WEB</span></div>
         </section>
 
         <section className="section section-solutions section-anchor" id="soluciones">
@@ -239,6 +253,21 @@ function App() {
                 </article>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section className="section section-cases section-anchor" id="casos">
+          <div className="container">
+            <div className="cases-head">
+              <div><p className="section-kicker">TECNOLOGÍA APLICADA</p><h2>No vendemos herramientas. <em>Resolvemos necesidades.</em></h2></div>
+              <p>Ejemplos de lo que podemos diseñar para tu empresa. Cada implementación se define según el alcance y la viabilidad técnica.</p>
+            </div>
+            <div className="cases-grid">
+              <article className="case-card"><span className="case-counter">01 / COMERCIO</span><Icon name="store" size={29}/><h3>Control comercial</h3><p>Ventas, productos, inventario y clientes organizados en un solo sistema.</p><span className="case-footer">Software + dashboards <Icon name="arrowUp" size={16}/></span></article>
+              <article className="case-card"><span className="case-counter">02 / INMOBILIARIAS</span><Icon name="building" size={29}/><h3>Prospectos conectados</h3><p>Captación de interesados, seguimiento comercial y automatizaciones de respuesta.</p><span className="case-footer">Web + CRM + IA <Icon name="arrowUp" size={16}/></span></article>
+              <article className="case-card"><span className="case-counter">03 / SERVICIOS</span><Icon name="briefcase" size={29}/><h3>Menos tareas repetitivas</h3><p>Procesos internos, solicitudes y documentos con flujos más claros y eficientes.</p><span className="case-footer">Automatización + agentes IA <Icon name="arrowUp" size={16}/></span></article>
+            </div>
+            <p className="cases-disclaimer">Aplicaciones ilustrativas. No representan clientes ni proyectos terminados.</p>
           </div>
         </section>
 
