@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import CommercialAssistant from './CommercialAssistant.jsx';
 
 const services = [
   {
@@ -174,6 +175,8 @@ function ContactForm() {
   const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState('');
   const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT;
+  const [context,setContext]=useState('');
+  useEffect(()=>{const listener=e=>setContext(prev=>[prev,e.detail].filter(Boolean).join('\n\n').slice(0,3000));window.addEventListener('muvory:diagnostic',listener);return ()=>window.removeEventListener('muvory:diagnostic',listener);},[]);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -194,6 +197,7 @@ function ContactForm() {
       });
       if (!response.ok) throw new Error('No se pudo enviar');
       form.reset();
+      setContext('');
       setStatus('success');
       setMessage('Tu solicitud fue enviada. Nos pondremos en contacto contigo.');
     } catch {
@@ -220,7 +224,7 @@ function ContactForm() {
         </select>
       </label>
       <label>Cuéntanos sobre tu negocio
-        <textarea name="mensaje" placeholder="¿Qué problema buscas resolver?" rows="4" minLength="10" maxLength="3000" required />
+        <textarea value={context} onChange={e=>setContext(e.target.value)} name="mensaje" placeholder="¿Qué problema buscas resolver?" rows="4" minLength="10" maxLength="3000" required />
       </label>
       <label className="consent"><input type="checkbox" name="consentimiento" value="si" required /><span>Autorizo el uso de estos datos únicamente para responder mi solicitud comercial.</span></label>
       <button className="button button-primary button-full" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Enviando…' : 'Enviar solicitud'} <Icon name="arrowUp" size={18}/></button>
@@ -347,6 +351,7 @@ function App() {
         <div className="container footer-main"><Brand footer/><p>Diseñamos tecnología para resolver desafíos reales de negocio.</p><a href="#inicio">Volver arriba ↑</a></div>
         <div className="container footer-bottom"><span>© {new Date().getFullYear()} MUVORY Technologies. Nombre comercial sujeto a validación.</span><span>Software · Automatización · IA</span></div>
       </footer>
+      <CommercialAssistant />
     </>
   );
 }
