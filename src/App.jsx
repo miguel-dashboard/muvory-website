@@ -137,6 +137,39 @@ function OrbVisual() {
   );
 }
 
+const demoOptions = {
+ software: {title:'GESTIÓN EMPRESARIAL',tabs:['Productos','Clientes','Pedidos'], rows:[['Producto A','Producto B','Producto C'],['Cliente A','Cliente B','Cliente C'],['Pedido 001','Pedido 002','Pedido 003']]},
+ data:{title:'INTELIGENCIA COMERCIAL',tabs:['Ventas','Clientes','Inventario'],rows:[[32,52,42,70,58,86,76],[46,36,68,48,79,62,91],[82,64,78,50,63,42,57]]},
+ ai:{title:'AGENTE INTELIGENTE',tabs:['Atender','Clasificar','Agendar'],rows:['Hola, puedo orientarte sobre los servicios de la empresa.','Solicitud clasificada para revisión humana.','Preferencia de horario registrada para confirmar disponibilidad.']},
+ web:{title:'EXPERIENCIA DIGITAL',tabs:['Escritorio','Móvil']}
+};
+function CapabilityDemo({kind}) {
+ const [choice,setChoice]=useState(0);
+ const [running,setRunning]=useState(false);
+ const d=demoOptions[kind];
+ return <div className="tech-demo"><div className="demo-top"><span>{d?.title || 'FLUJO CONECTADO'}</span><span>DEMO</span></div>
+ {d && <div className="demo-tabs">{d.tabs.map((v,i)=><button key={v} type="button" aria-pressed={choice===i} onClick={()=>setChoice(i)}>{v}</button>)}</div>}
+ {kind==='software' && <div className="demo-table">{d.rows[choice].map((v,i)=><div key={v}><Icon name="layers" size={15}/><span>{v}</span><small>{i===1?'En revisión':'Registrado'}</small></div>)}</div>}
+ {kind==='data' && <div className="demo-bars" role="img" aria-label={'Distribución ilustrativa de '+d.tabs[choice]}>{d.rows[choice].map((n,i)=><i key={i} style={{height:n+'%'}}/>)}</div>}
+ {kind==='flow' && <><div className={'demo-flow '+(running?'is-running':'')}>{['Solicitud','Validación','Registro'].map((v,i)=><div key={v}><span>{running?'✓':String(i+1).padStart(2,'0')}</span>{v}</div>)}</div><button className="demo-action" type="button" onClick={()=>setRunning(v=>!v)}>{running?'Reiniciar flujo':'Simular automatización'} <Icon name="arrow" size={15}/></button><small role="status">{running?'Flujo simulado completado. No se enviaron datos.':'Conecta tareas en una secuencia.'}</small></>}
+ {kind==='ai' && <div className="demo-chat"><Icon name="spark" size={22}/><p role="status">{d.rows[choice]}</p></div>}
+ {kind==='web' && <div className={'demo-browser '+(choice===1?'demo-mobile':'')} aria-hidden="true"><div className="demo-toolbar">● ● ●</div><div className="demo-webhero"><i/><i/><b/></div><div className="demo-webcards"><i/><i/><i/></div></div>}
+ {kind!=='flow' && <small>{kind==='ai'?'Respuestas de ejemplo · sin IA en vivo':'Vista ilustrativa · datos de ejemplo'}</small>}</div>;
+}
+const capabilities = [
+ {kind:'software',title:'Software a medida',icon:'layers',description:'Centraliza ventas, productos, clientes y operaciones en una plataforma propia.'},
+ {kind:'data',title:'Inteligencia de datos',icon:'chart',description:'Convierte información dispersa en indicadores que apoyan decisiones.'},
+ {kind:'flow',title:'Automatización inteligente',icon:'workflow',description:'Integra herramientas y reduce tareas repetitivas mediante flujos conectados.'},
+ {kind:'ai',title:'Agentes de IA',icon:'spark',description:'Asistentes para atención, clasificación y gestión, con supervisión humana.'},
+ {kind:'web',title:'Web y plataformas digitales',icon:'globe',description:'Experiencias digitales para captar clientes y conectar con tus sistemas.'}
+];
+function Applications() {
+ const [active,setActive]=useState(0);
+ const cases=[{name:'Comercio',icon:'store',title:'Control comercial conectado',desc:'Organiza ventas, inventario y clientes desde una plataforma.',steps:['Venta registrada','Inventario actualizado','Indicadores disponibles'],kind:'data'},{name:'Inmobiliarias',icon:'building',title:'Captación y seguimiento',desc:'Conecta consultas de propiedades con tu gestión comercial.',steps:['Consulta recibida','Prospecto organizado','Seguimiento preparado'],kind:'flow'},{name:'Servicios profesionales',icon:'briefcase',title:'Gestión inteligente de solicitudes',desc:'Organiza documentos y consultas con asistencia y revisión humana.',steps:['Consulta recibida','Información clasificada','Revisión profesional'],kind:'ai'},{name:'Operaciones',icon:'truck',title:'Visibilidad de procesos',desc:'Centraliza registros y estados para identificar mejoras.',steps:['Registro operativo','Estado actualizado','Revisión de indicadores'],kind:'software'}];
+ const item=cases[active];
+ return <><div className="industry-tabs" aria-label="Selecciona una industria">{cases.map((c,i)=><button type="button" key={c.name} aria-pressed={active===i} onClick={()=>setActive(i)}><Icon name={c.icon} size={18}/>{c.name}</button>)}</div><div className="application-panel"><div className="application-copy"><span className="section-kicker">APLICACIÓN ILUSTRATIVA</span><h3>{item.title}</h3><p>{item.desc}</p><div className="application-steps">{item.steps.map((s,i)=><div key={s}><span>{String(i+1).padStart(2,'0')}</span>{s}</div>)}</div><a className="text-link" href="#contacto">Consultar por esta solución <Icon name="arrow" size={17}/></a></div><CapabilityDemo key={item.kind} kind={item.kind}/></div></>;
+}
+
 function ContactForm() {
   const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState('');
@@ -241,17 +274,7 @@ function App() {
               <div><p className="section-kicker">QUÉ HACEMOS</p><h2>Soluciones digitales <em>de alto impacto.</em></h2></div>
               <p>Desde una necesidad puntual hasta una solución digital integral. Diseñamos cada proyecto según los desafíos de tu negocio.</p>
             </div>
-            <div className="services-grid">
-              {services.map(item => (
-                <article className="service-card" key={item.number}>
-                  <div className="card-top"><div className="service-icon"><Icon name={item.icon} size={28}/></div><span>{item.number}</span></div>
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
-                  <div className="service-tag">{item.tag}</div>
-                </article>
-              ))}
-            </div>
-          </div>
+            <div className="capability-grid">{capabilities.map(item=><article className={'capability-card capability-'+item.kind} key={item.kind}><div className="capability-heading"><Icon name={item.icon} size={23}/><h3>{item.title}</h3></div><p>{item.description}</p><CapabilityDemo kind={item.kind}/><a className="capability-link" href="#contacto">Conversemos <Icon name="arrowUp" size={15}/></a></article>)}</div><p className="cases-disclaimer">Demostraciones interactivas con datos y respuestas de ejemplo. No son sistemas conectados en vivo.</p></div>
         </section>
 
         <section className="section section-cases section-anchor" id="casos">
@@ -260,11 +283,7 @@ function App() {
               <div><p className="section-kicker">TECNOLOGÍA APLICADA</p><h2>Tecnología aplicada <em>a desafíos reales.</em></h2></div>
               <p>Ejemplos de lo que podemos diseñar para tu empresa. Cada implementación se define según el alcance y la viabilidad técnica.</p>
             </div>
-            <div className="cases-grid">
-              <article className="case-card"><span className="case-counter">01 / COMERCIO</span><Icon name="store" size={29}/><h3>Control comercial</h3><p>Ventas, productos, inventario y clientes organizados en un solo sistema.</p><span className="case-footer">Software + dashboards <Icon name="arrowUp" size={16}/></span></article>
-              <article className="case-card"><span className="case-counter">02 / INMOBILIARIAS</span><Icon name="building" size={29}/><h3>Prospectos conectados</h3><p>Captación de interesados, seguimiento comercial y automatizaciones de respuesta.</p><span className="case-footer">Web + CRM + IA <Icon name="arrowUp" size={16}/></span></article>
-              <article className="case-card"><span className="case-counter">03 / SERVICIOS</span><Icon name="briefcase" size={29}/><h3>Menos tareas repetitivas</h3><p>Procesos internos, solicitudes y documentos con flujos más claros y eficientes.</p><span className="case-footer">Automatización + agentes IA <Icon name="arrowUp" size={16}/></span></article>
-            </div>
+            <Applications />
             <p className="cases-disclaimer">Aplicaciones ilustrativas. No representan clientes ni proyectos terminados.</p>
           </div>
         </section>
