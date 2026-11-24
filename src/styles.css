@@ -708,3 +708,23 @@ h3 { font-weight: 510; }
  .orbital-node { transition:none; }
  .orbital-node:hover,.orbital-node[aria-pressed="true"] { translate:0 0; }
 }
+
+
+/* Ajuste tipográfico del hero: jerarquía sobria y legible en todos los tamaños. */
+.hero-v3 h1 { font-family:'DM Sans','Segoe UI',system-ui,sans-serif; font-weight:550; font-size:clamp(44px,4.1vw,66px); line-height:1.12; letter-spacing:-.045em; max-width:780px; }
+.hero-v3 .hero-description { max-width:590px; font-size:16px; line-height:1.7; }
+@media(min-width:1600px) {
+ .hero-v3 h1 { font-size:clamp(56px,3.6vw,72px); max-width:880px; }
+ .hero-v3 .hero-description { font-size:18px; max-width:700px; }
+}
+@media(min-width:2400px) {
+ .hero-v3 h1 { font-size:clamp(72px,3vw,86px); max-width:1140px; }
+ .hero-v3 .hero-description { font-size:21px; }
+}
+@media(max-width:860px) {
+ .hero-v3 h1 { font-size:clamp(40px,6.4vw,58px); max-width:720px; }
+}
+@media(max-width:540px) {
+ .hero-v3 h1 { font-size:clamp(35px,9.4vw,47px); line-height:1.13; letter-spacing:-.04em; }
+ .hero-v3 .hero-description { font-size:14px; }
+}
