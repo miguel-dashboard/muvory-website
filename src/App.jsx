@@ -148,16 +148,44 @@ const demoOptions = {
 };
 function CapabilityDemo({kind}) {
  const [choice,setChoice]=useState(0);
- const [running,setRunning]=useState(false);
+ const [activeRecord,setActiveRecord]=useState(0);
+ const [recordDone,setRecordDone]=useState(false);
+ const [flowStep,setFlowStep]=useState(0);
+ const [aiQuestion,setAiQuestion]=useState(-1);
  const d=demoOptions[kind];
- return <div className="tech-demo"><div className="demo-top"><span>{d?.title || 'FLUJO CONECTADO'}</span><span>DEMO</span></div>
- {d && <div className="demo-tabs">{d.tabs.map((v,i)=><button key={v} type="button" aria-pressed={choice===i} onClick={()=>setChoice(i)}>{v}</button>)}</div>}
- {kind==='software' && <div className="demo-table">{d.rows[choice].map((v,i)=><div key={v}><Icon name="layers" size={15}/><span>{v}</span><small>{i===1?'En revisión':'Registrado'}</small></div>)}</div>}
- {kind==='data' && <div className="demo-bars" role="img" aria-label={'Distribución ilustrativa de '+d.tabs[choice]}>{d.rows[choice].map((n,i)=><i key={i} style={{height:n+'%'}}/>)}</div>}
- {kind==='flow' && <><div className={'demo-flow '+(running?'is-running':'')}>{['Solicitud','Validación','Registro'].map((v,i)=><div key={v}><span>{running?'✓':String(i+1).padStart(2,'0')}</span>{v}</div>)}</div><button className="demo-action" type="button" onClick={()=>setRunning(v=>!v)}>{running?'Reiniciar flujo':'Simular automatización'} <Icon name="arrow" size={15}/></button><small role="status">{running?'Flujo simulado completado. No se enviaron datos.':'Conecta tareas en una secuencia.'}</small></>}
- {kind==='ai' && <div className="demo-chat"><Icon name="spark" size={22}/><p role="status">{d.rows[choice]}</p></div>}
- {kind==='web' && <div className={'demo-browser '+(choice===1?'demo-mobile':'')} aria-hidden="true"><div className="demo-toolbar">● ● ●</div><div className="demo-webhero"><i/><i/><b/></div><div className="demo-webcards"><i/><i/><i/></div></div>}
- {kind!=='flow' && <small>{kind==='ai'?'Respuestas de ejemplo · sin IA en vivo':'Vista ilustrativa · datos de ejemplo'}</small>}</div>;
+ const flowStages=['Solicitud recibida','Información validada','Registro actualizado'];
+ const aiQuestions=['¿Qué puedes resolver?','¿Cómo comenzamos?','¿Necesito un sistema grande?'];
+ const aiAnswers=[
+  'Podemos explorar sistemas, automatización y herramientas digitales según tu necesidad. Cada propuesta requiere evaluación humana.',
+  'Primero entendemos el desafío. Luego definimos un alcance posible, un prototipo y los pasos siguientes.',
+  'No necesariamente. Es posible comenzar con una herramienta pequeña y ampliar funcionalidades cuando aporten valor.'
+ ];
+ return <div className="tech-demo">
+  <div className="demo-top"><span>{d?.title || 'FLUJO CONECTADO'}</span><span>DEMO INTERACTIVA</span></div>
+  {d&&<div className="demo-tabs">{d.tabs.map((v,i)=><button key={v} type="button" aria-pressed={choice===i} onClick={()=>{setChoice(i);setActiveRecord(0);setRecordDone(false);setAiQuestion(-1);}}>{v}</button>)}</div>}
+  {kind==='software'&&<>
+   <div className="demo-table demo-table-interactive" role="group" aria-label="Registros de ejemplo">
+    {d.rows[choice].map((v,i)=><button key={v} type="button" aria-pressed={activeRecord===i} onClick={()=>{setActiveRecord(i);setRecordDone(false);}}><Icon name="layers" size={15}/><span>{v}</span><small>{activeRecord===i?'Seleccionado':'Ver registro'}</small></button>)}
+   </div>
+   <div className="demo-record-detail" aria-live="polite">
+    <span>Registro: <strong>{d.rows[choice][activeRecord]}</strong></span>
+    <span className={recordDone?'demo-state-done':'demo-state-pending'}>{recordDone?'Revisado':'Pendiente de revisión'}</span>
+   </div>
+   <button className="demo-action" type="button" onClick={()=>setRecordDone(v=>!v)}>{recordDone?'Volver a pendiente':'Marcar como revisado'} <Icon name="check" size={15}/></button>
+  </>}
+  {kind==='data'&&<div className="demo-bars" role="img" aria-label={'Distribución ilustrativa de '+d.tabs[choice]}>{d.rows[choice].map((n,i)=><i key={i} style={{height:n+'%'}}/>)}</div>}
+  {kind==='flow'&&<>
+   <div className="demo-flow" aria-live="polite">{flowStages.map((v,i)=><div key={v} className={flowStep>i?'is-done':flowStep===i?'is-current':''}><span>{flowStep>i?'✓':String(i+1).padStart(2,'0')}</span>{v}</div>)}</div>
+   <button className="demo-action" type="button" onClick={()=>setFlowStep(v=>v===3?0:v+1)}>{flowStep===3?'Reiniciar flujo':'Ejecutar siguiente paso'} <Icon name={flowStep===3?'workflow':'arrow'} size={15}/></button>
+   <small role="status">{flowStep===3?'Flujo simulado completado.':flowStep===0?'Inicia la simulación.':'Etapa '+flowStep+' de 3 completada.'} No hay integraciones activas.</small>
+  </>}
+  {kind==='ai'&&<>
+   <div className="demo-chat" aria-live="polite"><Icon name="spark" size={22}/><div className="demo-chat-body"><p>{aiQuestion<0?d.rows[choice]:aiAnswers[aiQuestion]}</p></div></div>
+   <div className="demo-ai-questions" role="group" aria-label="Preguntas de ejemplo">{aiQuestions.map((question,i)=><button key={question} type="button" aria-pressed={aiQuestion===i} onClick={()=>setAiQuestion(i)}>{question}</button>)}</div>
+  </>}
+  {kind==='web'&&<div className={'demo-browser '+(choice===1?'demo-mobile':'')} aria-hidden="true"><div className="demo-toolbar">● ● ●</div><div className="demo-webhero"><i/><i/><b/></div><div className="demo-webcards"><i/><i/><i/></div></div>}
+  {kind!=='flow'&&<small>{kind==='ai'?'Conversación simulada · no hay IA en vivo':kind==='software'?'Cambios locales de demostración · no se guardan datos':'Vista ilustrativa · datos de ejemplo'}</small>}
+ </div>;
 }
 const capabilities = [
  {kind:'software',title:'Software a medida',icon:'layers',description:'Desarrollamos plataformas y sistemas que se adaptan a las necesidades de cada proyecto.'},
