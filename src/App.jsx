@@ -406,7 +406,7 @@ function App() {
           <div className="container hero-grid">
             <div className="hero-copy">
               <div className="eyebrow"><span className="eyebrow-line" /> SOFTWARE · AUTOMATIZACIÓN · AGENTES IA</div>
-              <h1>Tus desafíos merecen <span>algo más que una solución genérica.</span></h1>
+              <h1>Tecnología que se adapta <span>a tu desafío. No al revés.</span></h1>
               <p className="hero-description">Creamos software a medida, plataformas digitales, automatizaciones y soluciones con IA para convertir necesidades concretas en herramientas útiles.</p>
               <div className="hero-actions">
                 <a className="button button-primary" href="#explorador">Explora tu solución <Icon name="arrowUp" size={18}/></a>
