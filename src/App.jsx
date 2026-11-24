@@ -5,8 +5,8 @@ const services = [
   {
     number: '01',
     icon: 'layers',
-    title: 'Software empresarial',
-    description: 'Centraliza la información de tu empresa y reduce el desorden de los procesos manuales.',
+    title: 'Software a medida',
+    description: 'Organiza información, usuarios y procesos en soluciones adaptadas a cada actividad.',
     tag: 'Desarrollo a medida'
   },
   {
@@ -42,7 +42,9 @@ const industries = [
   { label: 'Comercio y distribución', icon: 'store' },
   { label: 'Inmobiliarias', icon: 'building' },
   { label: 'Servicios profesionales', icon: 'briefcase' },
-  { label: 'Logística y operaciones', icon: 'truck' }
+  { label: 'Logística y operaciones', icon: 'truck' },
+  { label: 'Educación y formación', icon: 'layers' },
+  { label: 'Proyectos y organizaciones', icon: 'spark' }
 ];
 
 function Icon({ name, size = 24, className = '' }) {
@@ -158,11 +160,11 @@ function CapabilityDemo({kind}) {
  {kind!=='flow' && <small>{kind==='ai'?'Respuestas de ejemplo · sin IA en vivo':'Vista ilustrativa · datos de ejemplo'}</small>}</div>;
 }
 const capabilities = [
- {kind:'software',title:'Software a medida',icon:'layers',description:'Centraliza ventas, productos, clientes y operaciones en una plataforma propia.'},
- {kind:'data',title:'Inteligencia de datos',icon:'chart',description:'Convierte información dispersa en indicadores que apoyan decisiones.'},
+ {kind:'software',title:'Software a medida',icon:'layers',description:'Desarrollamos plataformas y sistemas que se adaptan a las necesidades de cada proyecto.'},
+ {kind:'data',title:'Inteligencia de datos',icon:'chart',description:'Transforma información dispersa en indicadores claros para tomar mejores decisiones.'},
  {kind:'flow',title:'Automatización inteligente',icon:'workflow',description:'Integra herramientas y reduce tareas repetitivas mediante flujos conectados.'},
  {kind:'ai',title:'Agentes de IA',icon:'spark',description:'Asistentes para atención, clasificación y gestión, con supervisión humana.'},
- {kind:'web',title:'Web y plataformas digitales',icon:'globe',description:'Experiencias digitales para captar clientes y conectar con tus sistemas.'}
+ {kind:'web',title:'Web y plataformas digitales',icon:'globe',description:'Creamos experiencias web para informar, gestionar servicios y conectar con usuarios.'}
 ];
 function Applications() {
  const [active,setActive]=useState(0);
@@ -215,16 +217,16 @@ function ContactForm() {
       <label>¿En qué necesitas ayuda?
         <select name="servicio" defaultValue="" required>
           <option value="" disabled>Selecciona una solución</option>
-          <option>Software empresarial</option>
-          <option>Dashboard y analítica</option>
+          <option>Software a medida</option>
+          <option>Dashboards y analítica</option>
           <option>Automatización de procesos</option>
           <option>Agentes de inteligencia artificial</option>
           <option>Desarrollo web</option>
           <option>Necesito orientación</option>
         </select>
       </label>
-      <label>Cuéntanos sobre tu negocio
-        <textarea value={context} onChange={e=>setContext(e.target.value)} name="mensaje" placeholder="¿Qué problema buscas resolver?" rows="4" minLength="10" maxLength="3000" required />
+      <label>Cuéntanos sobre tu proyecto
+        <textarea value={context} onChange={e=>setContext(e.target.value)} name="mensaje" placeholder="¿Qué te gustaría crear o resolver?" rows="4" minLength="10" maxLength="3000" required />
       </label>
       <label className="consent"><input type="checkbox" name="consentimiento" value="si" required /><span>Autorizo el uso de estos datos únicamente para responder mi solicitud comercial.</span></label>
       <button className="button button-primary button-full" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Enviando…' : 'Enviar solicitud'} <Icon name="arrowUp" size={18}/></button>
@@ -261,10 +263,10 @@ function App() {
           <div className="container hero-grid">
             <div className="hero-copy">
               <div className="eyebrow"><span className="eyebrow-line" /> SOFTWARE · AUTOMATIZACIÓN · AGENTES IA</div>
-              <h1>Tecnología que impulsa <span>la eficiencia de tu negocio.</span></h1>
-              <p className="hero-description">Creamos software, dashboards y automatizaciones inteligentes para que tu empresa trabaje con más control, menos tareas manuales y mejores decisiones.</p>
+              <h1>Tecnología que transforma <span>ideas en soluciones reales.</span></h1>
+              <p className="hero-description">Diseñamos software, plataformas digitales, automatizaciones y soluciones con inteligencia artificial para empresas, organizaciones y proyectos de distintas áreas.</p>
               <div className="hero-actions">
-                <a className="button button-primary" href="#contacto">Conversemos sobre tu proyecto <Icon name="arrowUp" size={18}/></a>
+                <a className="button button-primary" href="#contacto">Cuéntanos tu proyecto <Icon name="arrowUp" size={18}/></a>
                 <a className="button button-outline" href="#soluciones">Explorar soluciones <Icon name="arrow" size={18}/></a>
               </div>
             </div>
@@ -276,7 +278,7 @@ function App() {
           <div className="container">
             <div className="section-heading">
               <div><p className="section-kicker">QUÉ HACEMOS</p><h2>Soluciones digitales <em>de alto impacto.</em></h2></div>
-              <p>Desde una necesidad puntual hasta una solución digital integral. Diseñamos cada proyecto según los desafíos de tu negocio.</p>
+              <p>Desde una herramienta puntual hasta una plataforma integral, diseñamos tecnología útil para cada necesidad.</p>
             </div>
             <div className="capability-grid">{capabilities.map(item=><article className={'capability-card capability-'+item.kind} key={item.kind}><div className="capability-heading"><Icon name={item.icon} size={23}/><h3>{item.title}</h3></div><p>{item.description}</p><CapabilityDemo kind={item.kind}/><a className="capability-link" href="#contacto">Conversemos <Icon name="arrowUp" size={15}/></a></article>)}</div><p className="cases-disclaimer">Demostraciones interactivas con datos y respuestas de ejemplo. No son sistemas conectados en vivo.</p></div>
         </section>
@@ -285,7 +287,7 @@ function App() {
           <div className="container">
             <div className="cases-head">
               <div><p className="section-kicker">TECNOLOGÍA APLICADA</p><h2>Tecnología aplicada <em>a desafíos reales.</em></h2></div>
-              <p>Ejemplos de lo que podemos diseñar para tu empresa. Cada implementación se define según el alcance y la viabilidad técnica.</p>
+              <p>Explora aplicaciones posibles en diferentes áreas. Cada solución se adapta a su contexto y alcance.</p>
             </div>
             <Applications />
             <p className="cases-disclaimer">Aplicaciones ilustrativas. No representan clientes ni proyectos terminados.</p>
@@ -296,8 +298,8 @@ function App() {
           <div className="container agents-layout">
             <div className="agents-intro">
               <p className="section-kicker">INTELIGENCIA ARTIFICIAL APLICADA</p>
-              <h2>Agentes de IA <em>para tu empresa.</em></h2>
-              <p>Exploramos, diseñamos e implementamos asistentes conectados a los procesos y la información autorizada de cada empresa, con supervisión humana cuando corresponde.</p>
+              <h2>Agentes de IA <em>para diferentes necesidades.</em></h2>
+              <p>Diseñamos asistentes para orientar consultas, organizar información y apoyar procesos, con acceso autorizado y supervisión humana cuando corresponde.</p>
               <a className="text-link" href="#contacto">Cuéntanos qué necesitas automatizar <Icon name="arrow" size={18}/></a>
             </div>
             <div className="agents-list">
@@ -315,8 +317,8 @@ function App() {
         <section className="section section-sectors section-anchor" id="sectores">
           <div className="container">
             <div className="section-heading">
-              <div><p className="section-kicker">DONDE GENERAMOS VALOR</p><h2>La tecnología se adapta <em>a tu industria.</em></h2></div>
-              <p>Cada empresa tiene desafíos distintos. Por eso partimos entendiendo el negocio, no imponiendo una herramienta.</p>
+              <div><p className="section-kicker">DONDE GENERAMOS VALOR</p><h2>La tecnología se adapta <em>a cada desafío.</em></h2></div>
+              <p>Trabajamos con distintas áreas, actividades y organizaciones. Estos sectores son ejemplos, no los límites de lo que podemos desarrollar.</p>
             </div>
             <div className="sectors-grid">{industries.map(item => <div className="sector" key={item.label}><Icon name={item.icon} size={25}/><span>{item.label}</span><Icon name="arrowUp" size={16}/></div>)}</div>
           </div>
@@ -339,7 +341,7 @@ function App() {
             <div className="contact-copy">
               <p className="section-kicker">HABLEMOS</p>
               <h2>Tu próximo paso digital <em>comienza con una conversación.</em></h2>
-              <p>Cuéntanos qué quieres mejorar en tu empresa. Revisaremos tu necesidad y te ayudaremos a identificar un primer paso concreto.</p>
+              <p>Cuéntanos qué quieres crear, mejorar o automatizar. Revisaremos tu necesidad y te ayudaremos a identificar un primer paso concreto.</p>
               <div className="contact-promise"><Icon name="check" size={19}/> Conversación inicial sin compromiso</div>
             </div>
             <ContactForm />
@@ -348,7 +350,7 @@ function App() {
       </main>
 
       <footer className="site-footer">
-        <div className="container footer-main"><Brand footer/><p>Diseñamos tecnología para resolver desafíos reales de negocio.</p><a href="#inicio">Volver arriba ↑</a></div>
+        <div className="container footer-main"><Brand footer/><p>Diseñamos tecnología para resolver desafíos reales en distintas áreas.</p><a href="#inicio">Volver arriba ↑</a></div>
         <div className="container footer-bottom"><span>© {new Date().getFullYear()} MUVORY Technologies. Nombre comercial sujeto a validación.</span><span>Software · Automatización · IA</span></div>
       </footer>
       <CommercialAssistant />
