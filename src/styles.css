@@ -554,3 +554,19 @@ h3 { font-weight: 510; }
  .application-preview-row { grid-template-columns:26px minmax(0,1fr); gap:8px; padding:11px; font-size:12px; }
  .application-preview-row small { grid-column:2; text-align:left; }
 }
+
+
+/* Demo de procesos: avance controlado por el visitante, sin operaciones reales. */
+.application-preview-row { transition: border-color .2s ease, background .2s ease; }
+.application-preview-row.is-complete { border-color:#3d8d82; background:#123d3c; }
+.application-preview-row.is-complete small { color:#9cf3db; }
+.application-preview-controls { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; }
+.application-preview-progress { flex:1 1 160px; min-width:0; color:#afd0d5; font-size:13px; line-height:1.5; }
+.application-preview-run { display:inline-flex; justify-content:center; align-items:center; gap:10px; min-height:44px; padding:11px 17px; border:1px solid #6bd4c9; border-radius:9px; background:#174d50; color:#e4fff9; font:inherit; font-size:13px; font-weight:600; cursor:pointer; }
+.application-preview-run:hover { background:#216164; }
+.application-preview-run:focus-visible { outline:3px solid #9df3e9; outline-offset:3px; }
+@media(max-width:650px) {
+ .application-preview-run { width:100%; }
+ .application-preview-progress { flex-basis:100%; }
+}
+@media(prefers-reduced-motion:reduce) { .application-preview-row { transition:none; } }
