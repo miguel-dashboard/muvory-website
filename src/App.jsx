@@ -168,6 +168,7 @@ const capabilities = [
 ];
 function Applications() {
  const [active,setActive]=useState(0);
+ const [step,setStep]=useState(0);
  const cases=[
   {name:'Comercio',icon:'store',title:'Ventas e inventario conectados',desc:'Unifica pedidos, disponibilidad de productos y seguimiento de ventas en un solo lugar.',steps:['Pedido registrado','Inventario actualizado','Resumen disponible'],sample:['Pedido #1042','Stock sincronizado','Resumen del día']},
   {name:'Servicios jurídicos',icon:'briefcase',title:'Documentos y plazos organizados',desc:'Visualiza expedientes, tareas y recordatorios para facilitar el seguimiento administrativo.',steps:['Expediente registrado','Plazo identificado','Recordatorio preparado'],sample:['Expediente de ejemplo','Vencimiento próximo','Tarea por revisar']},
@@ -177,9 +178,14 @@ function Applications() {
   {name:'Otros proyectos',icon:'spark',title:'Una solución para cada idea',desc:'Desde portales y herramientas internas hasta automatizaciones para necesidades específicas.',steps:['Necesidad identificada','Flujo diseñado','Prototipo evaluado'],sample:['Solicitud de proyecto','Etapa de diseño','Próxima revisión']}
  ];
  const item=cases[active];
+ function selectArea(index){ setActive(index); setStep(0); }
+ function advance(){ setStep(current=>Math.min(3,current+1)); }
+ function requestSolution(){
+  window.dispatchEvent(new CustomEvent('muvory:diagnostic',{detail:'Interés en solución tecnológica para '+item.name+': '+item.title+'. Ejemplo ilustrativo explorado en el sitio web.'}));
+ }
  return <>
   <div className="industry-tabs" role="group" aria-label="Explora aplicaciones por área">
-   {cases.map((c,i)=><button type="button" key={c.name} aria-pressed={active===i} onClick={()=>setActive(i)}><Icon name={c.icon} size={18}/>{c.name}</button>)}
+   {cases.map((c,i)=><button type="button" key={c.name} aria-pressed={active===i} onClick={()=>selectArea(i)}><Icon name={c.icon} size={18}/>{c.name}</button>)}
   </div>
   <div className="application-panel">
    <div className="application-copy">
@@ -187,15 +193,19 @@ function Applications() {
     <h3>{item.title}</h3>
     <p>{item.desc}</p>
     <div className="application-steps">{item.steps.map((step,i)=><div key={step}><span>{String(i+1).padStart(2,'0')}</span>{step}</div>)}</div>
-    <a className="text-link" href="#contacto">Conversemos sobre esta solución <Icon name="arrow" size={17}/></a>
+    <a className="text-link" href="#contacto" onClick={requestSolution}>Conversemos sobre esta solución <Icon name="arrow" size={17}/></a>
    </div>
    <div className="application-preview" aria-live="polite" aria-atomic="true">
     <div className="application-preview-header"><span>VISTA DE PLATAFORMA</span><span className="application-preview-demo">DEMO · SIN DATOS REALES</span></div>
     <div className="application-preview-title"><Icon name={item.icon} size={22}/><div><strong>{item.name}</strong><small>Panel ilustrativo de seguimiento</small></div></div>
     <div className="application-preview-list">
-     {item.sample.map((label,i)=><div key={label} className="application-preview-row"><span className="application-preview-index">0{i+1}</span><span>{label}</span><small>{i===0?'Registrado':i===1?'Actualizado':'Por revisar'}</small></div>)}
+     {item.sample.map((label,i)=><div key={label} className={'application-preview-row'+(step>i?' is-complete':'')}><span className="application-preview-index">0{i+1}</span><span>{label}</span><small>{step>i?'Completado':i===step?'Siguiente paso':'Pendiente'}</small></div>)}
     </div>
-    <div className="application-preview-bottom"><span className="application-preview-light" /> Ejemplo interactivo de una posible solución</div>
+    <div className="application-preview-controls">
+     <div className="application-preview-progress" aria-live="polite" role="status">{step===0?'Inicia una simulación de este proceso.':step===3?'Simulación completada. Puedes reiniciarla.':'Paso '+step+' de 3 completado.'}</div>
+     <button className="application-preview-run" type="button" onClick={step===3?()=>setStep(0):advance}>{step===3?'Reiniciar simulación':'Simular siguiente paso'} <Icon name={step===3?'workflow':'arrow'} size={17}/></button>
+    </div>
+    <div className="application-preview-bottom"><span className="application-preview-light" /> Simulación local, sin datos reales ni operaciones externas</div>
    </div>
   </div>
  </>;
