@@ -124,14 +124,14 @@ function OrbVisual() {
         <ellipse cx="346" cy="458" rx="176" ry="12" fill="#48C7CD" opacity=".20" filter="url(#orb-soft-glow)"/>
         <circle cx="348" cy="252" r="174" fill="url(#orb-core)" stroke="#8DEBEA" strokeOpacity=".41" strokeWidth="1.4"/>
         <ellipse cx="342" cy="254" rx="175" ry="173" stroke="#A9F0EE" strokeOpacity=".30" strokeWidth="1" fill="none"/>
-        <ellipse cx="348" cy="252" rx="88" ry="174" stroke="#9FE5E3" strokeOpacity=".22" fill="none" transform="rotate(24 348 252)"/>
-        <ellipse cx="348" cy="252" rx="162" ry="55" stroke="#9FE5E3" strokeOpacity=".22" fill="none" transform="rotate(-19 348 252)"/>
+        <g className="orb-svg-meridian"><ellipse cx="348" cy="252" rx="88" ry="174" stroke="#9FE5E3" strokeOpacity=".22" fill="none" transform="rotate(24 348 252)"/></g>
+        <g className="orb-svg-latitude"><ellipse cx="348" cy="252" rx="162" ry="55" stroke="#9FE5E3" strokeOpacity=".22" fill="none" transform="rotate(-19 348 252)"/></g>
         <path d="M55 292 C168 378 219 182 311 268 S468 311 606 181" stroke="url(#orb-wave)" strokeWidth="26" strokeOpacity=".20" strokeLinecap="round" fill="none" filter="url(#orb-soft-glow)"/>
         <path d="M55 292 C168 378 219 182 311 268 S468 311 606 181" stroke="url(#orb-wave)" strokeWidth="3" strokeLinecap="round" fill="none"/>
         <path d="M58 333 C204 389 217 185 345 258 S494 303 629 228" stroke="#8BF2EF" strokeOpacity=".50" strokeWidth="1.25" fill="none"/>
         <path d="M97 365 C252 374 247 189 358 269 S504 326 611 244" stroke="#66CBD7" strokeOpacity=".34" strokeWidth="1" fill="none"/>
-        <ellipse cx="346" cy="275" rx="267" ry="100" transform="rotate(-22 346 275)" stroke="#89E8EA" strokeOpacity=".42" strokeWidth="1.8" fill="none" strokeDasharray="600 850"/>
-        <ellipse cx="346" cy="275" rx="266" ry="98" transform="rotate(-22 346 275)" stroke="#86E8E6" strokeOpacity=".12" fill="none"/>
+        <g className="orb-svg-outer-ring"><ellipse cx="346" cy="275" rx="267" ry="100" transform="rotate(-22 346 275)" stroke="#89E8EA" strokeOpacity=".42" strokeWidth="1.8" fill="none" strokeDasharray="600 850"/></g>
+        <g className="orb-svg-inner-ring"><ellipse cx="346" cy="275" rx="266" ry="98" transform="rotate(-22 346 275)" stroke="#86E8E6" strokeOpacity=".12" fill="none"/></g>
         {particles.map((p,i)=><circle key={i} cx={p.x} cy={p.y} r={p.r} fill="#A5FFFF" opacity={p.opacity}/>)}
         <circle cx="348" cy="252" r="176" stroke="#B6FCF7" strokeOpacity=".13" strokeWidth="5" fill="none" filter="url(#orb-soft-glow)"/>
       </svg>
@@ -140,27 +140,29 @@ function OrbVisual() {
   );
 }
 
-const heroShowcases=[
- {name:'Software',icon:'layers',tag:'GESTIÓN A MEDIDA',title:'Toda la información, en un solo lugar.',rows:['Solicitudes organizadas','Tareas en seguimiento','Acceso por responsables'],status:'Panel de gestión · ejemplo'},
- {name:'Automatización',icon:'workflow',tag:'FLUJOS CONECTADOS',title:'Menos pasos manuales. Más continuidad.',rows:['Solicitud recibida','Regla de validación','Aviso preparado'],status:'Flujo de trabajo · ejemplo'},
- {name:'Inteligencia artificial',icon:'spark',tag:'ASISTENCIA DIGITAL',title:'Información útil cuando la necesitas.',rows:['Consulta recibida','Contenido autorizado','Respuesta para revisión'],status:'Asistente guiado · ejemplo'}
+const orbitalFeatures=[
+ {key:'software',name:'Software',icon:'layers',headline:'Software a medida',description:'Sistemas que organizan información y simplifican el trabajo cotidiano.'},
+ {key:'automation',name:'Automatización',icon:'workflow',headline:'Procesos conectados',description:'Automatizaciones para unir tareas, herramientas y etapas de trabajo.'},
+ {key:'ai',name:'Inteligencia artificial',icon:'spark',headline:'IA aplicada',description:'Asistentes para orientar, clasificar y apoyar decisiones con supervisión humana.'},
+ {key:'web',name:'Plataformas web',icon:'globe',headline:'Experiencias digitales',description:'Plataformas y sitios que conectan servicios, contenidos y personas.'}
 ];
 function HeroExperience(){
  const [selected,setSelected]=useState(0);
- const active=heroShowcases[selected];
- return <div className="hero-experience" aria-label="Explora ejemplos de tecnología MUVORY">
-  <OrbVisual />
-  <div className="hero-lab">
-   <div className="hero-lab-top"><span className="hero-lab-live"><span aria-hidden="true"/> MUVORY / LAB</span><span>DEMOSTRACIÓN INTERACTIVA</span></div>
-   <div className="hero-lab-tabs" role="group" aria-label="Tipo de solución">
-    {heroShowcases.map((item,i)=><button key={item.name} type="button" aria-pressed={selected===i} onClick={()=>setSelected(i)}><Icon name={item.icon} size={15}/>{item.name}</button>)}
+ const active=orbitalFeatures[selected];
+ return <div className="hero-experience" aria-label="Explora las soluciones de MUVORY">
+  <div className={'hero-orbital hero-orbital-'+active.key}>
+   <OrbVisual />
+   <div className="orbital-orbit orbital-orbit-outer" aria-hidden="true"/>
+   <div className="orbital-orbit orbital-orbit-inner" aria-hidden="true"/>
+   <div className="orbital-nodes" role="group" aria-label="Selecciona una solución tecnológica">
+    {orbitalFeatures.map((item,i)=><button className={'orbital-node orbital-node-'+item.key} type="button" key={item.key} aria-pressed={selected===i} onClick={()=>setSelected(i)}><Icon name={item.icon} size={18}/><span>{item.name}</span></button>)}
    </div>
-   <div className="hero-lab-content" aria-live="polite">
-    <span className="hero-lab-tag">{active.tag}</span>
-    <strong>{active.title}</strong>
-    <div className="hero-lab-rows">{active.rows.map((row,i)=><div key={row}><span className="hero-lab-row-icon">{i+1}</span><span>{row}</span><Icon name={i===2?'arrow':'check'} size={14}/></div>)}</div>
-    <div className="hero-lab-bottom"><span>{active.status}</span><span>DATOS ILUSTRATIVOS</span></div>
-   </div>
+  </div>
+  <div className="orbital-feature" aria-live="polite" aria-atomic="true">
+   <span className="orbital-feature-eyebrow"><span aria-hidden="true" className="orbital-feature-dot"/> EXPLORA MUVORY <span className="orbital-feature-count">0{selected+1} / 04</span></span>
+   <strong>{active.headline}</strong>
+   <p>{active.description}</p>
+   <a href="#explorador">Descubre posibilidades <Icon name="arrow" size={15}/></a>
   </div>
  </div>;
 }
@@ -410,7 +412,7 @@ function App() {
                 <a className="button button-primary" href="#explorador">Explora tu solución <Icon name="arrowUp" size={18}/></a>
                 <a className="button button-outline" href="#contacto">Cuéntanos tu idea <Icon name="arrow" size={18}/></a>
               </div>
-              <p className="hero-experience-hint"><Icon name="spark" size={15}/> Prueba las opciones del laboratorio interactivo.</p>
+              <p className="hero-experience-hint"><Icon name="spark" size={15}/> Selecciona un punto de la órbita para explorar una solución.</p>
             </div>
             <HeroExperience />
           </div>
