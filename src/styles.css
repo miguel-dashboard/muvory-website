@@ -528,3 +528,29 @@ h3 { font-weight: 510; }
   .agent-item h3 { font-size: 24px; }
   .agent-item p, .steps p, .contact-copy > p:not(.section-kicker) { font-size: 18px; }
 }
+
+
+/* Vistas ilustrativas por área: diferenciadas de sistemas conectados o casos reales. */
+.industry-tabs { display:flex; flex-wrap:wrap; }
+.industry-tabs button[aria-pressed="true"] { background:rgba(112,222,217,.16); border-color:#7de5de; color:#efffff; }
+.application-preview { min-width:0; padding:24px; border:1px solid #2c5864; border-radius:13px; background:linear-gradient(160deg,#0a2635,#061823); display:flex; flex-direction:column; gap:24px; }
+.application-preview-header { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; font-size:11px; font-weight:700; letter-spacing:.11em; color:#a7c9d1; }
+.application-preview-demo { color:#8be4dc; font-size:10px; }
+.application-preview-title { display:flex; align-items:center; gap:15px; padding-bottom:18px; border-bottom:1px solid #294b55; color:#85e4dc; }
+.application-preview-title strong { display:block; color:#eef9fa; font-size:21px; font-weight:500; }
+.application-preview-title small { display:block; margin-top:5px; color:#8cadb8; font-size:12px; }
+.application-preview-list { display:grid; gap:10px; }
+.application-preview-row { display:grid; grid-template-columns:40px minmax(0,1fr) auto; align-items:center; gap:12px; border:1px solid #274954; border-radius:9px; padding:14px; background:#102d3b; color:#d6ecef; font-size:14px; }
+.application-preview-index { color:#89dcd6; font-size:12px; font-weight:700; }
+.application-preview-row small { color:#95c7c8; font-size:11px; text-align:right; }
+.application-preview-bottom { display:flex; align-items:center; gap:9px; margin-top:auto; color:#93b5be; font-size:12px; }
+.application-preview-light { width:7px; height:7px; flex-shrink:0; border-radius:50%; background:#7ddfd5; }
+@media(max-width:650px) {
+ .industry-tabs { display:grid; }
+ .application-preview { padding:17px; gap:16px; }
+ .application-preview-header { font-size:9px; }
+ .application-preview-demo { font-size:9px; }
+ .application-preview-title strong { font-size:18px; }
+ .application-preview-row { grid-template-columns:26px minmax(0,1fr); gap:8px; padding:11px; font-size:12px; }
+ .application-preview-row small { grid-column:2; text-align:left; }
+}
