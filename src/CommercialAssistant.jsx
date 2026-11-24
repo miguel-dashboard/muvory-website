@@ -5,10 +5,11 @@ const topics = [
  ['Inmobiliaria','¿Cómo recibes y haces seguimiento a los interesados en tus propiedades?','Una web conectada a un CRM puede organizar prospectos, y un agente puede orientar consultas sobre propiedades aprobadas.'],
  ['Abogados y servicios','¿Qué tareas administrativas o documentales te consumen más tiempo?','Podemos explorar gestión documental, clasificación de solicitudes y automatización administrativa con revisión profesional.'],
  ['Logística','¿Qué proceso operativo te gustaría controlar mejor?','Podemos explorar sistemas de seguimiento, indicadores operacionales y automatización de registros.'],
- ['Otro negocio','¿Qué proceso de tu empresa te gustaría mejorar primero?','Podemos evaluar software, analítica, automatización o una web según tu necesidad.']
+ ['Educación y formación','¿Qué experiencia, contenido o proceso de aprendizaje quieres mejorar?','Podemos explorar plataformas educativas, gestión de inscripciones y herramientas digitales para organizar contenidos y actividades.'],
+ ['Otros proyectos','¿Qué te gustaría crear, organizar o mejorar con tecnología?','Podemos evaluar software a medida, analítica, automatización o soluciones web según el objetivo de tu proyecto.']
 ];
-const needs=['Organizar información','Ahorrar trabajo manual','Captar clientes','Mejorar decisiones'];
-const welcome={role:'assistant',text:'Bienvenido a MUVORY. Exploremos qué tecnología podría ayudar a tu empresa. ¿En qué sector trabajas?'};
+const needs=['Organizar información','Ahorrar trabajo manual','Conectar con usuarios','Mejorar decisiones'];
+const welcome={role:'assistant',text:'Bienvenido a MUVORY. Exploremos cómo la tecnología puede ayudarte. ¿En qué área o tipo de proyecto trabajas?'};
 export default function CommercialAssistant(){
  const [open,setOpen]=useState(false);
  const [stage,setStage]=useState(0);
