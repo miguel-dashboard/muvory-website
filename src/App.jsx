@@ -168,9 +168,37 @@ const capabilities = [
 ];
 function Applications() {
  const [active,setActive]=useState(0);
- const cases=[{name:'Comercio',icon:'store',title:'Control comercial conectado',desc:'Organiza ventas, inventario y clientes desde una plataforma.',steps:['Venta registrada','Inventario actualizado','Indicadores disponibles'],kind:'data'},{name:'Inmobiliarias',icon:'building',title:'Captación y seguimiento',desc:'Conecta consultas de propiedades con tu gestión comercial.',steps:['Consulta recibida','Prospecto organizado','Seguimiento preparado'],kind:'flow'},{name:'Servicios profesionales',icon:'briefcase',title:'Gestión inteligente de solicitudes',desc:'Organiza documentos y consultas con asistencia y revisión humana.',steps:['Consulta recibida','Información clasificada','Revisión profesional'],kind:'ai'},{name:'Operaciones',icon:'truck',title:'Visibilidad de procesos',desc:'Centraliza registros y estados para identificar mejoras.',steps:['Registro operativo','Estado actualizado','Revisión de indicadores'],kind:'software'}];
+ const cases=[
+  {name:'Comercio',icon:'store',title:'Ventas e inventario conectados',desc:'Unifica pedidos, disponibilidad de productos y seguimiento de ventas en un solo lugar.',steps:['Pedido registrado','Inventario actualizado','Resumen disponible'],sample:['Pedido #1042','Stock sincronizado','Resumen del día']},
+  {name:'Servicios jurídicos',icon:'briefcase',title:'Documentos y plazos organizados',desc:'Visualiza expedientes, tareas y recordatorios para facilitar el seguimiento administrativo.',steps:['Expediente registrado','Plazo identificado','Recordatorio preparado'],sample:['Expediente de ejemplo','Vencimiento próximo','Tarea por revisar']},
+  {name:'Logística',icon:'truck',title:'Seguimiento operativo centralizado',desc:'Consulta despachos, estados e incidencias para comprender qué ocurre en la operación.',steps:['Despacho asignado','Estado actualizado','Incidencia visible'],sample:['Ruta asignada','Entrega en seguimiento','Alerta por revisar']},
+  {name:'Educación',icon:'layers',title:'Gestión de formación digital',desc:'Organiza inscripciones, contenidos y avances mediante una plataforma accesible.',steps:['Inscripción recibida','Contenido disponible','Progreso registrado'],sample:['Curso de ejemplo','Módulo disponible','Progreso actualizado']},
+  {name:'Inmobiliarias',icon:'building',title:'Consultas y seguimiento comercial',desc:'Conecta solicitudes de interesados con una vista clara para organizar respuestas.',steps:['Consulta recibida','Interés clasificado','Seguimiento pendiente'],sample:['Consulta de propiedad','Interesado registrado','Contacto programable']},
+  {name:'Otros proyectos',icon:'spark',title:'Una solución para cada idea',desc:'Desde portales y herramientas internas hasta automatizaciones para necesidades específicas.',steps:['Necesidad identificada','Flujo diseñado','Prototipo evaluado'],sample:['Solicitud de proyecto','Etapa de diseño','Próxima revisión']}
+ ];
  const item=cases[active];
- return <><div className="industry-tabs" aria-label="Selecciona una industria">{cases.map((c,i)=><button type="button" key={c.name} aria-pressed={active===i} onClick={()=>setActive(i)}><Icon name={c.icon} size={18}/>{c.name}</button>)}</div><div className="application-panel"><div className="application-copy"><span className="section-kicker">APLICACIÓN ILUSTRATIVA</span><h3>{item.title}</h3><p>{item.desc}</p><div className="application-steps">{item.steps.map((s,i)=><div key={s}><span>{String(i+1).padStart(2,'0')}</span>{s}</div>)}</div><a className="text-link" href="#contacto">Consultar por esta solución <Icon name="arrow" size={17}/></a></div><CapabilityDemo key={item.kind} kind={item.kind}/></div></>;
+ return <>
+  <div className="industry-tabs" role="group" aria-label="Explora aplicaciones por área">
+   {cases.map((c,i)=><button type="button" key={c.name} aria-pressed={active===i} onClick={()=>setActive(i)}><Icon name={c.icon} size={18}/>{c.name}</button>)}
+  </div>
+  <div className="application-panel">
+   <div className="application-copy">
+    <span className="section-kicker">APLICACIÓN ILUSTRATIVA · {item.name.toUpperCase()}</span>
+    <h3>{item.title}</h3>
+    <p>{item.desc}</p>
+    <div className="application-steps">{item.steps.map((step,i)=><div key={step}><span>{String(i+1).padStart(2,'0')}</span>{step}</div>)}</div>
+    <a className="text-link" href="#contacto">Conversemos sobre esta solución <Icon name="arrow" size={17}/></a>
+   </div>
+   <div className="application-preview" aria-live="polite" aria-atomic="true">
+    <div className="application-preview-header"><span>VISTA DE PLATAFORMA</span><span className="application-preview-demo">DEMO · SIN DATOS REALES</span></div>
+    <div className="application-preview-title"><Icon name={item.icon} size={22}/><div><strong>{item.name}</strong><small>Panel ilustrativo de seguimiento</small></div></div>
+    <div className="application-preview-list">
+     {item.sample.map((label,i)=><div key={label} className="application-preview-row"><span className="application-preview-index">0{i+1}</span><span>{label}</span><small>{i===0?'Registrado':i===1?'Actualizado':'Por revisar'}</small></div>)}
+    </div>
+    <div className="application-preview-bottom"><span className="application-preview-light" /> Ejemplo interactivo de una posible solución</div>
+   </div>
+  </div>
+ </>;
 }
 
 function ContactForm() {
