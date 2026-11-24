@@ -140,6 +140,31 @@ function OrbVisual() {
   );
 }
 
+const heroShowcases=[
+ {name:'Software',icon:'layers',tag:'GESTIÓN A MEDIDA',title:'Toda la información, en un solo lugar.',rows:['Solicitudes organizadas','Tareas en seguimiento','Acceso por responsables'],status:'Panel de gestión · ejemplo'},
+ {name:'Automatización',icon:'workflow',tag:'FLUJOS CONECTADOS',title:'Menos pasos manuales. Más continuidad.',rows:['Solicitud recibida','Regla de validación','Aviso preparado'],status:'Flujo de trabajo · ejemplo'},
+ {name:'Inteligencia artificial',icon:'spark',tag:'ASISTENCIA DIGITAL',title:'Información útil cuando la necesitas.',rows:['Consulta recibida','Contenido autorizado','Respuesta para revisión'],status:'Asistente guiado · ejemplo'}
+];
+function HeroExperience(){
+ const [selected,setSelected]=useState(0);
+ const active=heroShowcases[selected];
+ return <div className="hero-experience" aria-label="Explora ejemplos de tecnología MUVORY">
+  <OrbVisual />
+  <div className="hero-lab">
+   <div className="hero-lab-top"><span className="hero-lab-live"><span aria-hidden="true"/> MUVORY / LAB</span><span>DEMOSTRACIÓN INTERACTIVA</span></div>
+   <div className="hero-lab-tabs" role="group" aria-label="Tipo de solución">
+    {heroShowcases.map((item,i)=><button key={item.name} type="button" aria-pressed={selected===i} onClick={()=>setSelected(i)}><Icon name={item.icon} size={15}/>{item.name}</button>)}
+   </div>
+   <div className="hero-lab-content" aria-live="polite">
+    <span className="hero-lab-tag">{active.tag}</span>
+    <strong>{active.title}</strong>
+    <div className="hero-lab-rows">{active.rows.map((row,i)=><div key={row}><span className="hero-lab-row-icon">{i+1}</span><span>{row}</span><Icon name={i===2?'arrow':'check'} size={14}/></div>)}</div>
+    <div className="hero-lab-bottom"><span>{active.status}</span><span>DATOS ILUSTRATIVOS</span></div>
+   </div>
+  </div>
+ </div>;
+}
+
 const demoOptions = {
  software: {title:'GESTIÓN EMPRESARIAL',tabs:['Productos','Clientes','Pedidos'], rows:[['Producto A','Producto B','Producto C'],['Cliente A','Cliente B','Cliente C'],['Pedido 001','Pedido 002','Pedido 003']]},
  data:{title:'INTELIGENCIA COMERCIAL',tabs:['Ventas','Clientes','Inventario'],rows:[[32,52,42,70,58,86,76],[46,36,68,48,79,62,91],[82,64,78,50,63,42,57]]},
@@ -379,14 +404,15 @@ function App() {
           <div className="container hero-grid">
             <div className="hero-copy">
               <div className="eyebrow"><span className="eyebrow-line" /> SOFTWARE · AUTOMATIZACIÓN · AGENTES IA</div>
-              <h1>Tecnología que transforma <span>ideas en soluciones reales.</span></h1>
-              <p className="hero-description">Diseñamos software, plataformas digitales, automatizaciones y soluciones con inteligencia artificial para empresas, organizaciones y proyectos de distintas áreas.</p>
+              <h1>Tus desafíos merecen <span>algo más que una solución genérica.</span></h1>
+              <p className="hero-description">Creamos software a medida, plataformas digitales, automatizaciones y soluciones con IA para convertir necesidades concretas en herramientas útiles.</p>
               <div className="hero-actions">
-                <a className="button button-primary" href="#contacto">Cuéntanos tu proyecto <Icon name="arrowUp" size={18}/></a>
-                <a className="button button-outline" href="#soluciones">Explorar soluciones <Icon name="arrow" size={18}/></a>
+                <a className="button button-primary" href="#explorador">Explora tu solución <Icon name="arrowUp" size={18}/></a>
+                <a className="button button-outline" href="#contacto">Cuéntanos tu idea <Icon name="arrow" size={18}/></a>
               </div>
+              <p className="hero-experience-hint"><Icon name="spark" size={15}/> Prueba las opciones del laboratorio interactivo.</p>
             </div>
-            <OrbVisual />
+            <HeroExperience />
           </div>
         </section>
 
