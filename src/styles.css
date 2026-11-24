@@ -604,3 +604,24 @@ h3 { font-weight: 510; }
 @media(max-width:1050px) { .solution-configurator { grid-template-columns:1fr; } }
 @media(max-width:650px) { .solution-configurator { padding:14px; gap:16px; } .solution-configurator-preview { padding:18px; } .solution-choice-grid button { min-height:105px; padding:13px; font-size:13px; } .solution-configurator-flow { grid-template-columns:1fr; } .solution-configurator-step { min-height:0; } .solution-contact-button { width:100%; } .solution-configurator-top { flex-wrap:wrap; } }
 @media(prefers-reduced-motion:reduce) { .solution-choice-grid button { transition:none; } .solution-choice-grid button:hover { transform:none; } }
+
+
+/* Demos de servicios: interacción local y accesible, sin conexiones externas. */
+.demo-table-interactive button { display:flex; align-items:center; gap:8px; width:100%; min-width:0; padding:9px; border:1px solid transparent; border-radius:6px; background:#102d39; color:#d5e7eb; font:inherit; font-size:11px; text-align:left; cursor:pointer; }
+.demo-table-interactive button svg { color:#72d6cf; }
+.demo-table-interactive button small { margin-left:auto; color:#a7c9ce; font-size:9px; }
+.demo-table-interactive button[aria-pressed="true"] { border-color:#72d6cf; background:#17414a; }
+.demo-record-detail { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:9px; font-size:11px; color:#b4d6dc; }
+.demo-record-detail strong { color:#eefbfc; font-weight:600; }
+.demo-state-pending { color:#edcb8f; }
+.demo-state-done { color:#9aefda; }
+.demo-flow>div.is-current { border-color:#8bdddc; background:#103740; }
+.demo-flow>div.is-done { border-color:#58ada4; background:#154a48; color:#e2fbf9; }
+.demo-chat-body { flex:1; min-width:0; }
+.demo-ai-questions { display:flex; flex-wrap:wrap; gap:7px; }
+.demo-ai-questions button { min-height:36px; padding:8px 10px; border:1px solid #3a6870; border-radius:8px; background:#113543; color:#bde8e5; font:inherit; font-size:11px; line-height:1.4; text-align:left; cursor:pointer; }
+.demo-ai-questions button[aria-pressed="true"] { border-color:#8be8dc; background:#1a5052; color:#f1fffb; }
+.demo-table-interactive button:focus-visible,.demo-ai-questions button:focus-visible { outline:2px solid #9df3e9; outline-offset:2px; }
+@media(max-width:650px) {
+ .demo-table-interactive button,.demo-ai-questions button { min-height:42px; font-size:12px; }
+}
