@@ -1,52 +1,6 @@
 import { useState, useEffect } from 'react';
 import CommercialAssistant from './CommercialAssistant.jsx';
 
-const services = [
-  {
-    number: '01',
-    icon: 'layers',
-    title: 'Software a medida',
-    description: 'Organiza información, usuarios y procesos en soluciones adaptadas a cada actividad.',
-    tag: 'Desarrollo a medida'
-  },
-  {
-    number: '02',
-    icon: 'chart',
-    title: 'Dashboards y analítica',
-    description: 'Transforma datos dispersos en una visión clara de ventas, clientes y operación.',
-    tag: 'Datos y gestión'
-  },
-  {
-    number: '03',
-    icon: 'workflow',
-    title: 'Automatización',
-    description: 'Conecta herramientas y libera horas de trabajo manual con flujos más eficientes.',
-    tag: 'Procesos conectados'
-  },
-  {
-    number: '04',
-    icon: 'globe',
-    title: 'Web y plataformas',
-    description: 'Convierte tu presencia digital en una puerta de entrada para nuevos clientes.',
-    tag: 'Presencia digital'
-  }
-];
-
-const agents = [
-  { icon: 'message', title: 'Asistente comercial', description: 'Apoya la atención de consultas, captura prospectos y organiza seguimientos.' },
-  { icon: 'spark', title: 'Agente de atención', description: 'Responde preguntas frecuentes a partir de información autorizada de tu empresa.' },
-  { icon: 'chart', title: 'Analista de información', description: 'Ayuda a interpretar datos y detectar oportunidades de mejora.' }
-];
-
-const industries = [
-  { label: 'Comercio y distribución', icon: 'store' },
-  { label: 'Inmobiliarias', icon: 'building' },
-  { label: 'Servicios profesionales', icon: 'briefcase' },
-  { label: 'Logística y operaciones', icon: 'truck' },
-  { label: 'Educación y formación', icon: 'layers' },
-  { label: 'Proyectos y organizaciones', icon: 'spark' }
-];
-
 function Icon({ name, size = 24, className = '' }) {
   const paths = {
     arrow: <><path d="M4 12h16" /><path d="m13 5 7 7-7 7" /></>,
@@ -316,6 +270,71 @@ function SolutionConfigurator() {
  </section>;
 }
 
+
+const aiExperiences=[
+ {id:'consultas',name:'Consultas',icon:'message',question:'¿Cómo atender diferentes tipos de consultas?',response:'Podemos diseñar un asistente que oriente preguntas frecuentes, organice solicitudes y derive temas que necesitan atención humana.'},
+ {id:'procesos',name:'Procesos',icon:'workflow',question:'¿Se pueden automatizar tareas repetitivas?',response:'Es posible conectar formularios, validaciones y notificaciones. Primero definimos el proceso y sus reglas para mantener control sobre cada etapa.'},
+ {id:'informacion',name:'Información',icon:'chart',question:'¿Cómo aprovechar mejor los datos disponibles?',response:'Podemos reunir información autorizada y convertirla en reportes o resúmenes para facilitar análisis y decisiones.'}
+];
+
+function AiStudio(){
+ const [selected,setSelected]=useState(0);
+ const [ready,setReady]=useState(true);
+ useEffect(()=>{
+  setReady(false);
+  const timeout=window.setTimeout(()=>setReady(true),650);
+  return ()=>window.clearTimeout(timeout);
+ },[selected]);
+ const item=aiExperiences[selected];
+ return <section className="section section-agents section-anchor" id="agentes">
+  <div className="container ai-stage">
+   <div className="ai-stage-copy">
+    <p className="section-kicker">INTELIGENCIA ARTIFICIAL APLICADA</p>
+    <h2>Una IA útil empieza <em>por entender la tarea.</em></h2>
+    <p>Los asistentes inteligentes pueden orientar consultas, organizar información y apoyar procesos. Explora tres formas de aplicarlos.</p>
+    <div className="ai-stage-options" role="group" aria-label="Ejemplos de asistentes">
+     {aiExperiences.map((option,i)=><button key={option.id} type="button" aria-pressed={selected===i} onClick={()=>setSelected(i)}><Icon name={option.icon} size={18}/>{option.name}</button>)}
+    </div>
+    <p className="ai-stage-disclosure">Demostración guiada con respuestas predefinidas; no es una IA conectada en vivo.</p>
+    <a className="text-link" href="#contacto" onClick={()=>window.dispatchEvent(new CustomEvent('muvory:diagnostic',{detail:'Consulta desde demo de IA: '+item.name+'. '+item.question}))}>Conversemos sobre tu proyecto <Icon name="arrow" size={18}/></a>
+   </div>
+   <div className="ai-stage-visual">
+    <div className="ai-robot" aria-label="Ilustración animada de un asistente digital MUVORY" role="img">
+     <div className="ai-robot-ambient" aria-hidden="true"/>
+     <svg viewBox="0 0 320 292" focusable="false" aria-hidden="true">
+      <defs>
+       <linearGradient id="muvory-robot-shell" x1="45" y1="55" x2="280" y2="270" gradientUnits="userSpaceOnUse"><stop stopColor="#2A7884"/><stop offset=".46" stopColor="#0B3140"/><stop offset="1" stopColor="#061A29"/></linearGradient>
+       <linearGradient id="muvory-robot-face" x1="80" y1="102" x2="240" y2="230" gradientUnits="userSpaceOnUse"><stop stopColor="#0E3D4D"/><stop offset="1" stopColor="#031723"/></linearGradient>
+       <linearGradient id="muvory-robot-eye" x1="100" y1="152" x2="218" y2="152" gradientUnits="userSpaceOnUse"><stop stopColor="#5EDACF"/><stop offset=".5" stopColor="#CBFFFF"/><stop offset="1" stopColor="#5EDACF"/></linearGradient>
+      </defs>
+      <ellipse cx="160" cy="150" rx="143" ry="124" fill="none" stroke="#71DCD6" strokeOpacity=".18" strokeDasharray="7 13"/>
+      <ellipse cx="160" cy="154" rx="127" ry="104" fill="none" stroke="#76DCD6" strokeOpacity=".15" transform="rotate(-28 160 154)"/>
+      <g className="ai-robot-float">
+       <path d="M160 70V42" stroke="#75DDD5" strokeWidth="4" strokeLinecap="round"/>
+       <circle cx="160" cy="35" r="10" fill="#0C4B56" stroke="#A3FFF0" strokeWidth="2"/>
+       <rect x="55" y="83" width="210" height="168" rx="59" fill="url(#muvory-robot-shell)" stroke="#81DFD9" strokeOpacity=".8" strokeWidth="2"/>
+       <rect x="73" y="103" width="174" height="129" rx="43" fill="url(#muvory-robot-face)" stroke="#63C7C6" strokeOpacity=".32"/>
+       <path d="M48 145H55M265 145H272" stroke="#81DFD9" strokeWidth="8" strokeLinecap="round"/>
+       <g className="ai-robot-eyes">
+        <rect x="106" y="148" width="43" height="11" rx="5.5" fill="url(#muvory-robot-eye)"/>
+        <rect x="171" y="148" width="43" height="11" rx="5.5" fill="url(#muvory-robot-eye)"/>
+       </g>
+       <path d="M126 190Q160 205 194 190" stroke="#83DED5" strokeWidth="3" strokeLinecap="round" fill="none" strokeOpacity=".7"/>
+       <path d="M132 258H188" stroke="#7CECE0" strokeOpacity=".65" strokeWidth="3" strokeLinecap="round"/>
+      </g>
+      <circle cx="28" cy="106" r="3" fill="#8EECE3" opacity=".7"/><circle cx="295" cy="185" r="3" fill="#8EECE3" opacity=".6"/>
+     </svg>
+     <span className="ai-robot-status"><span/> MUVORY AI · DEMO</span>
+    </div>
+    <div className="ai-stage-dialogue" aria-live="polite" aria-atomic="true">
+     <div className="ai-stage-message"><small>CONSULTA DE EJEMPLO</small><strong>{item.question}</strong></div>
+     <div className="ai-stage-answer"><small>ASISTENTE MUVORY · SIMULACIÓN</small><p>{ready?item.response:'Analizando el ejemplo…'}</p>{!ready&&<span className="ai-thinking" aria-hidden="true"><i/><i/><i/></span>}</div>
+    </div>
+   </div>
+  </div>
+ </section>;
+}
+
 function ContactForm() {
   const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState('');
@@ -392,8 +411,8 @@ function App() {
             <a href="#inicio" onClick={closeMenu}>Inicio</a>
             <a href="#soluciones" onClick={closeMenu}>Soluciones</a>
             <a href="#agentes" onClick={closeMenu}>Agentes IA</a>
-            <a href="#sectores" onClick={closeMenu}>Sectores</a>
-            <a href="#nosotros" onClick={closeMenu}>Nosotros</a>
+            <a href="#casos" onClick={closeMenu}>Aplicaciones</a>
+            <a href="#nosotros" onClick={closeMenu}>Cómo trabajamos</a>
             <a className="nav-mobile-contact" href="#contacto" onClick={closeMenu}>Contacto</a>
           </nav>
           <a className="button button-nav" href="#contacto">Hablemos <Icon name="arrowUp" size={16}/></a>
@@ -406,13 +425,13 @@ function App() {
           <div className="container hero-grid">
             <div className="hero-copy">
               <div className="eyebrow"><span className="eyebrow-line" /> SOFTWARE · AUTOMATIZACIÓN · AGENTES IA</div>
-              <h1>Tecnología que se adapta <span>a tu desafío. No al revés.</span></h1>
-              <p className="hero-description">Creamos software a medida, plataformas digitales, automatizaciones y soluciones con IA para convertir necesidades concretas en herramientas útiles.</p>
+              <h1>Software, automatización e IA <span>para desafíos reales.</span></h1>
+              <p className="hero-description">Diseñamos y desarrollamos sistemas, plataformas y soluciones inteligentes a medida. Desde una idea inicial hasta procesos que necesitan funcionar mejor.</p>
               <div className="hero-actions">
                 <a className="button button-primary" href="#explorador">Explora tu solución <Icon name="arrowUp" size={18}/></a>
                 <a className="button button-outline" href="#contacto">Cuéntanos tu idea <Icon name="arrow" size={18}/></a>
               </div>
-              <p className="hero-experience-hint"><Icon name="spark" size={15}/> Selecciona un punto de la órbita para explorar una solución.</p>
+              <p className="hero-experience-hint"><Icon name="spark" size={15}/> Explora cómo aplicamos cada tecnología.</p>
             </div>
             <HeroExperience />
           </div>
@@ -421,61 +440,35 @@ function App() {
         <section className="section section-solutions section-anchor" id="soluciones">
           <div className="container">
             <div className="section-heading">
-              <div><p className="section-kicker">QUÉ HACEMOS</p><h2>Soluciones digitales <em>de alto impacto.</em></h2></div>
-              <p>Desde una herramienta puntual hasta una plataforma integral, diseñamos tecnología útil para cada necesidad.</p>
+              <div><p className="section-kicker">LO QUE CONSTRUIMOS</p><h2>La tecnología adecuada <em>para cada necesidad.</em></h2></div>
+              <p>Del primer prototipo a una plataforma completa: exploramos el problema, elegimos la herramienta y la ponemos a trabajar.</p>
             </div>
-            <div className="capability-grid">{capabilities.map(item=><article className={'capability-card capability-'+item.kind} key={item.kind}><div className="capability-heading"><Icon name={item.icon} size={23}/><h3>{item.title}</h3></div><p>{item.description}</p><CapabilityDemo kind={item.kind}/><a className="capability-link" href="#contacto">Conversemos <Icon name="arrowUp" size={15}/></a></article>)}</div><p className="cases-disclaimer">Demostraciones interactivas con datos y respuestas de ejemplo. No son sistemas conectados en vivo.</p></div>
+            <div className="capability-grid">{capabilities.map(item=><article className={'capability-card capability-'+item.kind} key={item.kind}><div className="capability-heading"><Icon name={item.icon} size={23}/><h3>{item.title}</h3></div><p>{item.description}</p><CapabilityDemo kind={item.kind}/><a className="capability-link" href="#contacto" onClick={()=>window.dispatchEvent(new CustomEvent("muvory:diagnostic",{detail:"Interés en "+item.title+". Consulta desde demostración de servicios."}))}>Explorar este servicio <Icon name="arrowUp" size={15}/></a></article>)}</div><p className="cases-disclaimer">Demostraciones interactivas con datos y respuestas de ejemplo. No son sistemas conectados en vivo.</p></div>
         </section>
 
         <section className="section section-cases section-anchor" id="casos">
           <div className="container">
+            <span id="sectores" className="legacy-section-anchor" aria-hidden="true" />
             <div className="cases-head">
-              <div><p className="section-kicker">TECNOLOGÍA APLICADA</p><h2>Tecnología aplicada <em>a desafíos reales.</em></h2></div>
-              <p>Explora aplicaciones posibles en diferentes áreas. Cada solución se adapta a su contexto y alcance.</p>
+              <div><p className="section-kicker">APLICACIONES POR ÁREA</p><h2>Un desafío diferente. <em>Una solución específica.</em></h2></div>
+              <p>Selecciona un área y prueba cómo podría funcionar una herramienta digital. Son ejemplos, no proyectos ya entregados.</p>
             </div>
             <Applications />
             <p className="cases-disclaimer">Aplicaciones ilustrativas. No representan clientes ni proyectos terminados.</p>
           </div>
         </section>
 
-        <section className="section section-agents section-anchor" id="agentes">
-          <div className="container agents-layout">
-            <div className="agents-intro">
-              <p className="section-kicker">INTELIGENCIA ARTIFICIAL APLICADA</p>
-              <h2>Agentes de IA <em>para diferentes necesidades.</em></h2>
-              <p>Diseñamos asistentes para orientar consultas, organizar información y apoyar procesos, con acceso autorizado y supervisión humana cuando corresponde.</p>
-              <a className="text-link" href="#contacto">Cuéntanos qué necesitas automatizar <Icon name="arrow" size={18}/></a>
-            </div>
-            <div className="agents-list">
-              {agents.map((item, index) => (
-                <article className="agent-item" key={item.title}>
-                  <div className="agent-icon"><Icon name={item.icon}/></div>
-                  <div><small>APLICACIÓN {String(index + 1).padStart(2, '0')}</small><h3>{item.title}</h3><p>{item.description}</p></div>
-                  <Icon name="arrowUp" size={18} className="agent-arrow"/>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="section section-sectors section-anchor" id="sectores">
-          <div className="container">
-            <div className="section-heading">
-              <div><p className="section-kicker">DONDE GENERAMOS VALOR</p><h2>La tecnología se adapta <em>a cada desafío.</em></h2></div>
-              <p>Trabajamos con distintas áreas, actividades y organizaciones. Estos sectores son ejemplos, no los límites de lo que podemos desarrollar.</p>
-            </div>
-            <div className="sectors-grid">{industries.map(item => <div className="sector" key={item.label}><Icon name={item.icon} size={25}/><span>{item.label}</span><Icon name="arrowUp" size={16}/></div>)}</div>
-          </div>
-        </section>
+        <AiStudio />
 
         <section className="section section-approach section-anchor" id="nosotros">
           <div className="container approach-layout">
             <div>
               <p className="section-kicker">NUESTRA FORMA DE TRABAJAR</p>
-              <h2>Primero entendemos el problema. <em>Después creamos la solución.</em></h2>
+              <h2>Del primer diagnóstico <em>a una solución que evoluciona.</em></h2>
+              <p className="approach-lead">Diseño, ingeniería y comunicación clara para acompañar proyectos de diferentes tamaños y sectores.</p>
             </div>
             <div className="steps">
-              {[['01','Conversamos','Identificamos el desafío, las prioridades y el resultado que buscas.'],['02','Diseñamos','Proponemos un alcance claro, entregables y una solución viable.'],['03','Construimos','Desarrollamos, validamos y acompañamos la puesta en marcha.']].map(([num,title,desc]) => <div className="step" key={num}><span>{num}</span><div><h3>{title}</h3><p>{desc}</p></div></div>)}
+              {[['01','Entendemos','Exploramos el problema, el contexto y lo que necesitas conseguir.'],['02','Diseñamos','Definimos una solución viable, sus funciones y los primeros pasos.'],['03','Desarrollamos','Construimos y validamos avances contigo de forma progresiva.'],['04','Acompañamos','Preparamos la puesta en marcha y acordamos cómo continuar evolucionando.']].map(([num,title,desc]) => <div className="step" key={num}><span>{num}</span><div><h3>{title}</h3><p>{desc}</p></div></div>)}
             </div>
           </div>
         </section>
