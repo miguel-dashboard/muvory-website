@@ -392,8 +392,8 @@ function App() {
             <a href="#inicio" onClick={closeMenu}>Inicio</a>
             <a href="#soluciones" onClick={closeMenu}>Soluciones</a>
             <a href="#agentes" onClick={closeMenu}>Agentes IA</a>
-            <a href="#sectores" onClick={closeMenu}>Sectores</a>
-            <a href="#nosotros" onClick={closeMenu}>Nosotros</a>
+            <a href="#casos" onClick={closeMenu}>Aplicaciones</a>
+            <a href="#nosotros" onClick={closeMenu}>Cómo trabajamos</a>
             <a className="nav-mobile-contact" href="#contacto" onClick={closeMenu}>Contacto</a>
           </nav>
           <a className="button button-nav" href="#contacto">Hablemos <Icon name="arrowUp" size={16}/></a>
@@ -406,13 +406,13 @@ function App() {
           <div className="container hero-grid">
             <div className="hero-copy">
               <div className="eyebrow"><span className="eyebrow-line" /> SOFTWARE · AUTOMATIZACIÓN · AGENTES IA</div>
-              <h1>Tecnología que se adapta <span>a tu desafío. No al revés.</span></h1>
-              <p className="hero-description">Creamos software a medida, plataformas digitales, automatizaciones y soluciones con IA para convertir necesidades concretas en herramientas útiles.</p>
+              <h1>Software, automatización e IA <span>para desafíos reales.</span></h1>
+              <p className="hero-description">Diseñamos y desarrollamos sistemas, plataformas y soluciones inteligentes a medida. Desde una idea inicial hasta procesos que necesitan funcionar mejor.</p>
               <div className="hero-actions">
                 <a className="button button-primary" href="#explorador">Explora tu solución <Icon name="arrowUp" size={18}/></a>
                 <a className="button button-outline" href="#contacto">Cuéntanos tu idea <Icon name="arrow" size={18}/></a>
               </div>
-              <p className="hero-experience-hint"><Icon name="spark" size={15}/> Selecciona un punto de la órbita para explorar una solución.</p>
+              <p className="hero-experience-hint"><Icon name="spark" size={15}/> Explora cómo aplicamos cada tecnología.</p>
             </div>
             <HeroExperience />
           </div>
@@ -421,17 +421,18 @@ function App() {
         <section className="section section-solutions section-anchor" id="soluciones">
           <div className="container">
             <div className="section-heading">
-              <div><p className="section-kicker">QUÉ HACEMOS</p><h2>Soluciones digitales <em>de alto impacto.</em></h2></div>
-              <p>Desde una herramienta puntual hasta una plataforma integral, diseñamos tecnología útil para cada necesidad.</p>
+              <div><p className="section-kicker">LO QUE CONSTRUIMOS</p><h2>La tecnología adecuada <em>para cada necesidad.</em></h2></div>
+              <p>Del primer prototipo a una plataforma completa: exploramos el problema, elegimos la herramienta y la ponemos a trabajar.</p>
             </div>
-            <div className="capability-grid">{capabilities.map(item=><article className={'capability-card capability-'+item.kind} key={item.kind}><div className="capability-heading"><Icon name={item.icon} size={23}/><h3>{item.title}</h3></div><p>{item.description}</p><CapabilityDemo kind={item.kind}/><a className="capability-link" href="#contacto">Conversemos <Icon name="arrowUp" size={15}/></a></article>)}</div><p className="cases-disclaimer">Demostraciones interactivas con datos y respuestas de ejemplo. No son sistemas conectados en vivo.</p></div>
+            <div className="capability-grid">{capabilities.map(item=><article className={'capability-card capability-'+item.kind} key={item.kind}><div className="capability-heading"><Icon name={item.icon} size={23}/><h3>{item.title}</h3></div><p>{item.description}</p><CapabilityDemo kind={item.kind}/><a className="capability-link" href="#contacto" onClick={()=>window.dispatchEvent(new CustomEvent("muvory:diagnostic",{detail:"Interés en "+item.title+". Consulta desde demostración de servicios."}))}>Explorar este servicio <Icon name="arrowUp" size={15}/></a></article>)}</div><p className="cases-disclaimer">Demostraciones interactivas con datos y respuestas de ejemplo. No son sistemas conectados en vivo.</p></div>
         </section>
 
         <section className="section section-cases section-anchor" id="casos">
           <div className="container">
+            <span id="sectores" className="legacy-section-anchor" aria-hidden="true" />
             <div className="cases-head">
-              <div><p className="section-kicker">TECNOLOGÍA APLICADA</p><h2>Tecnología aplicada <em>a desafíos reales.</em></h2></div>
-              <p>Explora aplicaciones posibles en diferentes áreas. Cada solución se adapta a su contexto y alcance.</p>
+              <div><p className="section-kicker">APLICACIONES POR ÁREA</p><h2>Un desafío diferente. <em>Una solución específica.</em></h2></div>
+              <p>Selecciona un área y prueba cómo podría funcionar una herramienta digital. Son ejemplos, no proyectos ya entregados.</p>
             </div>
             <Applications />
             <p className="cases-disclaimer">Aplicaciones ilustrativas. No representan clientes ni proyectos terminados.</p>
@@ -458,24 +459,15 @@ function App() {
           </div>
         </section>
 
-        <section className="section section-sectors section-anchor" id="sectores">
-          <div className="container">
-            <div className="section-heading">
-              <div><p className="section-kicker">DONDE GENERAMOS VALOR</p><h2>La tecnología se adapta <em>a cada desafío.</em></h2></div>
-              <p>Trabajamos con distintas áreas, actividades y organizaciones. Estos sectores son ejemplos, no los límites de lo que podemos desarrollar.</p>
-            </div>
-            <div className="sectors-grid">{industries.map(item => <div className="sector" key={item.label}><Icon name={item.icon} size={25}/><span>{item.label}</span><Icon name="arrowUp" size={16}/></div>)}</div>
-          </div>
-        </section>
-
         <section className="section section-approach section-anchor" id="nosotros">
           <div className="container approach-layout">
             <div>
               <p className="section-kicker">NUESTRA FORMA DE TRABAJAR</p>
-              <h2>Primero entendemos el problema. <em>Después creamos la solución.</em></h2>
+              <h2>Del primer diagnóstico <em>a una solución que evoluciona.</em></h2>
+              <p className="approach-lead">Diseño, ingeniería y comunicación clara para acompañar proyectos de diferentes tamaños y sectores.</p>
             </div>
             <div className="steps">
-              {[['01','Conversamos','Identificamos el desafío, las prioridades y el resultado que buscas.'],['02','Diseñamos','Proponemos un alcance claro, entregables y una solución viable.'],['03','Construimos','Desarrollamos, validamos y acompañamos la puesta en marcha.']].map(([num,title,desc]) => <div className="step" key={num}><span>{num}</span><div><h3>{title}</h3><p>{desc}</p></div></div>)}
+              {[['01','Entendemos','Exploramos el problema, el contexto y lo que necesitas conseguir.'],['02','Diseñamos','Definimos una solución viable, sus funciones y los primeros pasos.'],['03','Desarrollamos','Construimos y validamos avances contigo de forma progresiva.'],['04','Acompañamos','Preparamos la puesta en marcha y acordamos cómo continuar evolucionando.']].map(([num,title,desc]) => <div className="step" key={num}><span>{num}</span><div><h3>{title}</h3><p>{desc}</p></div></div>)}
             </div>
           </div>
         </section>
