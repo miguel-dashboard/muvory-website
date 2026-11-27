@@ -30,7 +30,7 @@ La separación en componentes mantiene React, Vite, CSS y SVG; facilita revisar 
 - IA de servicios: modos de atención/clasificación/agenda y preguntas predefinidas.
 - Web: prototipo ilustrativo con vistas escritorio/móvil.
 - Aplicaciones por área: seis contextos, problemas, explicaciones, escenas distintas, flujo operativo y CTA contextual. Los anclajes antiguos `#casos` y `#sectores` siguen resolviendo a esta sección.
-- Asistente visual: núcleo SVG abstracto, tres modos, respuesta simulada con procesamiento breve cancelable y pausa de animación.
+- Asistente visual (refinamiento posterior): robot SVG original con carcasa clara, visor oscuro, ojos turquesa y movimientos sutiles (flotación, parpadeo, saludo y pulso), tres modos, respuesta simulada con procesamiento breve cancelable y pausa de animación. No se usa imagen de terceros.
 - Asistente comercial: guía conservada en un diálogo nativo, cierre con Escape, foco contenido y regreso al lanzador; transferencia voluntaria al formulario.
 - Configurador: propuesta por objetivo/área y transferencia con saltos de línea reales.
 - Contacto: contexto editable, aviso cuando supera 3000 caracteres, decisión explícita para continuar sin contexto adicional y éxito solo tras respuesta HTTP satisfactoria.
@@ -69,3 +69,5 @@ La rama debe revisarse visualmente antes de fusionarse. La publicación de produ
 ![Portada móvil](review/muvory-movil.jpg)
 
 [Recorrido completo desktop](review/muvory-desktop-completo.jpg) · [Recorrido completo móvil](review/muvory-movil-completo.jpg)
+
+**Actualización de la revisión:** el robot se refinó después de generar las capturas originales del PR. Las imágenes de `docs/review/` reflejan el diseño anterior del núcleo holográfico, mientras la vista previa de Cloudflare permite revisar el robot actual. Se debe aprobar visualmente la versión más reciente antes de fusionar.
