@@ -1,6 +1,6 @@
-export default function Brand({ footer = false }) {
+export default function Brand({ footer = false, href = '#inicio' }) {
   return (
-    <a className={'brand' + (footer ? ' brand-footer' : '')} href="#inicio" aria-label="MUVORY Technologies, ir al inicio">
+    <a className={'brand' + (footer ? ' brand-footer' : '')} href={href} aria-label="MUVORY Technologies, ir al inicio">
       <svg className="brand-mark" viewBox="0 0 50 50" fill="none" aria-hidden="true">
         <path d="M34 7.8A20 20 0 0 0 10 36" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
         <path d="M16 42.2A20 20 0 0 0 40 14" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
