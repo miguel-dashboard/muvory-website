@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import Brand from './Brand.jsx';
 import Icon from './Icon.jsx';
-import HeroExperience from './HeroExperience.jsx';
-import Capabilities from './Capabilities.jsx';
+import CinematicHero from './CinematicHero.jsx';
+import ServicesTeaser from './ServicesTeaser.jsx';
+import './cinematic.css';
 import Applications from './Applications.jsx';
 import AIAssistantShowcase from './AIAssistantShowcase.jsx';
 import SolutionConfigurator from './SolutionConfigurator.jsx';
@@ -36,7 +37,7 @@ function App() {
         <Brand />
         <button ref={menuToggle} className="menu-toggle" type="button" aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen(value => !value)}><Icon name={menuOpen ? 'close' : 'menu'} /></button>
         <nav id="main-navigation" className={'nav' + (menuOpen ? ' nav-open' : '')} aria-label="Navegación principal">
-          <a href="#soluciones" onClick={closeMenu}>Soluciones</a>
+          <a href="/servicios" onClick={closeMenu}>Servicios</a>
           <a href="#aplicaciones" onClick={closeMenu}>Aplicaciones</a>
           <a href="/experience" onClick={closeMenu}>Experiencia</a>
           <a href="#agentes" onClick={closeMenu}>Inteligencia artificial</a>
@@ -48,19 +49,19 @@ function App() {
     </header>
 
     <main id="contenido" tabIndex={-1}>
-      <section id="inicio" className="hero section-anchor">
+      <section id="inicio" className="hero hero-cinematic section-anchor">
         <div className="container hero-grid">
           <div className="hero-copy">
-            <p className="eyebrow"><span aria-hidden="true" />TECNOLOGÍA CON PROPÓSITO</p>
-            <h1>Software, automatización e IA <span>para desafíos reales.</span></h1>
-            <p className="hero-description">Desarrollamos sistemas a medida, plataformas digitales y soluciones inteligentes que convierten necesidades concretas en herramientas útiles.</p>
+            <p className="eyebrow"><span aria-hidden="true" />SOFTWARE · AUTOMATIZACIÓN · IA · PLATAFORMAS</p>
+            <h1>Ideas ambiciosas.<br/><span>Tecnología que las hace posibles.</span></h1>
+            <p className="hero-description">Diseñamos software, conectamos procesos y creamos experiencias digitales que transforman necesidades reales en herramientas con propósito.</p>
             <div className="hero-actions">
-              <a className="button button-primary" href="#soluciones">Explorar soluciones</a>
+              <a className="button button-primary" href="/servicios">Descubrir servicios <Icon name="arrow" size={17}/></a>
               <a className="button button-outline" href="#contacto">Cuéntanos tu proyecto</a>
             </div>
-            <p className="hero-note">Para personas, equipos y organizaciones con una idea que llevar más lejos.</p>
+            <p className="hero-note">Tecnología para personas, equipos y organizaciones. Sin soluciones de molde.</p>
           </div>
-          <HeroExperience />
+          <CinematicHero />
         </div>
         <div className="container hero-footnote"><span>Diseñado alrededor de tu necesidad.</span><span>Desarrollo a medida <i /> Integraciones <i /> Evolución continua</span></div>
       </section>
@@ -68,15 +69,15 @@ function App() {
       <section className="section section-solutions section-anchor" id="soluciones">
         <div className="container">
           <div className="section-heading">
-            <div><p className="section-kicker">LO QUE PODEMOS CONSTRUIR</p><h2>Menos complejidad.<br /><em>Más posibilidades.</em></h2></div>
-            <p>De una herramienta puntual a una plataforma integral. Explora cómo se siente una solución pensada para tu día a día.</p>
+            <div><p className="section-kicker">SERVICIOS CON IDENTIDAD PROPIA</p><h2>Un desafío distinto.<br /><em>Una solución propia.</em></h2></div>
+            <p>Elige lo que necesitas y entra en una experiencia creada para ese servicio. Cada opción tiene su propia página, enfoque y demostración.</p>
           </div>
-          <Capabilities />
+          <ServicesTeaser />
           <div className="experience-invite">
             <div>
               <span className="section-kicker">MUVORY EXPERIENCE</span>
-              <h3>Ahora puedes explorar cómo funciona.</h3>
-              <p>Cuatro demostraciones interactivas, con navegación tipo presentación: software, automatización, IA y datos.</p>
+              <h3>Explora nuestra tecnología en acción.</h3>
+              <p>Un recorrido interactivo con software, automatización, inteligencia artificial y datos, para descubrir cómo podría funcionar tu solución.</p>
             </div>
             <a className="button button-outline" href="/experience">Iniciar experiencia <Icon name="arrow" size={18}/></a>
           </div>
