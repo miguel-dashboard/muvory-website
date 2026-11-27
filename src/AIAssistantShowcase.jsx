@@ -7,102 +7,130 @@ const modes = [
   { name: 'Análisis', purpose: 'Hacer más fácil explorar información.', question: '¿Cómo me ayudaría a entender datos?', answer: 'Puede resumir información disponible, señalar variaciones y ayudarte a formular preguntas. Los datos deben estar autorizados y los resultados se contrastan antes de tomar decisiones.', outcome: 'Datos autorizados · síntesis sugerida · validación humana' },
 ];
 
-function IntelligenceCore({ processing, selected, paused, onToggleMotion }) {
+function IntelligenceCore({ processing, selected, paused, onToggleMotion, reactionToken }) {
   const id = useId().replaceAll(':', '');
+  const modeName = modes[selected].name;
   return (
     <div className={'intelligence-core mv-robot mv-robot-mode-' + selected + (processing ? ' is-processing' : '') + (paused ? ' is-paused' : '')}>
       <div className="mv-robot-canvas">
-        <svg className="intelligence-core-art" viewBox="0 0 420 420" role="img" aria-label={'Asistente humanoide MUVORY de carcasa plateada, visor negro y dos ojos LED turquesa. ' + ['Saluda y mira hacia la demostración.', 'Señala una tarjeta holográfica para clasificarla.', 'Observa un gráfico holográfico.'][selected]}>
+        <svg className="intelligence-core-art" viewBox="0 0 420 350" role="img" aria-label={'Asistente digital original MUVORY: robot compacto blanco perlado, visor oscuro y ojos luminosos turquesa. Modo ' + modeName}>
           <defs>
-            <linearGradient id={`${id}-shell`} x1="0" y1="0" x2="1" y2=".7"><stop stopColor="#fbffff"/><stop offset=".42" stopColor="#dfebf0"/><stop offset=".78" stopColor="#99afba"/><stop offset="1" stopColor="#e4eff1"/></linearGradient>
-            <linearGradient id={`${id}-face`} x1="0" y1="0" x2=".7" y2="1"><stop stopColor="#fff"/><stop offset=".7" stopColor="#d8e7ed"/><stop offset="1" stopColor="#8ba6b2"/></linearGradient>
-            <linearGradient id={`${id}-visor`} x1="0" y1="0" x2="1" y2="1"><stop stopColor="#142c3a"/><stop offset=".55" stopColor="#020b12"/><stop offset="1" stopColor="#0d222d"/></linearGradient>
-            <linearGradient id={`${id}-hologram`} x1="0" y1="0" x2="1" y2="1"><stop stopColor="#144653" stopOpacity=".85"/><stop offset="1" stopColor="#07202b" stopOpacity=".6"/></linearGradient>
-            <filter id={`${id}-led-glow`} x="-80%" y="-100%" width="260%" height="300%"><feGaussianBlur stdDeviation="3"/></filter>
+            <radialGradient id={id + '-atmosphere'}><stop stopColor="#59C9D1" stopOpacity=".18" /><stop offset="1" stopColor="#59C9D1" stopOpacity="0" /></radialGradient>
+            <linearGradient id={id + '-pearl'} x1="0%" y1="0%" x2="94%" y2="100%">
+              <stop stopColor="#FFFFFF" /><stop offset=".37" stopColor="#EFF8FA" /><stop offset=".77" stopColor="#BDD4DD" /><stop offset="1" stopColor="#6C939F" />
+            </linearGradient>
+            <linearGradient id={id + '-helmet'} x1="8%" y1="4%" x2="95%" y2="100%">
+              <stop stopColor="#FFFFFF" /><stop offset=".52" stopColor="#E9F5F8" /><stop offset=".83" stopColor="#B7D1D9" /><stop offset="1" stopColor="#7399A6" />
+            </linearGradient>
+            <linearGradient id={id + '-visor'} x1="8%" y1="5%" x2="95%" y2="100%">
+              <stop stopColor="#183E4A" /><stop offset=".33" stopColor="#071822" /><stop offset=".69" stopColor="#020D16" /><stop offset="1" stopColor="#17404D" />
+            </linearGradient>
+            <radialGradient id={id + '-eye'}><stop stopColor="#F0FFFF" /><stop offset=".46" stopColor="#9CFFFF" /><stop offset="1" stopColor="#46CDE0" /></radialGradient>
+            <filter id={id + '-blur'} x="-75%" y="-120%" width="250%" height="340%"><feGaussianBlur stdDeviation="7"/></filter>
           </defs>
-          <ellipse className="mv-robot-shadow" cx="210" cy="376" rx="67" ry="7" fill="#020b11" opacity=".5"/>
-          <g className="mv-robot-body">
-            {/* Full-body silhouette: compact head, narrow torso and articulated limbs. */}
-            <g className="mv-robot-legs" stroke="#728f9c" strokeWidth="1.5">
-              <path d="m181 280 27 0-3 44h-23Z" fill={`url(#${id}-shell)`}/><path d="m215 280 27 0-1 44h-23Z" fill={`url(#${id}-shell)`}/>
-              <circle cx="193" cy="325" r="10" fill="#223c49"/><circle cx="230" cy="325" r="10" fill="#223c49"/>
-              <path d="m183 329 21 0-1 27-27 0Z" fill={`url(#${id}-shell)`}/><path d="m220 329 20 0 7 27-26 0Z" fill={`url(#${id}-shell)`}/>
-              <path d="m177 352 27 0 0 13-42 0q-1-9 15-13Z" fill={`url(#${id}-face)`}/><path d="m220 352 27 0q15 4 15 13h-42Z" fill={`url(#${id}-face)`}/>
+          <ellipse cx="213" cy="174" rx="172" ry="142" fill={'url(#' + id + '-atmosphere)'} />
+          <ellipse className="mv-robot-orbit" cx="212" cy="183" rx="157" ry="69" transform="rotate(-17 212 183)" fill="none" stroke="#70E5DF" strokeOpacity=".18" strokeWidth="1" />
+          <circle cx="63" cy="201" r="2.5" fill="#90EBE6" opacity=".65" />
+          <circle cx="362" cy="114" r="3" fill="#86D5E1" opacity=".55" />
+          <ellipse cx="212" cy="319" rx="94" ry="10" fill="#2BB8BA" opacity=".12" filter={'url(#' + id + '-blur)'} />
+          <ellipse cx="212" cy="318" rx="70" ry="5" fill="none" stroke="#7EC9CE" strokeOpacity=".22" />
+          <g className="mv-robot-idle">
+            <g className="mv-robot-back">
+              <rect x="164" y="289" width="38" height="20" rx="10" fill="#A5C1C9" stroke="#6F9CA9"/>
+              <rect x="220" y="289" width="38" height="20" rx="10" fill="#A5C1C9" stroke="#6F9CA9"/>
+              <path d="M161 307h42M221 307h42" stroke="#D9EEF0" strokeWidth="6" strokeLinecap="round"/>
             </g>
-            <path d="m177 256 68 0-4 29-59 0Z" fill="#1b3442" stroke="#819ea8" strokeWidth="1.5"/>
-            <path d="M181 265h59" stroke="#6d8c9b" strokeWidth="2"/>
-            <g className="mv-robot-left-arm" stroke="#7896a2" strokeWidth="1.5">
-              <circle cx="163" cy="181" r="13" fill="#27434f"/>
-              <path d="m153 188 17 4-11 43-18-4Z" fill={`url(#${id}-shell)`}/><circle cx="149" cy="237" r="9" fill="#1b3542"/>
-              <path d="m141 245 17 0-1 29-17 1Z" fill={`url(#${id}-shell)`}/><rect x="138" y="273" width="20" height="23" rx="8" fill={`url(#${id}-face)`}/><path d="m145 281 0 8m6-8v8" stroke="#829eaa"/>
+            <g className="mv-robot-left-arm">
+              <circle cx="153" cy="243" r="12" fill="#345C6B" stroke="#89B5BF" strokeWidth="2"/>
+              <path d="M147 248Q129 257 118 274" fill="none" stroke="#BFD6DE" strokeWidth="17" strokeLinecap="round"/>
+              <path d="M146 247Q131 255 122 269" fill="none" stroke="#F5FEFF" strokeWidth="6" strokeLinecap="round"/>
+              <ellipse cx="115" cy="282" rx="13" ry="12" fill={'url(#' + id + '-pearl)'} stroke="#91B4BE"/>
             </g>
-            <g className="mv-robot-right-arm" key={selected}>
-              <circle cx="258" cy="181" r="13" fill="#27434f" stroke="#7896a2" strokeWidth="1.5"/>
-              {selected === 0 ? <g className="mv-robot-wave-arm">
-                <path d="m267 180 26-12" stroke="#9eb6c1" strokeWidth="20" strokeLinecap="round"/><path d="m266 176 24-11" stroke="#eff8fa" strokeWidth="8" strokeLinecap="round"/>
-                <circle cx="295" cy="168" r="9" fill="#243f4d" stroke="#87a7b4"/>
-                <g className="mv-robot-wave-hand"><path d="m297 158 0-33" stroke="#dbe9ee" strokeWidth="18" strokeLinecap="round"/><path d="m294 157 0-32" stroke="#fff" strokeWidth="4" strokeLinecap="round"/>
-                  <rect x="286" y="104" width="25" height="27" rx="10" fill={`url(#${id}-face)`} stroke="#89a5b1"/><path d="M289 110V98m7 11V94m7 15V96m7 16v-10" stroke="#dcecf1" strokeWidth="5" strokeLinecap="round"/>
+            <path d="M163 228q49-18 97 0l22 37q8 26-9 39-54 23-116 0-17-13-9-39Z" fill={'url(#' + id + '-pearl)'} stroke="#86A9B3" strokeWidth="1.8"/>
+            <path d="M169 255q43 14 87 0" fill="none" stroke="#FFFFFF" strokeOpacity=".62" strokeWidth="4" strokeLinecap="round"/>
+            <path d="M182 289q30 8 60 0" fill="none" stroke="#6997A6" opacity=".42" strokeWidth="2"/>
+            <circle cx="212" cy="269" r="16" fill="#102C3B" stroke="#8CD6D4" strokeWidth="1.5"/>
+            <circle className="mv-robot-heart" cx="212" cy="269" r="7" fill="#8DF4E7"/>
+            <g className="mv-robot-action" key={'gesture-' + reactionToken + '-' + selected}>
+              <circle cx="271" cy="243" r="12" fill="#345C6B" stroke="#89B5BF" strokeWidth="2"/>
+              {selected === 0 ?
+                <g className={reactionToken > 0 ? 'mv-robot-gesture mv-robot-greeting' : ''}>
+                  <path d="M274 239Q292 225 302 207" fill="none" stroke="#C2DBE1" strokeWidth="17" strokeLinecap="round"/>
+                  <path d="M274 238Q288 226 298 210" fill="none" stroke="#FAFFFF" strokeWidth="6" strokeLinecap="round"/>
+                  <circle cx="306" cy="202" r="12" fill={'url(#' + id + '-pearl)'} stroke="#83AAB4" strokeWidth="1.6"/>
+                  <path d="M300 194v-9m6 8v-12m6 13v-8" stroke="#EEF9FA" strokeWidth="3.5" strokeLinecap="round"/>
+                </g> :
+                <g className={reactionToken > 0 ? 'mv-robot-gesture mv-robot-pointing' : ''}>
+                  <path d="M274 244Q293 257 315 237" fill="none" stroke="#C2DBE1" strokeWidth="17" strokeLinecap="round"/>
+                  <path d="M277 244Q295 252 312 238" fill="none" stroke="#FBFFFF" strokeWidth="6" strokeLinecap="round"/>
+                  <circle cx="319" cy="231" r="11" fill={'url(#' + id + '-pearl)'} stroke="#83AAB4" strokeWidth="1.6"/>
+                  <path d="M325 225l11-9" stroke="#F0FEFF" strokeWidth="4" strokeLinecap="round"/>
                 </g>
-              </g> : <g className="mv-robot-point-arm">
-                <path d="m268 188 16 36" stroke="#c9dde5" strokeWidth="20" strokeLinecap="round"/><path d="m270 188 16 33" stroke="#fff" strokeWidth="5" strokeLinecap="round"/>
-                <circle cx="286" cy="229" r="9" fill="#243f4d" stroke="#87a7b4"/>
-                <path d="m294 228 17-9" stroke="#dcebef" strokeWidth="17" strokeLinecap="round"/>
-                <path d="m310 217 14-5 7 3-7 9-11 0Z" fill={`url(#${id}-face)`} stroke="#8aa8b5"/><path d="m322 214 12-6" stroke="#eaf8fa" strokeWidth="5" strokeLinecap="round"/>
-              </g>}
-            </g>
-            <rect x="199" y="144" width="25" height="24" rx="8" fill="#28434f" stroke="#89a7b0"/>
-            <g className="mv-robot-torso">
-              <path d="M182 162q29-7 59 0l15 22-9 67q-35 17-70 0l-10-67Z" fill={`url(#${id}-shell)`} stroke="#8daab6" strokeWidth="1.5"/>
-              <path d="m180 180 63 0-5 55q-25 10-51 0Z" fill="#c8dce3" stroke="#f5ffff" strokeOpacity=".75"/>
-              <path d="M191 244h42" stroke="#536e7e" strokeWidth="3" strokeLinecap="round"/>
-              <path d="m201 195 11-6 11 6v13l-11 6-11-6Z" fill="#0d2837" stroke="#6c9ba6"/>
-              <path className="mv-robot-chest-light" d="m207 199 5-3 5 3v6l-5 3-5-3Z" fill="#88e8df"/>
+              }
             </g>
             <g className="mv-robot-head">
-              <rect x="149" y="66" width="124" height="85" rx="34" fill={`url(#${id}-face)`} stroke="#c1d8de" strokeWidth="1.5"/>
-              <path d="M162 86q8-14 24-15h50" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" opacity=".85"/>
-              <rect x="143" y="94" width="9" height="32" rx="4.5" fill="#7697a5"/><rect x="271" y="94" width="9" height="32" rx="4.5" fill="#7697a5"/>
-              <rect x="160" y="86" width="102" height="48" rx="20" fill={`url(#${id}-visor)`} stroke="#476573" strokeWidth="1.2"/>
-              <path d="M171 95q36-9 76-1" stroke="#a9d8e8" strokeOpacity=".14" strokeWidth="4" fill="none" strokeLinecap="round"/>
-              <g className="mv-robot-gaze"><g className="mv-robot-eyes">
-                <g className="mv-robot-eye-glow" filter={`url(#${id}-led-glow)`} opacity=".8"><rect x="177" y="102" width="22" height="12" rx="5"/><rect x="223" y="102" width="22" height="12" rx="5"/></g>
-                <rect className="mv-robot-eye" x="177" y="102" width="22" height="12" rx="5"/><rect className="mv-robot-eye" x="223" y="102" width="22" height="12" rx="5"/>
-                <path d="M181 105h13m33 0h13" stroke="#eaffff" strokeWidth="2" strokeLinecap="round"/>
-              </g></g>
-              <path className="mv-robot-visor-pulse" d="M172 126h77" stroke="#70e6ee" strokeWidth="1.2" strokeLinecap="round"/>
-              <rect x="200" y="140" width="22" height="2" rx="1" fill="#70929f"/>
+              <rect x="110" y="77" width="205" height="151" rx="69" fill={'url(#' + id + '-helmet)'} stroke="#BCE1E6" strokeWidth="2"/>
+              <path d="M129 104Q146 86 176 86h88" fill="none" stroke="#FFFFFF" strokeWidth="5" strokeOpacity=".76" strokeLinecap="round"/>
+              <rect x="104" y="134" width="16" height="43" rx="8" fill="#8BB0BD" stroke="#6A9AA8" strokeWidth="1.5"/>
+              <rect x="307" y="134" width="16" height="43" rx="8" fill="#8BB0BD" stroke="#6A9AA8" strokeWidth="1.5"/>
+              <circle cx="112" cy="155" r="5" fill="#5BD7D7" opacity=".7"/>
+              <circle cx="315" cy="155" r="5" fill="#5BD7D7" opacity=".7"/>
+              <rect x="128" y="103" width="170" height="104" rx="46" fill={'url(#' + id + '-visor)'} stroke="#6DABB4" strokeWidth="2"/>
+              <path d="M146 118Q168 107 213 113" fill="none" stroke="#BBFAFF" strokeWidth="5" strokeOpacity=".16" strokeLinecap="round"/>
+              <g className="mv-robot-gaze">
+                <g className="mv-robot-eyes">
+                  <ellipse cx="174" cy="154" rx="20" ry="17" fill="#55E8F4" opacity=".42" filter={'url(#' + id + '-blur)'}/>
+                  <ellipse cx="251" cy="154" rx="20" ry="17" fill="#55E8F4" opacity=".42" filter={'url(#' + id + '-blur)'}/>
+                  <ellipse className="mv-robot-eye" cx="174" cy="154" rx="13" ry="14" fill={'url(#' + id + '-eye)'}/>
+                  <ellipse className="mv-robot-eye" cx="251" cy="154" rx="13" ry="14" fill={'url(#' + id + '-eye)'}/>
+                  <ellipse cx="169" cy="149" rx="4" ry="3" fill="#FFFFFF" opacity=".66"/>
+                  <ellipse cx="246" cy="149" rx="4" ry="3" fill="#FFFFFF" opacity=".66"/>
+                </g>
+              </g>
+              <path className="mv-robot-smile" d="M201 183Q212 190 223 183" stroke="#8CE3DF" strokeOpacity=".72" strokeWidth="2.4" strokeLinecap="round" fill="none"/>
+              <g className="mv-robot-thinking-dots" fill="#9CFDF1">
+                <circle cx="201" cy="184" r="3"/><circle cx="212" cy="184" r="3"/><circle cx="223" cy="184" r="3"/>
+              </g>
+              <path d="M175 217h73" stroke="#497889" strokeOpacity=".43" strokeWidth="2" strokeLinecap="round"/>
             </g>
           </g>
-          {selected === 1 && <g className="mv-robot-hologram mv-robot-card" aria-hidden="true">
-            <path d="m300 156 92 6v105l-92-6Z" fill={`url(#${id}-hologram)`} stroke="#72e4da" strokeOpacity=".7"/>
-            <path d="m312 176 45 3m-45 9 64 4m-64 10 51 3" stroke="#9adddf" strokeWidth="3" strokeLinecap="round"/>
-            <rect className="mv-classify-indicator" x="313" y="220" width="61" height="23" rx="4" fill="#7ddfd5" fillOpacity=".2"/>
-            <path className="mv-classify-check" d="m322 231 5 5 10-11" fill="none" stroke="#a0ffee" strokeWidth="2.5" strokeLinecap="round"/><path d="M346 231h19" stroke="#9adddf" strokeWidth="2" strokeLinecap="round"/>
-          </g>}
-          {selected === 2 && <g className="mv-robot-hologram mv-robot-chart" aria-hidden="true">
-            <path d="m298 154 96 7v108l-96-7Z" fill={`url(#${id}-hologram)`} stroke="#72d7e4" strokeOpacity=".7"/>
-            <path d="M311 245h70M311 245v-72" fill="none" stroke="#6ea7b7" strokeWidth="1"/>
-            <g className="mv-chart-bars" fill="#79d8e3"><rect x="321" y="218" width="10" height="26" rx="2"/><rect x="339" y="201" width="10" height="43" rx="2"/><rect x="357" y="183" width="10" height="61" rx="2"/></g>
-            <path className="mv-chart-line" d="m317 207 18-16 17 3 22-24" stroke="#adfff0" strokeWidth="2" fill="none"/><circle className="mv-chart-point" cx="374" cy="170" r="3.5" fill="#c8fff4"/>
+          {selected !== 0 && <g className="mv-robot-hologram" aria-hidden="true">
+            <rect x="320" y="127" width="91" height="98" rx="12" fill="#0A2C3A" fillOpacity=".84" stroke="#77E0D9" strokeOpacity=".62" strokeWidth="1.5" />
+            {selected === 1 ?
+              <>
+                <rect x="334" y="147" width="38" height="5" rx="2.5" fill="#A6ECE8" opacity=".85"/>
+                <rect x="334" y="161" width="57" height="3" rx="1.5" fill="#7CB0BF" opacity=".65"/>
+                <rect x="334" y="173" width="43" height="3" rx="1.5" fill="#7CB0BF" opacity=".65"/>
+                <rect x="334" y="189" width="63" height="22" rx="7" fill="#1E6266" stroke="#86ECE0" strokeOpacity=".55"/>
+                <path d="m346 199 6 5 10-11" fill="none" stroke="#B3FFF2" strokeWidth="2.4" strokeLinecap="round"/>
+                <path d="M369 200h17" stroke="#A9EDE9" strokeWidth="2" strokeLinecap="round"/>
+              </> :
+              <>
+                <path d="M335 199h61M335 199v-52" stroke="#709CAA" strokeWidth="1.5" fill="none"/>
+                <rect x="343" y="178" width="10" height="21" rx="2" fill="#4C9DAA"/>
+                <rect x="360" y="165" width="10" height="34" rx="2" fill="#78D9DC"/>
+                <rect x="377" y="150" width="10" height="49" rx="2" fill="#8AEEE5"/>
+                <path d="m341 161 15-11 14 6 18-18" stroke="#C4FFF4" strokeWidth="2" strokeLinecap="round" fill="none"/>
+              </>
+            }
           </g>}
         </svg>
       </div>
-      <div className="core-caption"><span>{processing ? 'Procesando una consulta de ejemplo' : modes[selected].purpose}</span><small>Asistente visual original · simulación local</small><button className="core-motion-toggle" type="button" aria-pressed={paused} onClick={onToggleMotion}>{paused ? 'Reanudar animación' : 'Pausar animación'}</button></div>
+      <div className="core-caption"><span>{processing ? 'Preparando una respuesta ilustrativa' : modes[selected].purpose}</span><small>Robot ilustrativo original · respuestas simuladas</small><button className="core-motion-toggle" type="button" aria-pressed={paused} onClick={onToggleMotion}>{paused ? 'Reanudar animación' : 'Pausar animación'}</button></div>
     </div>
   );
 }
-
 export default function AIAssistantShowcase() {
   const [selected, setSelected] = useState(0);
   const [processing, setProcessing] = useState(false);
   const [answered, setAnswered] = useState(false);
   const [paused, setPaused] = useState(false);
+  const [reactionToken, setReactionToken] = useState(0);
   const timer = useRef(null);
   useEffect(() => () => clearTimeout(timer.current), []);
-  function selectMode(index) { clearTimeout(timer.current); setSelected(index); setProcessing(false); setAnswered(false); }
+  function selectMode(index) { clearTimeout(timer.current); setSelected(index); setProcessing(false); setAnswered(false); setReactionToken(value => value + 1); }
   function ask() {
-    clearTimeout(timer.current); setAnswered(false); setProcessing(true);
+    clearTimeout(timer.current); setAnswered(false); setProcessing(true); setReactionToken(value => value + 1);
     timer.current = setTimeout(() => { setProcessing(false); setAnswered(true); }, 1000);
   }
   const mode = modes[selected];
@@ -110,7 +138,7 @@ export default function AIAssistantShowcase() {
     <div className="ai-showcase">
       <div className="section-heading ai-showcase-heading"><div><p className="section-kicker">INTELIGENCIA ARTIFICIAL APLICADA</p><h2>Inteligencia útil.<br /><em>Bajo tu control.</em></h2></div><p>Asistentes que orientan, organizan y apoyan procesos. Con información autorizada, límites claros y supervisión humana.</p></div>
       <div className="ai-showcase-stage">
-        <IntelligenceCore processing={processing} selected={selected} paused={paused} onToggleMotion={() => setPaused(value => !value)} />
+        <IntelligenceCore processing={processing} selected={selected} paused={paused} reactionToken={reactionToken} onToggleMotion={() => setPaused(value => !value)} />
         <div className="ai-showcase-console">
           <div className="ai-console-label"><span>EXPLORA UN ASISTENTE</span><span className="ai-demo-badge">Demo guiada</span></div>
           <div className="ai-mode-selector" role="group" aria-label="Aplicación del asistente demostrativo">{modes.map((item, index) => <button key={item.name} type="button" aria-pressed={selected === index} onClick={() => selectMode(index)}>{item.name}</button>)}</div>
