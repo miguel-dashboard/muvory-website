@@ -161,6 +161,7 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
 .contact-email-panel .form-note a,.footer-email { color:var(--accent); text-decoration:underline; text-underline-offset:4px; }
 .contact-email-panel .button { text-align:center; justify-content:center; }
 .contact-form label { display: flex; flex-direction: column; gap: 9px; font-size: .875rem; color: #d4e3e8; }
+.contact-honeypot { display:none !important; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .contact-form input:not([type="checkbox"]), .contact-form textarea, .contact-form select { width: 100%; min-width: 0; min-height: 48px; padding: 12px; border: 1px solid #41616c; border-radius: 7px; background-color: #081b25; color: #eff7f8; font-size: 1rem; }
 .contact-form input::placeholder, .contact-form textarea::placeholder { color: #91acb8; }

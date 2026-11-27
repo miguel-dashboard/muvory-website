@@ -16,17 +16,40 @@ Sitio de MUVORY: **software a medida, datos, automatización, IA aplicada y plat
 
 Consulta la [auditoría, interacciones y validación del rediseño](docs/redesign-review.md).
 
-## Contacto: bloqueante antes del lanzamiento
-El formulario muestra un estado de **vista preliminar** hasta configurar un destino real mediante la variable `VITE_CONTACT_ENDPOINT`.
+## Formulario de contacto — activación con Web3Forms
 
-Pasos antes de publicar:
-1. Elegir un proveedor de formularios compatible con solicitudes POST en JSON y configurar su endpoint.
-2. Crear el archivo `.env.local` (no se sube a Git) con `VITE_CONTACT_ENDPOINT=...`.
-3. Configurar esa variable en el entorno correspondiente de Cloudflare Pages.
-4. Probar envío, recepción, consentimiento, manejo de errores y protección antispam.
-5. Publicar información de privacidad y responsables de tratamiento conforme al marco aplicable.
+El sitio ya está publicado. Hasta recibir una clave de formulario válida, se mantiene el botón
+para escribir a **contacto@muvory.cl**: no se muestran campos que no puedan entregar mensajes.
 
-**Importante:** las variables `VITE_*` se exponen al navegador. No poner claves secretas ni credenciales allí.
+### Activación (sin cambiar DNS ni Google Workspace)
+
+1. Abrir https://web3forms.com/#start y solicitar una **Access Key** para `contacto@muvory.cl`.
+2. Abrir el correo que envía Web3Forms a esa dirección y obtener la clave de formulario.
+   No es una contraseña de Gmail ni un secreto de servidor: Web3Forms indica que es pública.
+3. En Cloudflare: **Workers & Pages → muvory-website → Settings → Variables and Secrets**,
+   crear la variable de producción `VITE_WEB3FORMS_ACCESS_KEY` con el valor recibido.
+   Configurar la misma variable en Preview solo si se desean pruebas del PR antes de publicarlo.
+4. Ejecutar un nuevo despliegue **después** de guardar la variable (Vite la incorpora durante el build).
+   En el sitio ya publicado, probar el formulario con datos propios, confirmar la notificación en
+   `contacto@muvory.cl` y revisar la carpeta de spam.
+5. Configurar revisiones periódicas del correo, y preparar una política de privacidad antes de
+   recoger solicitudes reales. Web3Forms es un proveedor externo que recibe y reenvía los datos.
+   Antes de su uso, revisar sus condiciones y tratamiento de datos.
+
+El formulario mantiene nombre, correo, servicio, mensaje y consentimiento, preserva el contexto
+de las demostraciones y utiliza un campo oculto antispam. No enviar documentación sensible.
+
+**No se necesitan claves secretas ni modificaciones de MX/SPF/DKIM/DMARC.**
+El access key se puede ver en el código enviado al navegador. No poner contraseñas, tokens
+de Google Workspace ni claves de APIs privadas en variables `VITE_*`.
+
+Para desarrollo local: usar `.env.local` con `VITE_WEB3FORMS_ACCESS_KEY=...`
+(sin subirlo a Git), o configurar `VITE_CONTACT_ENDPOINT` para un servicio HTTP propio.
+Este último tiene prioridad si ambas variables están presentes.
+
+El formulario exige que la API devuelva código HTTP correcto y `success:true` antes de
+confirmar el envío; los errores conservan el contenido escrito.
+Ejecutar `npm test` y `npm run build` para las comprobaciones automatizadas.
 
 ## Antes de activar la página pública
 - Confirmar la disponibilidad de marca y dominio de MUVORY con INAPI y NIC Chile.
