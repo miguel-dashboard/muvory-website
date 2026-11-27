@@ -21,6 +21,15 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuToggle = useRef(null);
   const closeMenu = () => setMenuOpen(false);
+  // A direct link from a service page to /#contacto must scroll after React mounts.
+  useEffect(() => {
+    const anchor = window.location.hash.slice(1);
+    if (!anchor) return;
+    const raf = window.requestAnimationFrame(() => {
+      document.getElementById(anchor)?.scrollIntoView({ block: 'start' });
+    });
+    return () => window.cancelAnimationFrame(raf);
+  }, []);
   useEffect(() => {
     const media = window.matchMedia('(min-width: 961px)');
     const onResize = () => { if (media.matches) setMenuOpen(false); };
