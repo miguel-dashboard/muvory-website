@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import Brand from './Brand.jsx';
 import Icon from './Icon.jsx';
 import { services, getService } from './services-data.js';
+import ServiceVisual, { StudioPreview } from './ServiceVisual.jsx';
+import './services-premium.css';
 import './services.css';
 
 function ServiceHeader(){
@@ -20,15 +22,18 @@ function ServiceHeader(){
     </div>
   </header>;
 }
-function LuminousMark({index=0}){
-  return <div className={'sv-art sv-art-'+index} aria-hidden="true"><div className="sv-art-a"/><div className="sv-art-b"/><div className="sv-art-core"/><span/><span/><span/></div>;
-}
 function ServiceCard({service}){
-  return <a className="sv-service-card" href={'/servicios/'+service.slug} aria-label={'Explorar '+service.name}>
-    <div className="sv-card-top"><span>{service.index} / SOLUCIÓN</span><Icon name="arrowUp" size={21}/></div>
-    <div className="sv-card-art"><LuminousMark index={Number(service.index)-1}/></div>
-    <div className="sv-card-bottom"><Icon name={service.icon} size={25}/><h3>{service.name}</h3><p>{service.lead}</p><span className="sv-text-link">Explorar solución <Icon name="arrow" size={17}/></span></div>
-  </a>;
+  return <article className="sv-showcase-row">
+    <div className="sv-showcase-copy">
+      <span className="sv-showcase-index">{service.index} / 05 · {service.eyebrow}</span>
+      <h3>{service.name}</h3>
+      <p>{service.lead}</p>
+      <a href={'/servicios/'+service.slug} className="sv-showcase-action">Descubrir esta solución <Icon name="arrow" size={18}/></a>
+    </div>
+    <a href={'/servicios/'+service.slug} className="sv-showcase-media" aria-label={'Conocer '+service.name}>
+      <ServiceVisual service={service}/>
+    </a>
+  </article>;
 }
 
 function InteractivePreview({service}){
@@ -69,16 +74,16 @@ function ServicesHome(){
     <main id="sv-content">
       <section className="sv-hero sv-hero-index">
         <div className="sv-shell sv-index-hero-layout">
-          <div className="sv-index-copy"><span className="sv-kicker"><span/>MUVORY / SERVICIOS</span><h1>La tecnología que imaginas. <em>La solución que necesitas.</em></h1><p>Software, automatización, inteligencia artificial y experiencias digitales. Cada servicio tiene su propio enfoque, porque cada desafío merece una respuesta distinta.</p>
+          <div className="sv-index-copy"><span className="sv-kicker"><span/>MUVORY / SERVICIOS</span><h1>Tecnología diseñada <em>para resolver.</em></h1><p>Software, automatización e IA para convertir necesidades concretas en herramientas útiles. Explora cada especialidad y descubre qué podríamos construir.</p>
           <div className="sv-hero-actions"><a className="sv-primary" href="#explorar">Explorar servicios <Icon name="arrow" size={18}/></a><a className="sv-secondary" href="/#contacto">Cuéntanos tu idea <Icon name="arrowUp" size={17}/></a></div>
           </div>
-          <LuminousMark index={2}/>
+          <StudioPreview/>
         </div>
         <div className="sv-shell sv-hero-bottom"><span>DISEÑAMOS · DESARROLLAMOS · CONECTAMOS</span><span>01 — 05 / ÁREAS DE ESPECIALIDAD</span></div>
       </section>
       <section className="sv-services-section" id="explorar"><div className="sv-shell">
-        <div className="sv-section-heading"><div><span className="sv-kicker">EXPLORA UNA POSIBILIDAD</span><h2>Un servicio. <em>Una experiencia propia.</em></h2></div><p>Entra en cada área para descubrir su enfoque, recorrer un ejemplo y comenzar tu proyecto.</p></div>
-        <div className="sv-cards">{services.map(service=><ServiceCard key={service.slug} service={service}/>)}</div>
+        <div className="sv-section-heading"><div><span className="sv-kicker">EXPLORA UNA POSIBILIDAD</span><h2>Soluciones con <em>un propósito claro.</em></h2></div><p>Entra en cada área para descubrir su enfoque, recorrer un ejemplo y comenzar tu proyecto.</p></div>
+        <div className="sv-showcase">{services.map(service=><ServiceCard key={service.slug} service={service}/>)}</div>
       </div></section>
       <section className="sv-final-cta"><div className="sv-shell"><span className="sv-kicker">PROYECTOS CON IDENTIDAD PROPIA</span><h2>¿No encuentras exactamente lo que imaginas?</h2><p>Podemos explorar tu idea desde cero. Lo importante es entender el problema antes de elegir una tecnología.</p><a className="sv-primary" href="/#contacto">Hablemos de tu desafío <Icon name="arrow" size={17}/></a></div></section>
     </main>
@@ -94,7 +99,7 @@ function ServiceDetail({service}){
         <a className="sv-back" href="/servicios"><Icon name="arrow" size={17}/> Todos los servicios</a>
         <div className="sv-detail-hero-grid">
           <div><span className="sv-kicker">{service.index} / {service.eyebrow}</span><h1>{service.title}</h1><p>{service.lead}</p><div className="sv-hero-actions"><a href="/#contacto" className="sv-primary">Cuéntanos tu proyecto <Icon name="arrow" size={18}/></a><a href="#laboratorio" className="sv-secondary">Ver ejemplo <Icon name="arrow" size={17}/></a></div></div>
-          <div className="sv-detail-art"><LuminousMark index={Number(service.index)-1}/></div>
+          <div className="sv-detail-art"><ServiceVisual service={service}/></div>
         </div>
       </div></section>
       <section className="sv-detail-context"><div className="sv-shell sv-context-grid">
