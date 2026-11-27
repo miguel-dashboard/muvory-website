@@ -1,6 +1,6 @@
 # MUVORY Technologies — Sitio web comercial
 
-Primera versión de la landing page de MUVORY: **software empresarial, dashboards, automatización, agentes de IA y desarrollo web**.
+Sitio de MUVORY: **software a medida, datos, automatización, IA aplicada y plataformas digitales** para personas, proyectos y organizaciones.
 
 ## Tecnología
 - React + Vite
@@ -12,6 +12,9 @@ Primera versión de la landing page de MUVORY: **software empresarial, dashboard
 2. Ejecutar `npm install`.
 3. Ejecutar `npm run dev` para visualizar.
 4. Ejecutar `npm run build` para generar producción.
+5. Ejecutar `npm test` para verificar el contrato de envío del formulario.
+
+Consulta la [auditoría, interacciones y validación del rediseño](docs/redesign-review.md).
 
 ## Contacto: bloqueante antes del lanzamiento
 El formulario muestra un estado de **vista preliminar** hasta configurar un destino real mediante la variable `VITE_CONTACT_ENDPOINT`.
@@ -19,7 +22,7 @@ El formulario muestra un estado de **vista preliminar** hasta configurar un dest
 Pasos antes de publicar:
 1. Elegir un proveedor de formularios compatible con solicitudes POST en JSON y configurar su endpoint.
 2. Crear el archivo `.env.local` (no se sube a Git) con `VITE_CONTACT_ENDPOINT=...`.
-3. Configurar esa variable también en Vercel o el servicio de despliegue.
+3. Configurar esa variable en el entorno correspondiente de Cloudflare Pages.
 4. Probar envío, recepción, consentimiento, manejo de errores y protección antispam.
 5. Publicar información de privacidad y responsables de tratamiento conforme al marco aplicable.
 
