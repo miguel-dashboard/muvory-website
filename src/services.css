@@ -65,6 +65,7 @@
 @keyframes sv-orb-turn-reverse { 0% { transform:rotate(44deg) scaleX(.7); } 100% { transform:rotate(-316deg) scaleX(.7); } }
 
 /* Services index */
+#sv-content,#explorar,#laboratorio { scroll-margin-top:96px; }
 .sv-services-section { padding:90px 0 105px;background:#081a23; }
 .sv-section-heading { display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.8fr);align-items:end;gap:45px;margin-bottom:38px; }
 .sv-section-heading h2 { font-size:clamp(2rem,3.25vw,3.65rem);line-height:1.2;margin:13px 0 0; }
