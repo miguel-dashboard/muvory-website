@@ -1,37 +1,62 @@
-/* The illustrative assistant and commercial guide share no conversation state. */
-.ai-showcase-stage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(24px, 5vw, 80px); }
-.ai-showcase-heading { margin-bottom: 36px; }
-.intelligence-core { min-width: 0; position: relative; }
-.intelligence-core-art { display: block; width: 100%; max-width: 500px; margin: 0 auto; }
-.core-suspension { animation: core-float 7s ease-in-out infinite alternate; transform-origin: 230px 195px; }
-.core-light { animation: core-light 5s ease-in-out infinite; }
-.core-scan { opacity: 0; }
-.is-processing .core-scan { opacity: .7; animation: core-scan 1s ease-in-out infinite; }
-.is-processing .core-light { animation-duration: .65s; }
-.core-caption { display: grid; gap: 8px; text-align: center; margin-top: -12px; padding-bottom: 12px; color: #c5dfdf; font-size: .875rem; }
-.core-caption small { color: var(--muted, #a5bbc5); font-size: .75rem; }
-.core-motion-toggle { justify-self: center; min-height: 44px; padding: 8px 12px; border: 0; border-radius: 6px; background: none; color: var(--muted, #a5bbc5); font-size: .75rem; text-decoration: underline; text-underline-offset: 4px; }
-.core-motion-toggle:hover { color: #b2f3e5; }
-.intelligence-core.is-paused .core-suspension, .intelligence-core.is-paused .core-light, .intelligence-core.is-paused .core-scan { animation-play-state: paused; }
-.ai-showcase-console { min-width: 0; border-top: 1px solid var(--line, #29444e); padding-top: 22px; }
-.ai-console-label { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 22px; font-size: .75rem; letter-spacing: .08em; color: var(--muted, #a5bbc5); }
-.ai-demo-badge { color: #a8e9dd; letter-spacing: 0; padding: 5px 9px; background: #143630; border-radius: 5px; white-space: nowrap; }
-.ai-mode-selector { display: flex; gap: 6px; margin-bottom: 28px; border-bottom: 1px solid var(--line, #29444e); }
-.ai-mode-selector button { min-height: 44px; padding: 8px 14px 12px; border: 0; border-bottom: 2px solid transparent; background: none; color: var(--muted, #a5bbc5); font-size: .875rem; }
-.ai-mode-selector button[aria-pressed="true"] { border-bottom-color: var(--accent, #82e1d3); color: #b2f3e5; }
-.ai-mode-selector button:hover { color: #eaf4f5; }
-.ai-showcase-console h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); line-height: 1.4; font-weight: 500; letter-spacing: -.025em; margin-bottom: 20px; }
-.ai-example-question { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; min-height: 52px; padding: 14px 16px; border-radius: 8px; border: 1px solid #41656b; background: #0e2a34; color: #d5f4ec; font-size: .875rem; text-align: left; transition: background .2s, border-color .2s; }
-.ai-example-question span { display: grid; place-items: center; border: 1px solid #6ca39d; width: 23px; height: 23px; border-radius: 50%; flex-shrink: 0; font-size: .75rem; }
-.ai-example-question:hover { background: #153a42; border-color: #82e1d3; }
-.ai-example-response { padding: 24px 0 18px; min-height: 220px; }
-.ai-response-label { display: block; color: #a5bbc5; font-size: .75rem; letter-spacing: .08em; margin-bottom: 12px; }
-.ai-example-response p { font-size: 1rem; line-height: 1.75; color: #d3e3e6; margin-bottom: 0; }
-.ai-example-response .ai-response-outcome { border-left: 2px solid #518e83; padding-left: 14px; margin-top: 18px; color: #a5d6cc; font-size: .8125rem; }
-.ai-simulation-note { color: var(--muted, #a5bbc5); font-size: .75rem; line-height: 1.6; margin: 0; padding-top: 16px; border-top: 1px solid var(--line, #29444e); }
-@keyframes core-float { to { transform: translateY(-7px); } }
-@keyframes core-light { 0%, 100% { opacity: .5; } 50% { opacity: 1; } }
-@keyframes core-scan { from { transform: translateY(0); } to { transform: translateY(90px); } }
+/* The AI showcase is a local, clearly labeled simulation; no live AI or user data processing. */
+.ai-showcase-stage { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); align-items:center; gap:clamp(30px,5vw,82px); }
+.ai-showcase-heading { margin-bottom:32px; }
+.intelligence-core { min-width:0; position:relative; }
+.mv-robot { isolation:isolate; }
+.mv-robot-canvas { position:relative; max-width:530px; margin-inline:auto; }
+.mv-robot-canvas::before { content:''; position:absolute; z-index:-1; inset:14% 8% 10%; background:radial-gradient(ellipse,rgba(52,171,176,.13),transparent 70%); filter:blur(22px); pointer-events:none; }
+.intelligence-core-art { display:block; width:100%; max-width:520px; margin:auto; overflow:visible; }
+.mv-robot-float { transform-box:view-box; transform-origin:230px 220px; animation:mv-robot-hover 5.8s ease-in-out infinite; }
+.mv-robot-orbits { transform-box:view-box; transform-origin:230px 188px; animation:mv-robot-orbit 48s linear infinite; }
+.mv-robot-arm-right { transform-box:view-box; transform-origin:312px 290px; animation:mv-robot-wave 9s ease-in-out infinite; }
+.mv-robot-eyes { transform-box:fill-box; transform-origin:center; animation:mv-robot-blink 7.2s ease-in-out infinite; }
+.mv-robot-antenna,.mv-robot-heart { animation:mv-robot-pulse 3.4s ease-in-out infinite; }
+.mv-robot-orbit-point { animation:mv-robot-pulse 4.8s ease-in-out infinite; }
+.mv-robot-orbit-point.second { animation-delay:-2s; }
+.mv-robot-smile { opacity:.9; transition:opacity .2s ease; }
+.mv-robot-process { opacity:0; }
+.is-processing .mv-robot-eyes { animation:mv-robot-thinking-eyes .85s ease-in-out infinite; }
+.is-processing .mv-robot-process { opacity:1; animation:mv-robot-thinking 1s ease-in-out infinite; }
+.is-processing .mv-robot-smile { opacity:0; }
+.is-processing .mv-robot-orbits { animation-duration:15s; }
+.mv-robot-mode-1 .mv-robot-heart { fill:#B8FFF2; }
+.mv-robot-mode-2 .mv-robot-heart { fill:#83D9FF; }
+@keyframes mv-robot-hover { 0%,100% { transform:translateY(2px); } 50% { transform:translateY(-9px); } }
+@keyframes mv-robot-orbit { to { transform:rotate(360deg); } }
+@keyframes mv-robot-wave { 0%,32%,56%,100% { transform:rotate(0deg); } 40%,48% { transform:rotate(-10deg); } }
+@keyframes mv-robot-blink { 0%,42%,46%,100% { transform:scaleY(1); } 44% { transform:scaleY(.10); } }
+@keyframes mv-robot-thinking-eyes { 0%,100% { opacity:1; } 50% { opacity:.64; } }
+@keyframes mv-robot-thinking { 0%,100% { opacity:.25; } 50% { opacity:1; } }
+@keyframes mv-robot-pulse { 0%,100% { opacity:.65; } 50% { opacity:1; } }
+.core-caption { display:grid; gap:6px; text-align:center; margin-top:-17px; padding-bottom:10px; color:#d4eceb; font-size:.875rem; }
+.core-caption small { color:var(--muted,#a5bbc5); font-size:.75rem; }
+.core-motion-toggle { justify-self:center; min-height:44px; padding:8px 12px; border:0; border-radius:6px; background:none; color:var(--muted,#a5bbc5); font-size:.75rem; text-decoration:underline; text-underline-offset:4px; }
+.core-motion-toggle:hover { color:#b2f3e5; }
+.core-motion-toggle:focus-visible { outline:3px solid var(--accent,#82e1d3); outline-offset:2px; }
+.intelligence-core.is-paused .mv-robot-float,
+.intelligence-core.is-paused .mv-robot-orbits,
+.intelligence-core.is-paused .mv-robot-arm-right,
+.intelligence-core.is-paused .mv-robot-eyes,
+.intelligence-core.is-paused .mv-robot-antenna,
+.intelligence-core.is-paused .mv-robot-heart,
+.intelligence-core.is-paused .mv-robot-orbit-point,
+.intelligence-core.is-paused .mv-robot-process { animation-play-state:paused; }
+.ai-showcase-console { min-width:0; border-top:1px solid var(--line,#29444e); padding-top:22px; }
+.ai-console-label { display:flex; justify-content:space-between; gap:16px; align-items:center; margin-bottom:22px; font-size:.75rem; letter-spacing:.08em; color:var(--muted,#a5bbc5); }
+.ai-demo-badge { color:#a8e9dd; letter-spacing:0; padding:5px 9px; background:#143630; border-radius:5px; white-space:nowrap; }
+.ai-mode-selector { display:flex; gap:6px; margin-bottom:25px; border-bottom:1px solid var(--line,#29444e); }
+.ai-mode-selector button { min-height:44px; padding:8px 14px 12px; border:0; border-bottom:2px solid transparent; background:none; color:var(--muted,#a5bbc5); font-size:.875rem; }
+.ai-mode-selector button[aria-pressed="true"] { border-bottom-color:var(--accent,#82e1d3); color:#b2f3e5; }
+.ai-mode-selector button:hover { color:#eaf4f5; }
+.ai-showcase-console h3 { font-size:clamp(1.2rem,2vw,1.5rem); line-height:1.4; font-weight:500; letter-spacing:-.025em; margin-bottom:20px; }
+.ai-example-question { display:flex; align-items:center; justify-content:space-between; gap:16px; width:100%; min-height:52px; padding:14px 16px; border-radius:8px; border:1px solid #41656b; background:#0e2a34; color:#d5f4ec; font-size:.875rem; text-align:left; transition:background .2s,border-color .2s; }
+.ai-example-question span { display:grid; place-items:center; border:1px solid #6ca39d; width:23px; height:23px; border-radius:50%; flex-shrink:0; font-size:.75rem; }
+.ai-example-question:hover { background:#153a42; border-color:#82e1d3; }
+.ai-example-response { padding:24px 0 18px; min-height:220px; }
+.ai-response-label { display:block; color:#a5bbc5; font-size:.75rem; letter-spacing:.08em; margin-bottom:12px; }
+.ai-example-response p { font-size:1rem; line-height:1.75; color:#d3e3e6; margin-bottom:0; }
+.ai-example-response .ai-response-outcome { border-left:2px solid #518e83; padding-left:14px; margin-top:18px; color:#a5d6cc; font-size:.8125rem; }
+.ai-simulation-note { color:var(--muted,#a5bbc5); font-size:.75rem; line-height:1.6; margin:0; padding-top:16px; border-top:1px solid var(--line,#29444e); }
 
 /* Native modal dialog contains focus and makes the page inert while open. */
 .commercial-assistant-dock { position: fixed; z-index: 60; right: 20px; bottom: 20px; display: flex; align-items: center; gap: 14px; }
@@ -84,6 +109,7 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .core-motion-toggle { display: none; }
-  .core-suspension, .core-light, .is-processing .core-scan, .is-processing .core-light { animation: none; }
-  .ai-example-question { transition: none; }
+  .mv-robot-float,.mv-robot-orbits,.mv-robot-arm-right,.mv-robot-eyes,
+  .mv-robot-antenna,.mv-robot-heart,.mv-robot-orbit-point,.mv-robot-process { animation: none !important; }
+  .ai-example-question,.mv-robot-smile { transition:none; }
 }
