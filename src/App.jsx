@@ -119,7 +119,7 @@ function App() {
     </main>
 
     <footer className="site-footer">
-      <div className="container footer-main"><Brand footer /><p>Tecnología con propósito.<br />Soluciones con identidad propia.</p><a href="#inicio">Volver al inicio</a></div>
+      <div className="container footer-main"><Brand footer /><p>Tecnología con propósito.<br />Soluciones con identidad propia.</p><a className="footer-email" href="mailto:contacto@muvory.cl">contacto@muvory.cl</a><a href="#inicio">Volver al inicio</a></div>
       <div className="container footer-bottom"><span>© {new Date().getFullYear()} MUVORY Technologies.</span><span>Software · Automatización · Inteligencia artificial</span></div>
     </footer>
     <CommercialAssistant />
