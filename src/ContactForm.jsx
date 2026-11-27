@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
-import { submitContact } from './contact.js';
+import { submitContact, submitContactWeb3Forms } from './contact.js';
 
 export default function ContactForm() {
   const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState('');
   const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT?.trim();
+  const web3formsKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY?.trim();
+  const configured = Boolean(endpoint || web3formsKey);
+  const useWeb3Forms = !endpoint && Boolean(web3formsKey);
   const [context,setContext]=useState('');
   const [pendingContext, setPendingContext] = useState('');
   useEffect(() => {
@@ -29,7 +32,7 @@ export default function ContactForm() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    if (!endpoint) {
+    if (!configured) {
       setStatus('unconfigured');
       setMessage('El envío aún no está habilitado. Tu solicitud no se ha enviado; falta configurar el destino de recepción.');
       return;
@@ -39,7 +42,11 @@ export default function ContactForm() {
     setStatus('sending');
     setMessage('Enviando tu solicitud…');
     try {
-      await submitContact(endpoint, data);
+      if (useWeb3Forms) {
+        await submitContactWeb3Forms(web3formsKey, data);
+      } else {
+        await submitContact(endpoint, data);
+      }
       form.reset();
       setContext('');
       setPendingContext('');
@@ -53,7 +60,7 @@ export default function ContactForm() {
 
   // Until the contact endpoint is configured, offer a real contact method instead
   // of presenting fields that cannot submit to any destination.
-  if (!endpoint) {
+  if (!configured) {
     return (
       <div className="contact-form contact-email-panel">
         <p className="section-kicker">CONTACTO DIRECTO</p>
@@ -86,10 +93,10 @@ export default function ContactForm() {
         <textarea value={context} onChange={e=>setContext(e.target.value)} name="mensaje" placeholder="¿Qué te gustaría crear o resolver?" rows="4" minLength="10" maxLength="3000" required />
       </label>
       {pendingContext && <div className="form-context-notice"><p className="form-note" role="status">No hay espacio para añadir el contexto seleccionado. Acorta la descripción para incorporarlo; tu texto se conserva.</p><button type="button" onClick={() => setPendingContext('')}>Continuar solo con mi descripción</button></div>}
-      <label className="consent"><input type="checkbox" name="consentimiento" value="si" required /><span>Autorizo el uso de estos datos únicamente para responder mi solicitud comercial.</span></label>
+      {useWeb3Forms && <div className="contact-honeypot" aria-hidden="true"><label>No completar este campo <input name="botcheck" type="text" tabIndex={-1} autoComplete="off" /></label></div>}
+      <label className="consent"><input type="checkbox" name="consentimiento" value="si" required /><span>Autorizo el tratamiento de estos datos para responder mi consulta. {useWeb3Forms && 'El mensaje será procesado por Web3Forms para enviarlo al correo de MUVORY.'}</span></label>
       <button className="button button-primary button-full" type="submit" disabled={status === 'sending' || Boolean(pendingContext)}>{status === 'sending' ? 'Enviando…' : 'Enviar solicitud'}</button>
-      {!endpoint && <p className="form-note">Envío pendiente de habilitación. Este formulario todavía no recibe solicitudes.</p>}
-      <p className="form-note" role="status" aria-live="polite">{message || (endpoint ? 'Te responderemos por el correo que indiques.' : '')}</p>
+      <p className="form-note" role="status" aria-live="polite">{message || 'Te responderemos por el correo que indiques.'}</p>
     </form>
   );
 }
