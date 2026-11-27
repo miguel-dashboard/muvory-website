@@ -3,8 +3,8 @@ import Brand from './Brand.jsx';
 import Icon from './Icon.jsx';
 import { services, getService } from './services-data.js';
 import ServiceVisual, { StudioPreview } from './ServiceVisual.jsx';
-import './services-premium.css';
 import './services.css';
+import './services-premium.css';
 
 function ServiceHeader(){
   const [open,setOpen] = useState(false);
