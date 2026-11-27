@@ -149,13 +149,17 @@ export default function Experience() {
   function goTo(index) {
     const next = boundedSlide(index);
     setCurrent(next);
-    window.history.replaceState(window.history.state, '', '#'+experienceSlides[next].id);
+    window.history.replaceState(window.history.state, '', '#' + experienceSlides[next].id);
+    if (window.scrollY > 120) {
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+    }
   }
 
   useEffect(() => {
     const onKeys = event => {
       if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
-      if (event.target.closest('button, a, input, select, textarea, [contenteditable="true"]')) return;
+      if (event.target?.closest?.('button, a, input, select, textarea, [contenteditable="true"]')) return;
       if (event.key === 'ArrowRight') goTo(nextSlide(current));
       if (event.key === 'ArrowLeft') goTo(previousSlide(current));
     };
@@ -164,7 +168,7 @@ export default function Experience() {
   }, [current]);
 
   function touchStart(event) {
-    if (event.target.closest('button, a, input, select, textarea')) { gesture.current=null; return; }
+    if (event.target?.closest?.('button, a, input, select, textarea')) { gesture.current=null; return; }
     const finger = event.touches[0];
     gesture.current = {x:finger.clientX, y:finger.clientY};
   }
