@@ -51,6 +51,20 @@ export default function ContactForm() {
     }
   }
 
+  // Until the contact endpoint is configured, offer a real contact method instead
+  // of presenting fields that cannot submit to any destination.
+  if (!endpoint) {
+    return (
+      <div className="contact-form contact-email-panel">
+        <p className="section-kicker">CONTACTO DIRECTO</p>
+        <h3>Conversemos sobre tu proyecto.</h3>
+        <p>Cuéntanos qué necesitas crear, mejorar o automatizar. Estamos recibiendo consultas directamente en nuestro correo.</p>
+        <a className="button button-primary button-full" href="mailto:contacto@muvory.cl?subject=Consulta%20sobre%20un%20proyecto%20MUVORY">Escribir a contacto@muvory.cl</a>
+        <p className="form-note">Este botón abre tu aplicación de correo; no envía datos automáticamente. También puedes escribirnos directamente a <a href="mailto:contacto@muvory.cl">contacto@muvory.cl</a>.</p>
+      </div>
+    );
+  }
+
   return (
     <form className="contact-form" onSubmit={handleSubmit}>
       <div className="form-row">
