@@ -118,18 +118,20 @@ function WebDemo() {
 const demos = { software: SoftwareDemo, data: DataDemo, flow: FlowDemo, ai: AiDemo, web: WebDemo };
 
 export default function Capabilities() {
-  return <>
-    <div className="cap-grid">
-      {capabilities.map(item => {
-        const Demo = demos[item.kind];
-        return <article className={`cap-card cap-card-${item.kind}`} key={item.kind} aria-labelledby={`cap-title-${item.kind}`}>
-          <div className="cap-heading"><Icon name={item.icon} size={22} /><h3 id={`cap-title-${item.kind}`}>{item.title}</h3></div>
-          <p className="cap-description">{item.description}</p>
-          <div className="cap-demo"><span className="cap-demo-label">DEMO INTERACTIVA</span><Demo /></div>
-          <a className="cap-link" href="#contacto" onClick={() => window.dispatchEvent(new CustomEvent('muvory:diagnostic', { detail: `Me interesa ${item.title.toLowerCase()}. Exploré su demostración ilustrativa en MUVORY.` }))}>{item.cta}</a>
-        </article>;
-      })}
+  const [active, setActive] = useState(0);
+  const item = capabilities[active];
+  const Demo = demos[item.kind];
+  return <div className="studio-capabilities">
+    <div className="studio-service-list" role="group" aria-label="Explorar tecnologías">
+      {capabilities.map((service,index)=><button key={service.kind} type="button" aria-pressed={index===active} aria-controls="studio-service-panel" onClick={()=>setActive(index)}>
+        <span className="studio-service-number">0{index+1}</span><Icon name={service.icon} size={23}/><span>{service.title}</span><Icon name="arrow" size={17}/>
+      </button>)}
     </div>
-    <p className="cap-disclaimer">Explora las demos: todas usan datos de ejemplo y funcionan localmente en tu navegador.</p>
-  </>;
+    <article className="studio-service-panel" id="studio-service-panel" aria-labelledby="studio-service-title">
+      <div className="studio-service-copy"><span className="section-kicker">CAPACIDAD / 0{active+1}</span><h3 id="studio-service-title">{item.title}</h3><p>{item.description}</p>
+      <a className="cap-link" href="#contacto" onClick={()=>window.dispatchEvent(new CustomEvent('muvory:diagnostic',{detail:'Me interesa '+item.title.toLowerCase()+'. Exploré su demostración ilustrativa en MUVORY.'}))}>{item.cta} <Icon name="arrow" size={17}/></a></div>
+      <div className="cap-demo studio-service-demo" key={item.kind}><span className="cap-demo-label">ENTORNO DE PRUEBA / INTERACTIVO</span><Demo /></div>
+    </article>
+    <p className="cap-disclaimer">Demostraciones locales con datos ficticios. Selecciona una tecnología para explorar su funcionamiento.</p>
+  </div>;
 }
