@@ -51,14 +51,14 @@ function App() {
       <section id="inicio" className="hero section-anchor">
         <div className="container hero-grid">
           <div className="hero-copy">
-            <p className="eyebrow"><span aria-hidden="true" />TECNOLOGÍA CON PROPÓSITO</p>
-            <h1>Software, automatización e IA <span>para desafíos reales.</span></h1>
-            <p className="hero-description">Desarrollamos sistemas a medida, plataformas digitales y soluciones inteligentes que convierten necesidades concretas en herramientas útiles.</p>
+            <p className="eyebrow"><span aria-hidden="true" />ESTUDIO DE INGENIERÍA DIGITAL · CHILE</p>
+            <h1>Tu operación. <span>Sin límites manuales.</span></h1>
+            <p className="hero-description">Diseñamos software, automatizamos procesos y aplicamos inteligencia artificial para conectar tus sistemas y transformar información en decisiones.</p>
             <div className="hero-actions">
               <a className="button button-primary" href="#soluciones">Explorar soluciones</a>
               <a className="button button-outline" href="#contacto">Cuéntanos tu proyecto</a>
             </div>
-            <p className="hero-note">Para personas, equipos y organizaciones con una idea que llevar más lejos.</p>
+            <p className="hero-note">Explora el laboratorio interactivo y prueba cómo se transforma un proceso.</p>
           </div>
           <HeroExperience />
         </div>
@@ -68,8 +68,8 @@ function App() {
       <section className="section section-solutions section-anchor" id="soluciones">
         <div className="container">
           <div className="section-heading">
-            <div><p className="section-kicker">LO QUE PODEMOS CONSTRUIR</p><h2>Menos complejidad.<br /><em>Más posibilidades.</em></h2></div>
-            <p>De una herramienta puntual a una plataforma integral. Explora cómo se siente una solución pensada para tu día a día.</p>
+            <div><p className="section-kicker">LO QUE PODEMOS CONSTRUIR</p><h2>Herramientas que trabajan.<br /><em>No solo interfaces.</em></h2></div>
+            <p>Prueba cada tecnología con ejemplos funcionales: desde gestionar registros hasta conectar procesos y analizar información.</p>
           </div>
           <Capabilities />
           <div className="experience-invite">
@@ -99,7 +99,7 @@ function App() {
       <section className="section section-about section-anchor" id="nosotros">
         <div className="container">
           <div className="about-intro">
-            <div><p className="section-kicker">SOMOS MUVORY TECHNOLOGIES</p><h2>La tecnología tiene sentido<br /><em>cuando te sirve.</em></h2></div>
+            <div><p className="section-kicker">SOMOS MUVORY TECHNOLOGIES</p><h2>Ingeniería centrada<br /><em>en tu operación.</em></h2></div>
             <div className="about-copy"><p>Partimos de las personas que usarán cada solución. Entendemos su contexto para diseñar y desarrollar herramientas claras, útiles y capaces de evolucionar.</p><p>Trabajamos con comunicación directa, alcance definido y decisiones con propósito. Cada proyecto merece una respuesta propia.</p></div>
           </div>
           <div className="principles"><span><Icon name="layers" size={20} /> Diseño y desarrollo a medida</span><span><Icon name="message" size={20} /> Comunicación clara</span><span><Icon name="workflow" size={20} /> Soluciones que evolucionan</span></div>
@@ -117,7 +117,7 @@ function App() {
         <div className="container contact-layout">
           <div className="contact-copy">
             <p className="section-kicker">CONVERSEMOS</p>
-            <h2>Todo empieza<br />con <em>tu desafío.</em></h2>
+            <h2>Construyamos<br /><em>tu próxima solución.</em></h2>
             <p>Una idea nueva. Un proceso que podría funcionar mejor. Una herramienta que todavía no existe.</p>
             <p>Cuéntanos qué quieres crear, mejorar o automatizar. Revisaremos el contexto para definir un siguiente paso.</p>
             <div className="contact-detail"><Icon name="message" size={22} /><span>Personas, proyectos y organizaciones.<br />El punto de partida lo pones tú.</span></div>
