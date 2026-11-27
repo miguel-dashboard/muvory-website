@@ -78,6 +78,11 @@
 .sv-card-art { min-height:178px;position:relative;overflow:hidden; }
 .sv-card-art .sv-art { height:220px;transform:scale(.88);margin-top:-17px; }
 .sv-card-art .sv-art-a,.sv-card-art .sv-art-b { border-width:20px; }
+/* Cards rest quietly; motion resumes only when someone explores a card. */
+.sv-card-art .sv-art-a,.sv-card-art .sv-art-b,.sv-card-art .sv-art-core { animation-play-state:paused; }
+.sv-service-card:hover .sv-art-a,.sv-service-card:hover .sv-art-b,.sv-service-card:hover .sv-art-core,
+.sv-service-card:focus-visible .sv-art-a,.sv-service-card:focus-visible .sv-art-b,
+.sv-service-card:focus-visible .sv-art-core { animation-play-state:running; }
 .sv-card-bottom { position:relative;z-index:2;padding:19px 25px 26px;margin-top:auto; }
 .sv-card-bottom>svg { color:#82e4dd;margin-bottom:13px; }
 .sv-card-bottom h3 { font-size:clamp(1.3rem,2vw,1.8rem);margin-bottom:10px; }
