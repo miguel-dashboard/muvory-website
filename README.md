@@ -18,8 +18,7 @@ Consulta la [auditoría, interacciones y validación del rediseño](docs/redesig
 
 ## Formulario de contacto — activación con Web3Forms
 
-El sitio ya está publicado. Hasta recibir una clave de formulario válida, se mantiene el botón
-para escribir a **contacto@muvory.cl**: no se muestran campos que no puedan entregar mensajes.
+El formulario de `muvory.cl` ya usa Web3Forms y el correo `contacto@muvory.cl` recibió una consulta de prueba real (27 de noviembre de 2026). Si la clave configurada no está disponible, el sitio presenta el contacto por correo en lugar de campos que no puedan enviar.
 
 ### Activación (sin cambiar DNS ni Google Workspace)
 
@@ -60,3 +59,29 @@ Ejecutar `npm test` y `npm run build` para las comprobaciones automatizadas.
 
 ## Filosofía de diseño
 Estética sutil, premium y futurista: azul negro, azul petróleo, turquesa y blanco, espacio negativo amplio y un robot ilustrado discreto. Ningún sector domina la portada. No se muestran métricas o clientes inventados.
+
+## MUVORY Experience — recorrido interactivo (prototipo)
+
+La ruta `/experience` ofrece una experiencia complementaria a la landing de MUVORY,
+inspirada en un recorrido tipo presentación: navegación entre cuatro etapas,
+botones Anterior/Siguiente, selección directa de capítulos, flechas del teclado
+y navegación inferior en móvil. El enlace aparece en el menú y después de las tarjetas
+de servicios.
+
+- **Software:** mini panel con filtros reales sobre actividades ficticias.
+- **Automatización:** flujo guiado de cuatro pasos que se ejecuta por interacción.
+- **Inteligencia artificial:** tres preguntas y respuestas predefinidas, sin IA conectada.
+- **Datos:** panel de indicadores y gráfico variable con valores de ejemplo.
+
+Nada de lo mostrado representa clientes, casos publicados, integraciones
+activas, métricas comerciales reales o funcionalidades ya contratadas.
+No usa APIs externas ni modifica Web3Forms o correo.
+
+La ruta se renderiza desde React + Vite sobre el mismo sitio mediante el
+fallback SPA de Cloudflare Pages. La página principal en `/` no se reemplaza.
+El recorrido respeta `prefers-reduced-motion` y dispone de controles accesibles.
+
+Validar los cuatro capítulos en escritorio y teléfono, acceso directo a
+`/experience`, los links de salida hacia `/`, la navegación inferior,
+filtros, recorrido automatizado, demo de IA y variaciones de gráficos
+antes de fusionar el PR a `main`.
