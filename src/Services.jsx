@@ -33,8 +33,7 @@ function ServiceCard({service}){
 
 function InteractivePreview({service}){
   const [step,setStep]=useState(0);
-  const [view,setView]=useState(0);
-  useEffect(()=>{setStep(0);setView(0);},[service.slug]);
+  useEffect(()=>{setStep(0);},[service.slug]);
   const colors=['#86e5dc','#65d1e1','#a7c3f4'];
   return <div className="sv-preview">
     <div className="sv-preview-top"><span className="sv-preview-lights" aria-hidden="true"><i/><i/><i/></span><span>{service.name} / Laboratorio</span><span>DEMO ILUSTRATIVA</span></div>
@@ -65,6 +64,7 @@ function InteractivePreview({service}){
 function ServicesHome(){
   useEffect(()=>{document.title='Servicios tecnológicos a medida | MUVORY Technologies';},[]);
   return <div className="sv-site">
+    <a className="skip-link" href="#sv-content">Saltar al contenido</a>
     <ServiceHeader/>
     <main id="sv-content">
       <section className="sv-hero sv-hero-index">
@@ -119,7 +119,7 @@ function ServiceFooter(){
 }
 export default function Services({slug}){
   const service=slug?getService(slug):null;
-  useEffect(()=>{window.scrollTo({top:0,behavior:'instant'});},[slug]);
-  if(slug&&!service)return <div className="sv-site"><ServiceHeader/><main className="sv-not-found sv-shell"><span className="sv-kicker">PÁGINA NO ENCONTRADA</span><h1>Este servicio no está disponible.</h1><a className="sv-primary" href="/servicios">Ver todos los servicios <Icon name="arrow" size={18}/></a></main><ServiceFooter/></div>;
+  useEffect(()=>{window.scrollTo(0,0);},[slug]);
+  if(slug&&!service)return <div className="sv-site"><a className="skip-link" href="#sv-content">Saltar al contenido</a><ServiceHeader/><main id="sv-content" className="sv-not-found sv-shell"><span className="sv-kicker">PÁGINA NO ENCONTRADA</span><h1>Este servicio no está disponible.</h1><a className="sv-primary" href="/servicios">Ver todos los servicios <Icon name="arrow" size={18}/></a></main><ServiceFooter/></div>;
   return service?<ServiceDetail key={service.slug} service={service}/>:<ServicesHome/>;
 }
