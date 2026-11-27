@@ -105,6 +105,12 @@ h3 { line-height: 1.35; }
 .section-heading > p { color: var(--muted); max-width: 410px; margin: 0 0 3px auto; font-size: 1rem; }
 .section-kicker { margin-bottom: 16px; }
 .section-solutions { background: #091a24; border-block: 1px solid #b8e2e90d; }
+.experience-invite { display:flex; align-items:center; justify-content:space-between; gap:28px; margin-top:36px; padding:27px 30px; border:1px solid rgba(133,219,214,.35); border-radius:14px; background:linear-gradient(110deg,rgba(17,61,70,.78),rgba(9,30,42,.94)); }
+.experience-invite .section-kicker { display:block; margin-bottom:9px; }
+.experience-invite h3 { font-size:clamp(1.2rem,2vw,1.65rem); font-weight:600; letter-spacing:-.03em; margin:0 0 7px; }
+.experience-invite p { font-size:.86rem; color:#b9d3d9; margin:0; max-width:650px; }
+.experience-invite .button { gap:11px; flex-shrink:0; white-space:nowrap; }
+@media(max-width:740px) { .experience-invite { flex-direction:column; align-items:flex-start; padding:22px; } .experience-invite .button { width:100%; } }
 .section-applications { position: relative; }
 .section-agents { background: #0a202a; border-block: 1px solid var(--line); }
 .about-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }

@@ -38,6 +38,7 @@ function App() {
         <nav id="main-navigation" className={'nav' + (menuOpen ? ' nav-open' : '')} aria-label="Navegación principal">
           <a href="#soluciones" onClick={closeMenu}>Soluciones</a>
           <a href="#aplicaciones" onClick={closeMenu}>Aplicaciones</a>
+          <a href="/experience" onClick={closeMenu}>Experiencia</a>
           <a href="#agentes" onClick={closeMenu}>Inteligencia artificial</a>
           <a href="#nosotros" onClick={closeMenu}>Nosotros</a>
           <a className="nav-mobile-contact" href="#contacto" onClick={closeMenu}>Hablemos de tu proyecto</a>
@@ -71,6 +72,14 @@ function App() {
             <p>De una herramienta puntual a una plataforma integral. Explora cómo se siente una solución pensada para tu día a día.</p>
           </div>
           <Capabilities />
+          <div className="experience-invite">
+            <div>
+              <span className="section-kicker">MUVORY EXPERIENCE</span>
+              <h3>Ahora puedes explorar cómo funciona.</h3>
+              <p>Cuatro demostraciones interactivas, con navegación tipo presentación: software, automatización, IA y datos.</p>
+            </div>
+            <a className="button button-outline" href="/experience">Iniciar experiencia <Icon name="arrow" size={18}/></a>
+          </div>
         </div>
       </section>
 
