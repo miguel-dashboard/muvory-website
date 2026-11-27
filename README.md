@@ -85,3 +85,32 @@ Validar los cuatro capítulos en escritorio y teléfono, acceso directo a
 `/experience`, los links de salida hacia `/`, la navegación inferior,
 filtros, recorrido automatizado, demo de IA y variaciones de gráficos
 antes de fusionar el PR a `main`.
+
+## MUVORY 2.0 – portada cinematográfica y Servicios multipágina
+
+La nueva propuesta visual se desarrolla en una rama separada y **no cambia el
+formulario Web3Forms ni el sitio publicado hasta recibir aprobación visual**.
+
+- Portada: `src/CinematicHero.jsx` + `src/cinematic.css`. El Nexus es un SVG
+  original de bajo peso con CSS para luces, anillos y movimiento suave.
+  Cada etiqueta abre una página de servicio. Incluye control de pausa y
+  respeta `prefers-reduced-motion`.
+- Se sustituye la cuadrícula repetitiva de demostraciones en Inicio por una
+  lista editorial con acceso directo a páginas independientes.
+- `/servicios`: catálogo con navegación, elementos animados y enlaces reales.
+- `/servicios/software`, `/servicios/automatizacion`,
+  `/servicios/inteligencia-artificial`, `/servicios/datos` y
+  `/servicios/plataformas`: páginas con contexto, funciones posibles y
+  un recorrido de tres etapas. Todas las demos están identificadas como
+  **simulaciones**, sin métricas ni testimonios inventados.
+- El recorrido anterior `/experience` permanece disponible.
+- Los botones comerciales regresan a `/#contacto` (Web3Forms no se altera).
+- Sin dependencias nuevas, video pesado, imágenes externas ni copia de activos
+  de otros estudios.
+
+### Revisión pendiente antes de publicar
+
+Abrir la vista previa en **computador y teléfono**, probar cada ruta directa,
+el menú móvil, los vínculos a contacto, la navegación de demos, el botón de
+pausar el movimiento y `/experience`. Verificar que los formularios activos
+conserven su funcionamiento. Ejecutar `npm test` y `npm run build`.
