@@ -5,7 +5,9 @@ export default function ContactForm() {
   const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState('');
   const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT?.trim();
-  const web3formsKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY?.trim();
+  // Web3Forms access keys are public form identifiers, not private credentials.
+  // Allow the verified MUVORY key to work without changes to Cloudflare settings.
+  const web3formsKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY?.trim() || '17dabd0e-a514-484b-a886-77632e5a2c03';
   const configured = Boolean(endpoint || web3formsKey);
   const useWeb3Forms = !endpoint && Boolean(web3formsKey);
   const [context,setContext]=useState('');
