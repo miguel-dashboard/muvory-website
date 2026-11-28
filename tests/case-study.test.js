@@ -14,7 +14,7 @@ test('presentation has five navigable chapters and clearly simulated visual data
  assert.match(jsx,/controlTowerChapters\.map/);
  assert.match(jsx,/setSlide/);
  assert.match(jsx,/Dato ficticio/);
- assert.match(jsx,/recreaciones ilustrativas/i);
+ assert.match(jsx,/vistas ilustrativas/i);
  assert.match(jsx,/MVP/);
 });
 test('case study stays inside MUVORY and avoids fake customer testimonials',()=>{
