@@ -13,6 +13,13 @@ test('MUVORY 2.0 covers three authentic sector specializations',()=>{
   assert.equal(item.solutions.length,3);
   assert.equal(item.demoItems.length,3);
   assert.ok(item.disclaimer.length>50);
+  assert.ok(item.offer.title.length>24);
+  assert.ok(item.offer.promise.length>65);
+  assert.equal(item.offer.scope.length,3);
+  assert.ok(item.offer.scope.every(module => module.title.length>8 && module.text.length>40));
+  assert.ok(item.offer.pilot.length>65);
+  assert.ok(item.offer.measure.length>45);
+
  }
 });
 
