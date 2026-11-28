@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Icon from './Icon.jsx';
 import { ServiceHeader, ServiceFooter } from './Services.jsx';
+import ControlTowerCase from './ControlTowerCase.jsx';
 import './portfolio.css';
 
 /* Videos approved by the owner can be placed in /public/media/portfolio/
@@ -20,7 +21,7 @@ export const projects = [
     problem:'En logística, una entrega fallida no siempre comienza en la calle.',
     solution:'Control de entregas y prioridades con registro de incidencias y su origen.',
     points:['Entregas, vehículos y choferes','Seguimiento de incidencias','Visibilidad de fricciones en la operación'],
-    href:'/casos/control-tower',
+    href:'/portafolio/control-tower',
     detail:'El software existe como MVP. El recorrido disponible es una demostración visual con datos de ejemplo.',
     accent:'blue',
   },
@@ -197,7 +198,7 @@ function ProjectDetail({project}){
 
 export default function Portfolio({slug}){
  if(!slug)return <PortfolioHome/>;
- if(slug==='control-tower')return <PortfolioHome/>;
+ if(slug==='control-tower')return <ControlTowerCase/>;
  const project=getProject(slug);
  if(!project)return <div className="sv-site pf-page"><ServiceHeader/><main className="sv-shell pf-not-found"><h1>Proyecto no encontrado</h1><a href="/portafolio">Volver al portafolio</a></main><ServiceFooter/></div>;
  return <ProjectDetail project={project}/>;
