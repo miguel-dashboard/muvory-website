@@ -46,7 +46,7 @@ function PreviewMetric({label,value,foot}) {
 }
 
 function DashboardMock(){
-  return <div className="case-product-mock" aria-label="Visualización de ejemplo basada en módulos del repositorio MR&B">
+  return <div className="case-product-mock" aria-label="Visualización de ejemplo basada en funciones de MR&B">
     <div className="case-mock-sidebar">
       <div className="case-mock-brand"><span className="case-logo-box">M</span> MR&B</div>
       {['Dashboard','Entregas','Choferes','Vehículos','Incidencias'].map((t,i)=><span key={t} className={i===0?'case-mock-nav-active':''}><i/>{t}</span>)}
