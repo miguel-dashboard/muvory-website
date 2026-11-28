@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Icon from './Icon.jsx';
 import { ProductPreview, ProductLab } from './ProductLab.jsx';
+import ProductFilm from './ProductFilm.jsx';
 import { ServiceHeader, ServiceFooter } from './Services.jsx';
 import ControlTowerCase from './ControlTowerCase.jsx';
 import './portfolio.css';
@@ -128,7 +129,7 @@ function ProjectCard({project}){
     </a>
     <div className="pf-card-copy">
       <h3>{project.name}</h3><p>{project.description}</p>
-      <a href={project.href}>Explorar el proyecto <Icon name="arrow" size={17}/></a>
+      <div className="pf-card-actions"><a href={project.href}>Explorar el proyecto <Icon name="arrow" size={17}/></a><a href={project.href+'#film'}><span aria-hidden="true">▶</span> Ver recorrido</a></div>
     </div>
   </article>;
 }
@@ -158,8 +159,8 @@ function PortfolioHome(){
 }
 
 function ProjectDetail({project}){
- const [mode,setMode]=useState('lab');
- useEffect(()=>{document.title=project.name+' · Proyecto | MUVORY';window.scrollTo(0,0);},[project.slug]);
+ const [mode,setMode]=useState(()=>window.location.hash==='#film'?'tour':'lab');
+ useEffect(()=>{document.title=project.name+' · Proyecto | MUVORY';const anchor=window.location.hash.slice(1);if(anchor==='film'||anchor==='demostracion'){const frame=window.requestAnimationFrame(()=>document.getElementById(anchor)?.scrollIntoView());return ()=>window.cancelAnimationFrame(frame);}window.scrollTo(0,0);},[project.slug]);
  return <div className={'sv-site pf-page pf-detail pf-detail-'+project.accent}>
    <a className="skip-link" href="#pf-main">Saltar al contenido</a><ServiceHeader/>
    <main id="pf-main">
@@ -169,7 +170,7 @@ function ProjectDetail({project}){
          <span>{project.number} / {project.label}</span>
          <h1>{project.headline}</h1>
          <p>{project.description}</p>
-         <div className="pf-detail-actions"><a href="#demostracion">Explorar recorrido <Icon name="arrow" size={17}/></a><a href="/contacto">Hablemos de tu proyecto <Icon name="arrow" size={17}/></a></div>
+         <div className="pf-detail-actions"><a href="#demostracion" onClick={()=>setMode('lab')}>Probar sistema <Icon name="arrow" size={17}/></a><a href="#film" onClick={()=>setMode('tour')}>Ver recorrido <Icon name="arrow" size={17}/></a><a href="/contacto">Hablemos de tu proyecto <Icon name="arrow" size={17}/></a></div>
        </div><div className="pf-detail-art"><ProductPreview type={project.type}/></div></div>
      </div></section>
      <section className="pf-detail-story"><div className="sv-shell pf-story-grid">
@@ -180,12 +181,13 @@ function ProjectDetail({project}){
        <div className="pf-flow-head"><span>CONOCE EL RECORRIDO</span><h2>Descubre cómo funciona <em>la idea.</em></h2><p>Prueba las funciones con datos ficticios. Esta demo interactiva no es una grabación real ni almacena datos fuera de la sesión.</p></div>
        {portfolioVideos[project.type] && <ProjectMedia project={project}/>}
        <div className="pf-demo-mode" role="group" aria-label="Modo de demostración"><button type="button" aria-pressed={mode==='lab'} onClick={()=>setMode('lab')}>Probar sistema</button><button type="button" aria-pressed={mode==='tour'} onClick={()=>setMode('tour')}>Recorrido animado</button></div>
-       <div className="pf-detail-demo-layout">{mode==='lab'?<ProductLab type={project.type}/>:<GuidedTour type={project.type}/>}
+       <div id="film" className="mf-project-section">{mode==='tour'&&<ProductFilm type={project.type} onTry={()=>{setMode('lab');document.getElementById('demostracion')?.scrollIntoView();}}/>}</div>
+       {mode==='lab'&&<div className="pf-detail-demo-layout"><ProductLab type={project.type}/>
          <div className="pf-flow-copy"><span>FUNCIONES QUE ILUSTRAMOS</span><ul>{project.points.map((point,i)=><li key={point}><small>0{i+1}</small>{point}</li>)}</ul>
            <p>{project.type==='ventas'?'La grabación del sistema de notas de venta se incorporará únicamente tras revisar y autorizar el video proporcionado por el equipo.':'Podemos adaptar este enfoque a otras necesidades, sistemas y procesos.'}</p>
            {project.type==='recruit'&&<a href="/casos/control-tower#recorrido">Ver también Control Tower <Icon name="arrow" size={17}/></a>}
          </div>
-       </div>
+       </div>}
      </div></section>
      <section className="pf-end-cta"><div className="sv-shell"><div><span>DESARROLLOS A MEDIDA</span><h2>Podemos estudiar tu proceso y construir una herramienta propia.</h2></div><a href="/contacto">Solicitar conversación <Icon name="arrow" size={17}/></a></div></section>
    </main><ServiceFooter/>
