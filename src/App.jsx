@@ -4,7 +4,7 @@ import Icon from './Icon.jsx';
 import CinematicHero from './CinematicHero.jsx';
 import ServicesTeaser from './ServicesTeaser.jsx';
 import './cinematic.css';
-import Applications from './Applications.jsx';
+import { GroundedSectorTeaser } from './Sectors.jsx';
 import AIAssistantShowcase from './AIAssistantShowcase.jsx';
 import SolutionConfigurator from './SolutionConfigurator.jsx';
 import ContactForm from './ContactForm.jsx';
@@ -47,7 +47,7 @@ function App() {
         <button ref={menuToggle} className="menu-toggle" type="button" aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen(value => !value)}><Icon name={menuOpen ? 'close' : 'menu'} /></button>
         <nav id="main-navigation" className={'nav' + (menuOpen ? ' nav-open' : '')} aria-label="Navegación principal">
           <a href="/servicios" onClick={closeMenu}>Servicios</a>
-          <a href="#aplicaciones" onClick={closeMenu}>Aplicaciones</a>
+          <a href="/sectores" onClick={closeMenu}>Sectores</a>
           <a href="/experience" onClick={closeMenu}>Experiencia</a>
           <a href="#agentes" onClick={closeMenu}>Inteligencia artificial</a>
           <a href="#nosotros" onClick={closeMenu}>Nosotros</a>
@@ -68,7 +68,7 @@ function App() {
               <a className="button button-primary" href="/servicios">Descubrir servicios <Icon name="arrow" size={17}/></a>
               <a className="button button-outline" href="#contacto">Cuéntanos tu proyecto</a>
             </div>
-            <p className="hero-note">Tecnología para personas, equipos y organizaciones. Sin soluciones de molde.</p>
+            <p className="hero-note">Nacido desde la operación. Construido para resolver.</p>
           </div>
           <CinematicHero />
         </div>
@@ -97,10 +97,10 @@ function App() {
         <span id="casos" className="anchor-alias" aria-hidden="true" /><span id="sectores" className="anchor-alias" aria-hidden="true" />
         <div className="container">
           <div className="section-heading">
-            <div><p className="section-kicker">DISTINTOS CONTEXTOS. UN MISMO PROPÓSITO.</p><h2>Aplicaciones <em>por área.</em></h2></div>
-            <p>La tecnología empieza con una necesidad concreta. Selecciona un área y recorre un proceso posible.</p>
+            <div><p className="section-kicker">NO PARTIMOS DE UNA PLANTILLA</p><h2>Conocimiento real.<br/><em>Software con sentido.</em></h2></div>
+            <p>Conocemos de cerca el trabajo jurídico, la logística de última milla y la operación de un minimarket. Esa experiencia cambia cómo diseñamos soluciones.</p>
           </div>
-          <Applications />
+          <GroundedSectorTeaser />
         </div>
       </section>
 
@@ -110,7 +110,7 @@ function App() {
         <div className="container">
           <div className="about-intro">
             <div><p className="section-kicker">SOMOS MUVORY TECHNOLOGIES</p><h2>La tecnología tiene sentido<br /><em>cuando te sirve.</em></h2></div>
-            <div className="about-copy"><p>Partimos de las personas que usarán cada solución. Entendemos su contexto para diseñar y desarrollar herramientas claras, útiles y capaces de evolucionar.</p><p>Trabajamos con comunicación directa, alcance definido y decisiones con propósito. Cada proyecto merece una respuesta propia.</p></div>
+            <div className="about-copy"><p>Detrás de MUVORY hay experiencia directa en negocios y operaciones: conocemos lo que ocurre cuando una planilla no cuadra, una ruta falla o una tarea urgente se pierde entre mensajes.</p><p>Unimos ese conocimiento práctico con desarrollo de software para crear sistemas que respondan al trabajo real de las personas. Empezamos con el problema, no con una lista de tecnologías.</p></div>
           </div>
           <div className="principles"><span><Icon name="layers" size={20} /> Diseño y desarrollo a medida</span><span><Icon name="message" size={20} /> Comunicación clara</span><span><Icon name="workflow" size={20} /> Soluciones que evolucionan</span></div>
           <div className="methodology section-anchor" id="metodologia">
