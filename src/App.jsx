@@ -9,6 +9,7 @@ import AIAssistantShowcase from './AIAssistantShowcase.jsx';
 import SolutionConfigurator from './SolutionConfigurator.jsx';
 import ContactForm from './ContactForm.jsx';
 import CommercialAssistant from './CommercialAssistant.jsx';
+import { PortfolioTeaser } from './Portfolio.jsx';
 
 const methodology = [
   ['Entendemos el desafío', 'Analizamos necesidades, objetivos y contexto. El punto de partida es comprender qué necesitas resolver.'],
@@ -49,6 +50,7 @@ function App() {
           <a href="/servicios" onClick={closeMenu}>Servicios</a>
           <a href="/sectores" onClick={closeMenu}>Sectores</a>
           <a href="/experience" onClick={closeMenu}>Experiencia</a>
+          <a href="/portafolio" onClick={closeMenu}>Proyectos</a>
           <a href="#agentes" onClick={closeMenu}>Inteligencia artificial</a>
           <a href="#nosotros" onClick={closeMenu}>Nosotros</a>
           <a className="nav-mobile-contact" href="#contacto" onClick={closeMenu}>Hablemos de tu proyecto</a>
@@ -103,6 +105,8 @@ function App() {
           <GroundedSectorTeaser />
         </div>
       </section>
+
+      <PortfolioTeaser />
 
       <section className="section section-agents section-anchor" id="agentes"><div className="container"><AIAssistantShowcase /></div></section>
 
