@@ -4,7 +4,6 @@ import App from './App.jsx';
 import Experience from './Experience.jsx';
 import Services from './Services.jsx';
 import Sectors from './Sectors.jsx';
-import ControlTowerCase from './ControlTowerCase.jsx';
 import Portfolio from './Portfolio.jsx';
 import './styles.css';
 import './layout-polish.css';
@@ -14,7 +13,7 @@ createRoot(document.getElementById('root')).render(
     {(() => {
       const path = window.location.pathname.replace(/\/+$/, '') || '/';
       if (path === '/experience') return <Experience />;
-      if (path === '/casos/control-tower') return <ControlTowerCase />;
+      if (path === '/casos/control-tower') return <Portfolio slug="control-tower" />;
       if (path === '/portafolio') return <Portfolio />;
       if (path.startsWith('/portafolio/')) return <Portfolio slug={decodeURIComponent(path.slice('/portafolio/'.length))} />;
       if (path === '/sectores') return <Sectors />;
