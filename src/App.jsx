@@ -31,7 +31,7 @@ function App() {
   useEffect(() => {
     const anchor = window.location.hash.slice(1);
     const legacy = {contacto:'/contacto',nosotros:'/nosotros',metodologia:'/nosotros#metodologia',agentes:'/inteligencia-artificial',explorador:'/contacto#explorador',soluciones:'/servicios',aplicaciones:'/sectores',casos:'/portafolio',sectores:'/sectores'};
-    if (isHome && legacy[anchor]) { window.location.replace(legacy[anchor]); return; }
+    if (isHome && Object.hasOwn(legacy,anchor)) { window.location.replace(legacy[anchor]); return; }
     if (!anchor) return;
     const raf = window.requestAnimationFrame(() => {
       document.getElementById(anchor)?.scrollIntoView({ block: 'start' });
@@ -51,7 +51,7 @@ function App() {
       if (event.key === 'Escape' && menuOpen) { closeMenu(); menuToggle.current?.focus(); }
     }}>
       <div className="container nav-wrap">
-        <Brand />
+        <Brand href="/" />
         <button ref={menuToggle} className="menu-toggle" type="button" aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen(value => !value)}><Icon name={menuOpen ? 'close' : 'menu'} /></button>
         <nav id="main-navigation" className={'nav' + (menuOpen ? ' nav-open' : '')} aria-label="Navegación principal">
           <a href="/servicios" onClick={closeMenu}>Servicios</a>
@@ -115,8 +115,6 @@ function App() {
       <section className="home-contact-strip"><div className="container"><div><h2>Convirtamos una idea en solución.</h2></div><a className="button button-primary" href="/contacto">Hablemos <Icon name="arrow" size={17}/></a></div></section>
       </>}
       {isContact && <>
-      <SolutionConfigurator />
-
       <section className="section section-contact section-anchor" id="contacto">
         <div className="container contact-layout">
           <div className="contact-copy">
@@ -129,12 +127,13 @@ function App() {
           <ContactForm />
         </div>
       </section>
+      <SolutionConfigurator />
       </>}
       {!isHome && !isAbout && !isContact && !isAI && <section className="section"><div className="container"><h1>Página no encontrada</h1><a href="/">Volver al inicio</a></div></section>}
     </main>
 
     <footer className="site-footer">
-      <div className="container footer-main"><Brand footer /><p>Tecnología con propósito.<br />Soluciones con identidad propia.</p><a className="footer-email" href="mailto:contacto@muvory.cl">contacto@muvory.cl</a><a href="/">Volver al inicio</a></div>
+      <div className="container footer-main"><Brand footer href="/" /><p>Tecnología con propósito.<br />Soluciones con identidad propia.</p><a className="footer-email" href="mailto:contacto@muvory.cl">contacto@muvory.cl</a><a href="/">Volver al inicio</a></div>
       <div className="container footer-bottom"><span>© {new Date().getFullYear()} MUVORY Technologies.</span><span>Software · Automatización · Inteligencia artificial</span></div>
     </footer>
     {isContact && <CommercialAssistant />}
