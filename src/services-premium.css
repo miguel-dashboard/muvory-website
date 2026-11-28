@@ -262,3 +262,68 @@
 @media(prefers-reduced-motion:reduce) {
   .sv-showcase-media,.sv-showcase-action svg {transition:none!important;}
 }
+
+
+/* Individual service pages also get distinct art direction – no five identical navy screens. */
+.sv-service-tone-software .sv-detail-hero {
+  background:radial-gradient(ellipse at 72% 32%,#1b60783d,transparent 55%),#081925;
+}
+.sv-service-tone-software .sv-detail-hero::before {background:radial-gradient(ellipse at 82% 45%,#115a6b5c,transparent 65%);}
+.sv-service-tone-automatizacion .sv-detail-hero {
+  background:#eef0ea;color:#1b3332;
+}
+.sv-service-tone-automatizacion .sv-detail-hero::before {
+  background:radial-gradient(ellipse at 77% 54%,#bbe3d0,transparent 57%);
+}
+.sv-service-tone-automatizacion .sv-detail-hero::after {opacity:.08;}
+.sv-service-tone-automatizacion .sv-detail-hero p {color:#3f5d5b;}
+.sv-service-tone-automatizacion .sv-detail-hero .sv-kicker,
+.sv-service-tone-automatizacion .sv-detail-hero .sv-back {color:#257f73;}
+.sv-service-tone-automatizacion .sv-detail-hero .sv-secondary {color:#1c514e;border-color:#69a19a;background:#edf4f0;}
+.sv-service-tone-automatizacion .sv-detail-art {order:-1;}
+.sv-service-tone-inteligencia-artificial .sv-detail-hero {
+  background:radial-gradient(ellipse at 78% 28%,#402b7e7a,transparent 60%),#13192b;
+}
+.sv-service-tone-inteligencia-artificial .sv-detail-hero::before {background:radial-gradient(ellipse at 75% 65%,#314e9752,transparent 67%);}
+.sv-service-tone-inteligencia-artificial .sv-detail-hero .sv-kicker {color:#d5bcff;}
+.sv-service-tone-inteligencia-artificial .sv-detail-hero .sv-primary {background:#b5a9f6;color:#15213b;}
+.sv-service-tone-inteligencia-artificial .sv-detail-art .sv-unique-visual {
+  background:radial-gradient(ellipse at center,#433f7e5c,#10182e);
+  border-color:#4e598c;
+}
+.sv-service-tone-datos .sv-detail-hero {
+  background:radial-gradient(ellipse at 83% 55%,#2568aa5c,transparent 65%),#091b30;
+}
+.sv-service-tone-datos .sv-detail-hero::before {background:radial-gradient(ellipse at 72% 34%,#1c6c9b4d,transparent 65%);}
+.sv-service-tone-datos .sv-detail-hero .sv-kicker {color:#98d7ff;}
+.sv-service-tone-datos .sv-detail-art .sv-unique-visual {background:#0e3049;border-color:#337aa4;}
+.sv-service-tone-plataformas .sv-detail-hero {
+  background:#eee8dd;color:#273a35;
+}
+.sv-service-tone-plataformas .sv-detail-hero::before {background:radial-gradient(ellipse at 73% 50%,#d4e6c8,transparent 65%);}
+.sv-service-tone-plataformas .sv-detail-hero p {color:#526458;}
+.sv-service-tone-plataformas .sv-detail-hero .sv-kicker,
+.sv-service-tone-plataformas .sv-detail-hero .sv-back {color:#437762;}
+.sv-service-tone-plataformas .sv-detail-hero .sv-secondary {color:#254b3e;border-color:#98ba9f;background:#f1f0e7;}
+.sv-service-tone-plataformas .sv-detail-art {order:-1;}
+
+/* Focus and full-width invitation to operational problem knowledge. */
+.sv-sectors-invite {
+  display:flex;align-items:center;justify-content:space-between;gap:28px;
+  padding:28px 30px;margin-top:40px;border-radius:12px;
+  border:1px solid #4e8488;background:linear-gradient(110deg,#103944,#122834);
+}
+.sv-sectors-invite>div {max-width:680px;}
+.sv-sectors-invite span {font-size:.69rem;letter-spacing:.12em;color:#89e4d8;font-weight:750;}
+.sv-sectors-invite strong {display:block;font-family:'DM Sans',sans-serif;font-size:clamp(1.2rem,2vw,1.8rem);font-weight:650;margin:11px 0;letter-spacing:-.03em;}
+.sv-sectors-invite p {font-size:.86rem;color:#b4cbd0;line-height:1.7;margin:0;}
+.sv-sectors-invite a {display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:12px 16px;border-radius:8px;background:#8ce8da;color:#062c31;font-size:.81rem;font-weight:750;flex-shrink:0;}
+.sv-sectors-invite a:hover {background:#beffed;}
+@media(max-width:860px) {
+  .sv-service-tone-automatizacion .sv-detail-art,
+  .sv-service-tone-plataformas .sv-detail-art {order:initial;}
+  .sv-sectors-invite {flex-direction:column;align-items:flex-start;padding:23px;}
+}
+@media(max-width:600px) {
+  .sv-sectors-invite a {width:100%;}
+}
