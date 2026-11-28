@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Icon from './Icon.jsx';
 import { ServiceHeader, ServiceFooter } from './Services.jsx';
-import ControlTowerCase from './ControlTowerCase.jsx';
+import ControlTowerCase, { RecruitLandingMock } from './ControlTowerCase.jsx';
 import './portfolio.css';
 
 /* Videos approved by the owner can be placed in /public/media/portfolio/
@@ -121,27 +121,20 @@ export function ProjectMedia({project,compact=false}){
 }
 
 function ProjectCard({project}){
+  const icons={control:'chart',recruit:'briefcase',ventas:'store'};
   return <article className={'pf-card pf-tone-'+project.accent}>
-    <div className="pf-card-media-link"><ProjectMedia project={project} compact/></div>
+    <a className={'pf-project-cover pf-project-cover-'+project.type} href={project.href} aria-label={'Explorar '+project.name}>
+      <span>{project.label}</span><Icon name={icons[project.type]} size={54}/><strong>{project.mark}</strong><small>EXPLORAR PROYECTO <Icon name="arrowUp" size={15}/></small>
+    </a>
     <div className="pf-card-copy">
-      <span>{project.number} / {project.label}</span>
-      <h3>{project.name}</h3>
-      <p>{project.description}</p>
+      <h3>{project.name}</h3><p>{project.description}</p>
       <a href={project.href}>Explorar el proyecto <Icon name="arrow" size={17}/></a>
     </div>
   </article>;
 }
 
 export function PortfolioTeaser(){
- return <section className="pf-teaser" id="portafolio">
-   <div className="container">
-     <div className="pf-teaser-heading"><div><span>PROYECTOS Y DESARROLLOS</span><h2>Menos promesas.<br/><em>Más soluciones que mostrar.</em></h2></div><p>Dos desarrollos de MR&B y un sistema comercial cuyo video incorporaremos después de revisar su contenido. Explora ejemplos interactivos sin salir de MUVORY.</p></div>
-     <div className="pf-teaser-grid">
-       {projects.slice(0,2).map(project=><ProjectCard key={project.slug} project={project}/>)}
-     </div>
-     <a className="pf-teaser-all" href="/portafolio">Ver el portafolio completo <Icon name="arrow" size={18}/></a>
-   </div>
- </section>;
+  return <a className="home-door" href="/portafolio"><span className="home-door-icon"><Icon name="chart" size={27}/></span><div><h2>Nuestro trabajo</h2><p>Conoce los sistemas que estamos desarrollando.</p></div><Icon name="arrowUp" size={20}/></a>;
 }
 
 function PortfolioHome(){
@@ -155,7 +148,7 @@ function PortfolioHome(){
        <a href="#proyectos">Conocer los proyectos <Icon name="arrow" size={17}/></a>
      </div></section>
      <section className="pf-index" id="proyectos"><div className="sv-shell">
-       <div className="pf-index-intro"><span>PROYECTOS SELECCIONADOS</span><p>Las vistas interactivas son recreaciones con información ficticia. Los videos reales se incorporarán después de revisar y autorizar su publicación.</p></div>
+       <div className="pf-index-intro"><span>PROYECTOS SELECCIONADOS</span><p>Elige un proyecto para conocer su propósito y recorrer su demostración. Las simulaciones se distinguen del material real.</p></div>
        <div className="pf-project-grid">{projects.map(project=><ProjectCard key={project.slug} project={project}/>)}</div>
        <div className="pf-source-note"><Icon name="check" size={18}/>Distinguimos lo desarrollado, los prototipos y el material audiovisual pendiente. No publicamos información privada de clientes ni operaciones.</div>
      </div></section>
@@ -176,7 +169,7 @@ function ProjectDetail({project}){
          <h1>{project.headline}</h1>
          <p>{project.description}</p>
          <div className="pf-detail-actions"><a href="#demostracion">Explorar recorrido <Icon name="arrow" size={17}/></a><a href="/#contacto">Hablemos de tu proyecto <Icon name="arrow" size={17}/></a></div>
-       </div><div className="pf-detail-art"><ProjectMedia project={project}/></div></div>
+       </div><div className="pf-detail-art">{project.type==='recruit'?<RecruitLandingMock/>:<ProjectMedia project={project}/>}</div></div>
      </div></section>
      <section className="pf-detail-story"><div className="sv-shell pf-story-grid">
        <div><span>EL PROBLEMA</span><h2>{project.problem}</h2></div>
@@ -184,7 +177,7 @@ function ProjectDetail({project}){
      </div></section>
      <section className="pf-detail-flow" id="demostracion"><div className="sv-shell">
        <div className="pf-flow-head"><span>CONOCE EL RECORRIDO</span><h2>Descubre cómo funciona <em>la idea.</em></h2><p>Selecciona los pasos o pulsa reproducir. Este recorrido es interactivo; no es una grabación real del sistema ni almacena datos.</p></div>
-       <div className="pf-detail-demo-layout"><ProjectMedia project={project}/>
+       {project.type==='recruit' && portfolioVideos.recruit && <ProjectMedia project={project}/>}\n       <div className="pf-detail-demo-layout">{project.type==='recruit'?<RecruitLandingMock/>:<ProjectMedia project={project}/>}
          <div className="pf-flow-copy"><span>FUNCIONES QUE ILUSTRAMOS</span><ul>{project.points.map((point,i)=><li key={point}><small>0{i+1}</small>{point}</li>)}</ul>
            <p>{project.type==='ventas'?'La grabación del sistema de notas de venta se incorporará únicamente tras revisar y autorizar el video proporcionado por el equipo.':'Podemos adaptar este enfoque a otras necesidades, sistemas y procesos.'}</p>
            {project.type==='recruit'&&<a href="/casos/control-tower#recorrido">Ver también Control Tower <Icon name="arrow" size={17}/></a>}
@@ -198,7 +191,7 @@ function ProjectDetail({project}){
 
 export default function Portfolio({slug}){
  if(!slug)return <PortfolioHome/>;
- if(slug==='control-tower')return <ControlTowerCase/>;
+ if(slug==='control-tower')return <ControlTowerCase video={portfolioVideos.control}/>;
  const project=getProject(slug);
  if(!project)return <div className="sv-site pf-page"><ServiceHeader/><main className="sv-shell pf-not-found"><h1>Proyecto no encontrado</h1><a href="/portafolio">Volver al portafolio</a></main><ServiceFooter/></div>;
  return <ProjectDetail project={project}/>;
