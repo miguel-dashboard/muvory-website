@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Icon from './Icon.jsx';
 import { ControlLab } from './ProductLab.jsx';
+import ProductFilm from './ProductFilm.jsx';
 import { ServiceHeader, ServiceFooter } from './Services.jsx';
 import './case-study.css';
 
@@ -149,7 +150,7 @@ export default function ControlTowerCase({video=null}){
   useEffect(()=>{if(!playing)return;const timer=window.setInterval(()=>setSlide(s=>(s+1)%controlTowerChapters.length),6500);return ()=>window.clearInterval(timer);},[playing]);
   const current=controlTowerChapters[slide];
   const setChapter=(next)=>{setPlaying(false);setSlide((next+controlTowerChapters.length)%controlTowerChapters.length);};
-  useEffect(()=>{document.title='MR&B Control Tower · Caso de desarrollo | MUVORY';window.scrollTo(0,0)},[]);
+  useEffect(()=>{document.title='MR&B Control Tower · Caso de desarrollo | MUVORY';const anchor=window.location.hash.slice(1);if(['film','demo-control','recorrido'].includes(anchor)){const frame=window.requestAnimationFrame(()=>document.getElementById(anchor)?.scrollIntoView());return ()=>window.cancelAnimationFrame(frame);}window.scrollTo(0,0)},[]);
   return <div className="sv-site case-page">
     <a className="skip-link" href="#case-main">Saltar al contenido</a>
     <ServiceHeader/>
@@ -162,12 +163,13 @@ export default function ControlTowerCase({video=null}){
           <p>Dos desarrollos del ecosistema MR&B: una torre de control para la operación logística y una landing para captar transportistas. Una muestra de cómo el conocimiento del terreno se transforma en herramientas digitales.</p>
           <div className="case-hero-actions">
             <a href="#demo-control">Probar el sistema <Icon name="arrow" size={18}/></a>
-            <a href="#recorrido">Ver presentación <Icon name="arrow" size={16}/></a>
+            <a href="#film">Ver recorrido animado <Icon name="arrow" size={16}/></a><a href="#recorrido">Conocer el caso <Icon name="arrow" size={16}/></a>
           </div>
           <div className="case-hero-caption">Desarrollos propios MR&B · El recorrido utiliza vistas ilustrativas y datos ficticios para proteger la información de la operación.</div>
         </div>
       </section>
       {video && <section className="case-presentation"><div className="sv-shell"><h2>Video del proyecto</h2><video controls playsInline preload="metadata" style={{width:'100%',maxWidth:1000}} aria-label="Video de MR&B Control Tower"><source src={video} type="video/mp4"/></video></div></section>}
+      <section className="case-presentation mf-project-section" id="film"><div className="sv-shell"><div className="case-presentation-head"><div><span>PRODUCT STORIES</span><h2>Del problema a la decisión.</h2></div><p>Un recorrido de 24 segundos por la interfaz de demostración, con controles de reproducción.</p></div><ProductFilm type="control" onTry={()=>document.getElementById('demo-control')?.scrollIntoView()}/></div></section>
       <section className="case-presentation case-live-demo" id="demo-control"><div className="sv-shell"><div className="case-presentation-head"><div><span>LABORATORIO INTERACTIVO</span><h2>Prueba la torre de control.</h2></div><p>Filtra entregas, selecciona una incidencia e identifica su origen. Simula su resolución y observa cómo cambian los indicadores.</p></div><ControlLab/></div></section>
       <section className="case-presentation" id="recorrido" aria-label="Presentación interactiva de MR&B Control Tower">
         <div className="sv-shell">
