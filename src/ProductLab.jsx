@@ -31,8 +31,8 @@ function LabFrame({type,title,children,reset}){
 function Controls({items,value,onChange,label}){
  return <div className="ml-controls" role="group" aria-label={label}>{items.map(item=><button type="button" key={item} aria-pressed={value===item} onClick={()=>onChange(item)}>{item}</button>)}</div>;
 }
-export function ControlLab(){
- const [filter,setFilter]=useState('Todas');const [selected,setSelected]=useState('D-105');const [resolved,setResolved]=useState([]);
+export function ControlLab({scene}={}){
+ const [filter,setFilter]=useState(scene?.filter||'Todas');const [selected,setSelected]=useState(scene?.selected||'D-105');const [resolved,setResolved]=useState(scene?.resolved||[]);
  const rows=deliveryExamples.map(row=>resolved.includes(row[0])?[row[0],row[1],'Entregada',row[3]]:row);
  const visible=rows.filter(r=>filter==='Todas'||r[2]===filter);
  const detail=visible.find(r=>r[0]===selected)||visible[0];
@@ -43,16 +43,16 @@ export function ControlLab(){
  {detail&&<div className="ml-inspector" aria-live="polite"><div className="ml-inspector-copy"><span className="ml-inspector-symbol"><Icon name="workflow" size={20}/></span><div><small>ENTREGA {detail[0]}</small><strong>{detail[3]==='Sin incidencia'?'Seguimiento operativo':'Origen registrado: '+detail[3]}</strong><p>{detail[2]==='Incidencia'?'Revisa el origen y simula el cierre del caso.':'Estado actual: '+detail[2]}</p></div></div>{detail[2]==='Incidencia'&&<button type="button" onClick={()=>setResolved(a=>[...a,detail[0]])}>Simular resolución</button>}</div>}
  </LabFrame>;
 }
-export function RecruitLab(){
- const [vehicle,setVehicle]=useState('Furgón');const [operation,setOperation]=useState('Distribución urbana');const [availability,setAvailability]=useState('Jornada completa');const [status,setStatus]=useState('');const [view,setView]=useState('Postulación');
+export function RecruitLab({scene}={}){
+ const [vehicle,setVehicle]=useState(scene?.vehicle||'Furgón');const [operation,setOperation]=useState(scene?.operation||'Distribución urbana');const [availability,setAvailability]=useState('Jornada completa');const [status,setStatus]=useState(scene?.status||'');const [view,setView]=useState(scene?.view||'Postulación');
  const reset=()=>{setVehicle('Furgón');setOperation('Distribución urbana');setAvailability('Jornada completa');setStatus('');setView('Postulación');};
  return <LabFrame type="recruit" title="MR&B RECRUIT" reset={reset}>
  <Controls items={['Postulación','Pipeline']} value={view} onChange={setView} label="Vista del reclutamiento"/>
  {view==='Postulación'?<><div className="ml-recruit-banner"><div><small>CAPTACIÓN DIGITAL</small><h3>Tu vehículo. Nuevas posibilidades.</h3><p>Prueba un perfil de ejemplo, sin ingresar datos personales.</p></div><Icon name="truck" size={44}/></div><div className="ml-form"><label>Tipo de vehículo<select disabled={!!status} value={vehicle} onChange={e=>setVehicle(e.target.value)}>{['Furgón','Camioneta','Camión'].map(v=><option key={v}>{v}</option>)}</select></label><label>Operación<select disabled={!!status} value={operation} onChange={e=>setOperation(e.target.value)}>{['Distribución urbana','Reparto comercial','Primera milla'].map(v=><option key={v}>{v}</option>)}</select></label><label>Disponibilidad<select disabled={!!status} value={availability} onChange={e=>setAvailability(e.target.value)}>{['Jornada completa','Parcial'].map(v=><option key={v}>{v}</option>)}</select></label></div><button className="ml-primary" type="button" disabled={!!status} onClick={()=>{setStatus('Nuevo');setView('Pipeline');}}>Simular postulación</button>{status&&<p>Ya existe una postulación simulada. Reinicia para crear otra.</p>}</>:<><h3>Pipeline de postulaciones</h3><div className="ml-pipeline">{['Nuevo','En revisión','Aprobado'].map(s=><div key={s}><div className="ml-pipeline-head"><span className={"ml-state ml-state-"+statusTone(s)}>{s}</span><b>{status===s?1:0}</b></div>{status===s?<div className="ml-candidate"><span><Icon name="truck" size={17}/></span><div><strong>{vehicle}</strong><p>{operation}<br/>{availability}</p><small>PERFIL DEMO</small></div></div>:<div className="ml-pipeline-empty">Sin postulantes</div>}</div>)}</div>{status&&status!=='Aprobado'?<button className="ml-primary" type="button" onClick={()=>setStatus(status==='Nuevo'?'En revisión':'Aprobado')}>Avanzar a {status==='Nuevo'?'revisión':'aprobado'}</button>:<p role="status">{status?'Perfil de ejemplo aprobado. No se asigna un cupo real.':'Crea una postulación de ejemplo para probar el pipeline.'}</p>}</>}
  </LabFrame>;
 }
-export function SalesLab(){
- const [qty,setQty]=useState([1,0,0]);const [saved,setSaved]=useState(false);
+export function SalesLab({scene}={}){
+ const [qty,setQty]=useState(scene?.qty||[1,0,0]);const [saved,setSaved]=useState(scene?.saved||false);
  const total=qty.reduce((sum,n,i)=>sum+n*salesProducts[i][1],0);
  return <LabFrame type="ventas" title="NOTAS DE VENTA / EJEMPLO CONCEPTUAL" reset={()=>{setQty([1,0,0]);setSaved(false);}}>
  <div className="ml-page-heading"><div><small>COMERCIAL / DOCUMENTOS</small><h3>{saved?'Nota de ejemplo registrada':'Nueva nota de venta'}</h3></div><span className={'ml-state ml-state-'+(saved?'ok':'wait')}>{saved?'Registrada':'Borrador'}</span></div><p>Flujo conceptual, no es una copia del sistema del cliente.</p>
@@ -60,4 +60,4 @@ export function SalesLab(){
  <div className="ml-inspector ml-invoice-total"><div><small>TOTAL ILUSTRATIVO</small><strong aria-live="polite">{money(total)}</strong></div><button type="button" disabled={!total||saved} onClick={()=>setSaved(true)}>{saved?'Registrada':'Simular registro'}</button></div>{saved&&<div className="ml-success" role="status"><Icon name="check" size={22}/><div><strong>Nota NV-DEMO registrada</strong><p>Guardada solo durante esta sesión de demostración.</p></div></div>}
  </LabFrame>;
 }
-export function ProductLab({type}){return type==='control'?<ControlLab/>:type==='recruit'?<RecruitLab/>:<SalesLab/>;}
+export function ProductLab({type,scene}){return type==='control'?<ControlLab scene={scene}/>:type==='recruit'?<RecruitLab scene={scene}/>:<SalesLab scene={scene}/>;}
