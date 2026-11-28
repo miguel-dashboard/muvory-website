@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import Icon from './Icon.jsx';
+import { ProductPreview, ProductLab } from './ProductLab.jsx';
 import { ServiceHeader, ServiceFooter } from './Services.jsx';
-import ControlTowerCase, { RecruitLandingMock } from './ControlTowerCase.jsx';
+import ControlTowerCase from './ControlTowerCase.jsx';
 import './portfolio.css';
 
 /* Videos approved by the owner can be placed in /public/media/portfolio/
@@ -121,10 +122,9 @@ export function ProjectMedia({project,compact=false}){
 }
 
 function ProjectCard({project}){
-  const icons={control:'chart',recruit:'briefcase',ventas:'store'};
   return <article className={'pf-card pf-tone-'+project.accent}>
     <a className={'pf-project-cover pf-project-cover-'+project.type} href={project.href} aria-label={'Explorar '+project.name}>
-      <span>{project.label}</span><Icon name={icons[project.type]} size={54}/><strong>{project.mark}</strong><small>EXPLORAR PROYECTO <Icon name="arrowUp" size={15}/></small>
+      <ProductPreview type={project.type}/><small>VISTA ILUSTRATIVA <Icon name="arrowUp" size={15}/></small>
     </a>
     <div className="pf-card-copy">
       <h3>{project.name}</h3><p>{project.description}</p>
@@ -134,7 +134,7 @@ function ProjectCard({project}){
 }
 
 export function PortfolioTeaser(){
-  return <a className="home-door" href="/portafolio"><span className="home-door-icon"><Icon name="chart" size={27}/></span><div><h2>Nuestro trabajo</h2><p>Conoce los sistemas que estamos desarrollando.</p></div><Icon name="arrowUp" size={20}/></a>;
+  return <section className="home-projects" id="portafolio"><div className="container"><div className="home-section-head"><div><p className="section-kicker">PORTAFOLIO</p><h2>Del problema real <em>a la solución digital.</em></h2></div><a href="/portafolio">Ver todos los proyectos <Icon name="arrow" size={17}/></a></div><div className="pf-project-grid">{projects.map(project=><ProjectCard key={project.slug} project={project}/>)}</div></div></section>;
 }
 
 function PortfolioHome(){
@@ -152,7 +152,7 @@ function PortfolioHome(){
        <div className="pf-project-grid">{projects.map(project=><ProjectCard key={project.slug} project={project}/>)}</div>
        <div className="pf-source-note"><Icon name="check" size={18}/>Distinguimos lo desarrollado, los prototipos y el material audiovisual pendiente. No publicamos información privada de clientes ni operaciones.</div>
      </div></section>
-     <section className="pf-end-cta"><div className="sv-shell"><div><span>HABLEMOS DE TU OPERACIÓN</span><h2>¿Qué parte de tu trabajo debería funcionar mejor?</h2></div><a href="/#contacto">Diseñemos tu solución <Icon name="arrow" size={17}/></a></div></section>
+     <section className="pf-end-cta"><div className="sv-shell"><div><span>HABLEMOS DE TU OPERACIÓN</span><h2>¿Qué parte de tu trabajo debería funcionar mejor?</h2></div><a href="/contacto">Diseñemos tu solución <Icon name="arrow" size={17}/></a></div></section>
    </main><ServiceFooter/>
  </div>;
 }
@@ -168,24 +168,24 @@ function ProjectDetail({project}){
          <span>{project.number} / {project.label}</span>
          <h1>{project.headline}</h1>
          <p>{project.description}</p>
-         <div className="pf-detail-actions"><a href="#demostracion">Explorar recorrido <Icon name="arrow" size={17}/></a><a href="/#contacto">Hablemos de tu proyecto <Icon name="arrow" size={17}/></a></div>
-       </div><div className="pf-detail-art">{project.type==='recruit'?<RecruitLandingMock/>:<ProjectMedia project={project}/>}</div></div>
+         <div className="pf-detail-actions"><a href="#demostracion">Explorar recorrido <Icon name="arrow" size={17}/></a><a href="/contacto">Hablemos de tu proyecto <Icon name="arrow" size={17}/></a></div>
+       </div><div className="pf-detail-art"><ProductPreview type={project.type}/></div></div>
      </div></section>
      <section className="pf-detail-story"><div className="sv-shell pf-story-grid">
        <div><span>EL PROBLEMA</span><h2>{project.problem}</h2></div>
        <div><span>NUESTRA RESPUESTA</span><p>{project.solution}</p><p>{project.detail}</p></div>
      </div></section>
      <section className="pf-detail-flow" id="demostracion"><div className="sv-shell">
-       <div className="pf-flow-head"><span>CONOCE EL RECORRIDO</span><h2>Descubre cómo funciona <em>la idea.</em></h2><p>Selecciona los pasos o pulsa reproducir. Este recorrido es interactivo; no es una grabación real del sistema ni almacena datos.</p></div>
-       {project.type==='recruit' && portfolioVideos.recruit && <ProjectMedia project={project}/>}
-       <div className="pf-detail-demo-layout">{project.type==='recruit'?<RecruitLandingMock/>:<ProjectMedia project={project}/>}
+       <div className="pf-flow-head"><span>CONOCE EL RECORRIDO</span><h2>Descubre cómo funciona <em>la idea.</em></h2><p>Prueba las funciones con datos ficticios. Esta demo interactiva no es una grabación real ni almacena datos fuera de la sesión.</p></div>
+       {portfolioVideos[project.type] && <ProjectMedia project={project}/>}
+       <div className="pf-detail-demo-layout"><ProductLab type={project.type}/>
          <div className="pf-flow-copy"><span>FUNCIONES QUE ILUSTRAMOS</span><ul>{project.points.map((point,i)=><li key={point}><small>0{i+1}</small>{point}</li>)}</ul>
            <p>{project.type==='ventas'?'La grabación del sistema de notas de venta se incorporará únicamente tras revisar y autorizar el video proporcionado por el equipo.':'Podemos adaptar este enfoque a otras necesidades, sistemas y procesos.'}</p>
            {project.type==='recruit'&&<a href="/casos/control-tower#recorrido">Ver también Control Tower <Icon name="arrow" size={17}/></a>}
          </div>
        </div>
      </div></section>
-     <section className="pf-end-cta"><div className="sv-shell"><div><span>DESARROLLOS A MEDIDA</span><h2>Podemos estudiar tu proceso y construir una herramienta propia.</h2></div><a href="/#contacto">Solicitar conversación <Icon name="arrow" size={17}/></a></div></section>
+     <section className="pf-end-cta"><div className="sv-shell"><div><span>DESARROLLOS A MEDIDA</span><h2>Podemos estudiar tu proceso y construir una herramienta propia.</h2></div><a href="/contacto">Solicitar conversación <Icon name="arrow" size={17}/></a></div></section>
    </main><ServiceFooter/>
  </div>;
 }
