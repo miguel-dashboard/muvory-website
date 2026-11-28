@@ -1,0 +1,26 @@
+.ml-preview,.ml-lab{--ml-accent:#8ce7ef;--ml-bg:#102735;color:#eaf5f7;background:#071722;border:1px solid #3b626e;border-radius:10px;overflow:hidden;min-width:0;text-align:left;font-family:inherit;line-height:1.5}
+.ml-recruit{--ml-accent:#a0e9b9;--ml-bg:#173329;background:#0b2019;border-color:#3f725d}
+.ml-ventas{--ml-accent:#ffd19a;--ml-bg:#382c20;background:#211a12;border-color:#80623f}
+.ml-top{display:flex;align-items:center;gap:5px;padding:11px 13px;border-bottom:1px solid #ffffff24;font-size:.65rem;font-weight:700;letter-spacing:.08em;color:var(--ml-accent)}
+.ml-top span:first-child{margin-right:auto}.ml-top i{width:6px;height:6px;border-radius:50%;background:var(--ml-accent);opacity:.6}
+.ml-preview-body{display:grid;grid-template-columns:minmax(65px,.33fr) minmax(0,1fr);min-height:154px}
+.ml-side{padding:12px 8px;border-right:1px solid #ffffff1a;display:flex;flex-direction:column;gap:9px;font-size:clamp(.5rem,.65vw,.68rem);color:#c4d4d8}
+.ml-side span:first-child{color:var(--ml-accent)}.ml-content{padding:12px;min-width:0}.ml-content>strong{display:block;font-size:.78rem;margin-bottom:9px}
+.ml-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.ml-metrics>div{background:var(--ml-bg);border:1px solid #ffffff15;border-radius:6px;padding:9px;min-width:0}
+.ml-metrics small{display:block;color:#c1d1d4;font-size:.7rem;overflow-wrap:anywhere}.ml-metrics b{display:block;color:var(--ml-accent);font-size:1.25rem;line-height:1.35;overflow-wrap:anywhere}
+.ml-preview .ml-metrics>div{padding:6px}.ml-preview .ml-metrics small{font-size:.51rem}.ml-preview .ml-metrics b{font-size:clamp(.65rem,1vw,1rem)}
+.ml-mini-table{margin-top:9px;border-top:1px solid #ffffff20}.ml-mini-table>div{display:flex;justify-content:space-between;gap:4px;padding:5px 0;border-bottom:1px solid #ffffff12;font-size:.59rem}.ml-mini-table em{color:var(--ml-accent);font-style:normal}
+.ml-lab{max-width:100%;margin:0 auto;box-shadow:0 18px 45px #07172230}.ml-lab-body{padding:clamp(13px,2.5vw,28px);display:grid;gap:15px}
+.ml-lab h3{font-size:clamp(1.1rem,2vw,1.65rem);margin:0;color:#eaf5f7;letter-spacing:-.025em}.ml-lab p{font-size:.82rem;color:#d0dfe0;margin:0;line-height:1.5}
+.ml-lab button,.ml-lab select,.ml-lab input{font:inherit;font-size:.8rem;background:var(--ml-bg);color:#f1fafb;border:1px solid #ffffff40;border-radius:6px;padding:8px 11px;min-height:36px}
+.ml-lab button{cursor:pointer}.ml-lab button:disabled{opacity:.55;cursor:default}.ml-lab button[aria-pressed=true],.ml-lab .ml-primary{background:var(--ml-accent);color:#10242a;border-color:var(--ml-accent);font-weight:700}
+.ml-lab :is(button,input,select):focus-visible{outline:3px solid var(--ml-accent);outline-offset:2px}
+.ml-controls{display:flex;flex-wrap:wrap;gap:6px}.ml-table-wrap{overflow-x:auto;max-width:100%}.ml-table-wrap table{border-collapse:collapse;width:100%;font-size:.79rem;color:#eaf5f7;min-width:355px}
+.ml-table-wrap th,.ml-table-wrap td{text-align:left;padding:9px 6px;border-bottom:1px solid #ffffff25;white-space:nowrap}
+.ml-table-wrap th{font-size:.68rem;color:#b3c9cc;font-weight:500}.ml-table-wrap td button{font-size:.72rem;min-height:30px;padding:5px 7px}.ml-state{color:var(--ml-accent)}
+.ml-inspector{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--ml-bg);border-radius:7px;padding:13px}.ml-inspector small{display:block;font-size:.65rem;color:var(--ml-accent)}.ml-inspector strong{display:block;font-size:.97rem;margin:4px 0;color:#f6ffff}
+.ml-form{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.ml-form label{display:grid;gap:5px;font-size:.72rem;color:#c7dadc}.ml-form select{width:100%;min-width:0}
+.ml-pipeline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.ml-pipeline>div{background:var(--ml-bg);border-radius:7px;border:1px solid #ffffff24;padding:11px;min-height:100px}.ml-pipeline small{display:block;font-size:.72rem}.ml-pipeline b{display:block;color:var(--ml-accent);font-size:1.5rem}.ml-pipeline p{font-size:.72rem;overflow-wrap:anywhere}
+.ml-table-wrap input{width:66px}.ml-lab>footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;padding:10px 13px;border-top:1px solid #ffffff24;color:#b9d0d4;font-size:.69rem}.ml-lab>footer button{min-height:30px;font-size:.7rem;padding:5px 8px}
+@media(max-width:600px){.ml-form{grid-template-columns:1fr}.ml-lab .ml-metrics>div{padding:7px}.ml-pipeline>div{padding:7px}.ml-lab-body{gap:12px}.ml-preview-body{min-height:135px}}
