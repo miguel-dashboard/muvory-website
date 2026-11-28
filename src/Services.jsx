@@ -6,7 +6,7 @@ import ServiceVisual, { StudioPreview } from './ServiceVisual.jsx';
 import './services.css';
 import './services-premium.css';
 
-function ServiceHeader(){
+export function ServiceHeader(){
   const [open,setOpen] = useState(false);
   return <header className="sv-header">
     <div className="sv-shell sv-header-inner">
@@ -15,6 +15,7 @@ function ServiceHeader(){
       <nav id="sv-main-nav" className={open?'sv-nav sv-nav-open':'sv-nav'} aria-label="Navegación de servicios">
         <a href="/" onClick={()=>setOpen(false)}>Inicio</a>
         <a href="/servicios" onClick={()=>setOpen(false)}>Servicios</a>
+        <a href="/sectores" onClick={()=>setOpen(false)}>Sectores reales</a>
         <a href="/experience" onClick={()=>setOpen(false)}>Experiencia</a>
         <a href="/#nosotros" onClick={()=>setOpen(false)}>Nosotros</a>
       </nav>
@@ -74,7 +75,7 @@ function ServicesHome(){
     <main id="sv-content">
       <section className="sv-hero sv-hero-index">
         <div className="sv-shell sv-index-hero-layout">
-          <div className="sv-index-copy"><span className="sv-kicker"><span/>MUVORY / SERVICIOS</span><h1>Tecnología diseñada <em>para resolver.</em></h1><p>Software, automatización e IA para convertir necesidades concretas en herramientas útiles. Explora cada especialidad y descubre qué podríamos construir.</p>
+          <div className="sv-index-copy"><span className="sv-kicker"><span/>MUVORY / SERVICIOS</span><h1>Tecnología aplicada <em>a lo que importa.</em></h1><p>Diseñamos sistemas para solucionar problemas cotidianos. Nuestra diferencia está en escuchar la operación, no solo en escribir código.</p>
           <div className="sv-hero-actions"><a className="sv-primary" href="#explorar">Explorar servicios <Icon name="arrow" size={18}/></a><a className="sv-secondary" href="/#contacto">Cuéntanos tu idea <Icon name="arrowUp" size={17}/></a></div>
           </div>
           <StudioPreview/>
@@ -84,6 +85,7 @@ function ServicesHome(){
       <section className="sv-services-section" id="explorar"><div className="sv-shell">
         <div className="sv-section-heading"><div><span className="sv-kicker">EXPLORA UNA POSIBILIDAD</span><h2>Soluciones con <em>un propósito claro.</em></h2></div><p>Entra en cada área para descubrir su enfoque, recorrer un ejemplo y comenzar tu proyecto.</p></div>
         <div className="sv-showcase">{services.map(service=><ServiceCard key={service.slug} service={service}/>)}</div>
+        <div className="sv-sectors-invite"><div><span>EXPERIENCIA EN EL MUNDO REAL</span><strong>Tres industrias que conocemos por dentro.</strong><p>Gestión jurídica, transporte y comercio de barrio: problemas concretos que inspiran soluciones mejores.</p></div><a href="/sectores">Conocer nuestro enfoque <Icon name="arrow" size={18}/></a></div>
       </div></section>
       <section className="sv-final-cta"><div className="sv-shell"><span className="sv-kicker">PROYECTOS CON IDENTIDAD PROPIA</span><h2>¿No encuentras exactamente lo que imaginas?</h2><p>Podemos explorar tu idea desde cero. Lo importante es entender el problema antes de elegir una tecnología.</p><a className="sv-primary" href="/#contacto">Hablemos de tu desafío <Icon name="arrow" size={17}/></a></div></section>
     </main>
@@ -119,7 +121,7 @@ function ServiceDetail({service}){
     <ServiceFooter/>
   </div>;
 }
-function ServiceFooter(){
+export function ServiceFooter(){
   return <footer className="sv-footer"><div className="sv-shell"><Brand footer href="/"/><p>Software · Automatización · IA · Experiencias digitales</p><a href="mailto:contacto@muvory.cl">contacto@muvory.cl</a><span>© {new Date().getFullYear()} MUVORY Technologies</span></div></footer>;
 }
 export default function Services({slug}){
