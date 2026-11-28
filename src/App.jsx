@@ -2,14 +2,13 @@ import { useState, useEffect, useRef } from 'react';
 import Brand from './Brand.jsx';
 import Icon from './Icon.jsx';
 import CinematicHero from './CinematicHero.jsx';
-import ServicesTeaser from './ServicesTeaser.jsx';
 import './cinematic.css';
-import { GroundedSectorTeaser } from './Sectors.jsx';
 import AIAssistantShowcase from './AIAssistantShowcase.jsx';
 import SolutionConfigurator from './SolutionConfigurator.jsx';
 import ContactForm from './ContactForm.jsx';
 import CommercialAssistant from './CommercialAssistant.jsx';
 import { PortfolioTeaser } from './Portfolio.jsx';
+import './home-hub.css';
 
 const methodology = [
   ['Entendemos el desafío', 'Analizamos necesidades, objetivos y contexto. El punto de partida es comprender qué necesitas resolver.'],
@@ -19,18 +18,26 @@ const methodology = [
 ];
 
 function App() {
+  const path = window.location.pathname.replace(/\/+$/, '') || '/';
+  const isHome = path === '/';
+  const isAbout = path === '/nosotros';
+  const isContact = path === '/contacto';
+  const isAI = path === '/inteligencia-artificial';
+  useEffect(() => { if (!isHome) document.title = (isAbout ? 'Nosotros' : isContact ? 'Contacto' : isAI ? 'Inteligencia artificial' : 'Página no encontrada') + ' | MUVORY Technologies'; }, [isHome,isAbout,isContact,isAI]);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuToggle = useRef(null);
   const closeMenu = () => setMenuOpen(false);
   // A direct link from a service page to /#contacto must scroll after React mounts.
   useEffect(() => {
     const anchor = window.location.hash.slice(1);
+    const legacy = {contacto:'/contacto',nosotros:'/nosotros',metodologia:'/nosotros#metodologia',agentes:'/inteligencia-artificial',explorador:'/contacto#explorador',soluciones:'/servicios',aplicaciones:'/sectores',casos:'/portafolio',sectores:'/sectores'};
+    if (isHome && legacy[anchor]) { window.location.replace(legacy[anchor]); return; }
     if (!anchor) return;
     const raf = window.requestAnimationFrame(() => {
       document.getElementById(anchor)?.scrollIntoView({ block: 'start' });
     });
     return () => window.cancelAnimationFrame(raf);
-  }, []);
+  }, [isHome]);
   useEffect(() => {
     const media = window.matchMedia('(min-width: 961px)');
     const onResize = () => { if (media.matches) setMenuOpen(false); };
@@ -51,65 +58,45 @@ function App() {
           <a href="/sectores" onClick={closeMenu}>Sectores</a>
           <a href="/experience" onClick={closeMenu}>Experiencia</a>
           <a href="/portafolio" onClick={closeMenu}>Proyectos</a>
-          <a href="#agentes" onClick={closeMenu}>Inteligencia artificial</a>
-          <a href="#nosotros" onClick={closeMenu}>Nosotros</a>
-          <a className="nav-mobile-contact" href="#contacto" onClick={closeMenu}>Hablemos de tu proyecto</a>
+          <a href="/inteligencia-artificial" onClick={closeMenu}>Inteligencia artificial</a>
+          <a href="/nosotros" onClick={closeMenu}>Nosotros</a>
+          <a className="nav-mobile-contact" href="/contacto" onClick={closeMenu}>Hablemos de tu proyecto</a>
         </nav>
-        <a className="button button-nav" href="#contacto">Hablemos</a>
+        <a className="button button-nav" href="/contacto">Hablemos</a>
       </div>
     </header>
 
-    <main id="contenido" tabIndex={-1}>
+    <main id="contenido" tabIndex={-1} className={isHome ? "muvory-home-hub" : "muvory-inner-page"}>
+      {isHome && <>
       <section id="inicio" className="hero hero-cinematic section-anchor">
         <div className="container hero-grid">
           <div className="hero-copy">
             <p className="eyebrow"><span aria-hidden="true" />SOFTWARE · AUTOMATIZACIÓN · IA · PLATAFORMAS</p>
             <h1>Tecnología que entiende <span>tu negocio.</span></h1>
-            <p className="hero-description">Convertimos los problemas cotidianos de una operación en sistemas a medida, automatizaciones y herramientas con IA. Conocemos el trabajo desde dentro y diseñamos soluciones que realmente se puedan usar.</p>
+            <p className="hero-description">Desarrollamos sistemas a medida, automatizaciones e inteligencia artificial para resolver necesidades reales.</p>
             <div className="hero-actions">
-              <a className="button button-primary" href="/sectores">Explorar soluciones reales <Icon name="arrow" size={17}/></a>
-              <a className="button button-outline" href="#contacto">Cuéntanos qué necesitas resolver</a>
+              <a className="button button-primary" href="/portafolio">Explorar nuestros proyectos <Icon name="arrow" size={17}/></a>
+              <a className="button button-outline" href="/servicios">Conocer servicios</a>
             </div>
-            <p className="hero-note">Experiencia cercana en logística, gestión jurídica y comercio. Tecnología para muchos más sectores.</p>
           </div>
           <CinematicHero />
         </div>
-        <div className="container hero-footnote"><span>Diseñado alrededor de tu necesidad.</span><span>Desarrollo a medida <i /> Integraciones <i /> Evolución continua</span></div>
       </section>
 
-      <section className="section section-solutions section-anchor" id="soluciones">
+      <section className="home-directory" id="portada-accesos" aria-label="Explora MUVORY">
         <div className="container">
-          <div className="section-heading">
-            <div><p className="section-kicker">QUÉ PODEMOS DESARROLLAR</p><h2>Soluciones que simplifican <em>el trabajo real.</em></h2></div>
-            <p>Sistemas a medida, automatización, inteligencia artificial y plataformas digitales. Primero entendemos tu problema; después definimos qué conviene construir.</p>
+          <div className="home-directory-grid">
+            <a className="home-door" href="/servicios"><span className="home-door-icon"><Icon name="layers" size={27}/></span><div><h2>Qué ofrecemos</h2><p>Software, automatización, IA, datos y plataformas.</p></div><Icon name="arrowUp" size={20}/></a>
+            <PortfolioTeaser />
+            <a className="home-door" href="/experience"><span className="home-door-icon"><Icon name="spark" size={27}/></span><div><h2>Experimenta</h2><p>Prueba nuestras demostraciones interactivas.</p></div><Icon name="arrowUp" size={20}/></a>
           </div>
-          <ServicesTeaser />
-          <div className="experience-invite">
-            <div>
-              <span className="section-kicker">MUVORY EXPERIENCE</span>
-              <h3>Explora nuestra tecnología en acción.</h3>
-              <p>Un recorrido interactivo con software, automatización, inteligencia artificial y datos, para descubrir cómo podría funcionar tu solución.</p>
-            </div>
-            <a className="button button-outline" href="/experience">Iniciar experiencia <Icon name="arrow" size={18}/></a>
-          </div>
+          <div className="home-secondary-links"><a href="/sectores">Sectores y soluciones <Icon name="arrow" size={15}/></a><a href="/inteligencia-artificial">Inteligencia artificial <Icon name="arrow" size={15}/></a><a href="/nosotros">Conoce MUVORY <Icon name="arrow" size={15}/></a></div>
         </div>
       </section>
-
-      <section className="section section-applications section-anchor" id="aplicaciones">
-        <span id="casos" className="anchor-alias" aria-hidden="true" /><span id="sectores" className="anchor-alias" aria-hidden="true" />
-        <div className="container">
-          <div className="section-heading">
-            <div><p className="section-kicker">NUESTRA MAYOR DIFERENCIA</p><h2>Experiencia en el negocio. <em>Soluciones desde dentro.</em></h2></div>
-            <p>Conocemos los problemas de estudios jurídicos, transporte y minimarkets. Los convertimos en propuestas de software prácticas, medibles y adaptadas a cada operación.</p>
-          </div>
-          <GroundedSectorTeaser />
-        </div>
-      </section>
-
-      <PortfolioTeaser />
-
-      <section className="section section-agents section-anchor" id="agentes"><div className="container"><AIAssistantShowcase /></div></section>
-
+      <section className="home-contact-strip"><div className="container"><div><h2>¿Qué te gustaría construir?</h2><p>Conversemos sobre tu proyecto.</p></div><a className="button button-primary" href="/contacto">Hablemos <Icon name="arrow" size={17}/></a></div></section>
+      </>}
+      {isAI && <section className="section section-agents section-anchor" id="agentes"><div className="container"><a className="home-back" href="/">← Inicio</a><AIAssistantShowcase /><a className="button button-primary" href="/contacto">Hablemos de tu solución <Icon name="arrow" size={17}/></a></div></section>}
+      {isAbout && <>
       <section className="section section-about section-anchor" id="nosotros">
         <div className="container">
           <div className="about-intro">
@@ -125,6 +112,9 @@ function App() {
         </div>
       </section>
 
+      <section className="home-contact-strip"><div className="container"><div><h2>Convirtamos una idea en solución.</h2></div><a className="button button-primary" href="/contacto">Hablemos <Icon name="arrow" size={17}/></a></div></section>
+      </>}
+      {isContact && <>
       <SolutionConfigurator />
 
       <section className="section section-contact section-anchor" id="contacto">
@@ -139,13 +129,15 @@ function App() {
           <ContactForm />
         </div>
       </section>
+      </>}
+      {!isHome && !isAbout && !isContact && !isAI && <section className="section"><div className="container"><h1>Página no encontrada</h1><a href="/">Volver al inicio</a></div></section>}
     </main>
 
     <footer className="site-footer">
-      <div className="container footer-main"><Brand footer /><p>Tecnología con propósito.<br />Soluciones con identidad propia.</p><a className="footer-email" href="mailto:contacto@muvory.cl">contacto@muvory.cl</a><a href="#inicio">Volver al inicio</a></div>
+      <div className="container footer-main"><Brand footer /><p>Tecnología con propósito.<br />Soluciones con identidad propia.</p><a className="footer-email" href="mailto:contacto@muvory.cl">contacto@muvory.cl</a><a href="/">Volver al inicio</a></div>
       <div className="container footer-bottom"><span>© {new Date().getFullYear()} MUVORY Technologies.</span><span>Software · Automatización · Inteligencia artificial</span></div>
     </footer>
-    <CommercialAssistant />
+    {isContact && <CommercialAssistant />}
   </>;
 }
 
