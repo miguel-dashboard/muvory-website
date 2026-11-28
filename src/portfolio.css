@@ -204,3 +204,5 @@
 .pf-detail-art .ml-preview-body,.pf-detail-art .ml-recruit-preview,.pf-detail-art .ml-sales-preview{min-height:260px}
 .pf-detail-demo-layout{align-items:start}
 @media(max-width:650px){.pf-project-cover{padding:11px}.pf-detail-art .ml-preview-body,.pf-detail-art .ml-recruit-preview,.pf-detail-art .ml-sales-preview{min-height:180px}}
+
+.pf-card-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:auto}.pf-card-actions a{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;font-weight:700;color:#0b5a65;border-radius:6px;padding:9px 11px;background:#e5f1ef}.pf-card-actions a:hover{background:#d1e9e6}.pf-card-actions a:last-child{background:transparent;border:1px solid #aacdca}.pf-card-actions a:focus-visible{outline:3px solid #65cfc6;outline-offset:2px}
