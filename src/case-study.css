@@ -163,3 +163,42 @@
   .case-end a {width:100%;}
 }
 @media(prefers-reduced-motion:reduce) {.case-page a,.case-page button {transition:none!important;}}
+
+/* MR&B Recruit public landing — honest illustrative rendering based on verified source. */
+.case-presentation-tabs {grid-template-columns:repeat(5,minmax(0,1fr));}
+.case-source-link {display:inline-flex;align-items:center;gap:9px;margin-top:18px;font-size:.79rem;font-weight:700;color:#176a79;text-decoration:underline;text-underline-offset:4px;}
+.case-source-link:hover {color:#073f4a;}
+.case-recruit-mock {min-width:0;border:1px solid #316c56;border-radius:11px;overflow:hidden;background:#06140f;color:#ecfbf4;box-shadow:0 19px 45px #0825192e;}
+.case-recruit-head {display:flex;align-items:center;justify-content:space-between;gap:9px;padding:13px 17px;border-bottom:1px solid #306449;background:#06140e;}
+.case-recruit-logo {display:flex;gap:9px;align-items:center;}
+.case-recruit-logo span {display:inline-flex;align-items:center;justify-content:center;background:#22c55e;color:#00170a;border-radius:5px;font-size:.6rem;font-weight:800;padding:6px;}
+.case-recruit-logo strong {font-size:.91rem;font-weight:800;color:#f4fff6;}
+.case-recruit-head>small {font-size:.5rem;color:#9bc1ae;letter-spacing:.05em;text-align:right;}
+.case-recruit-content {padding:clamp(18px,2.8vw,31px);background:radial-gradient(ellipse at 100% 0%,#177e4754,transparent 65%);}
+.case-recruit-eyebrow {font-weight:700;color:#92f7b9;letter-spacing:.11em;font-size:.58rem;}
+.case-recruit-content h3 {color:white;letter-spacing:-.035em;font-size:clamp(1.25rem,2.15vw,2.05rem);line-height:1.18;margin:12px 0 13px;font-weight:700;}
+.case-recruit-content h3 em {color:#80e2aa;font-style:normal;}
+.case-recruit-content>p {font-size:.76rem;line-height:1.67;color:#b1d3bf;max-width:450px;margin:0 0 18px;}
+.case-recruit-form {background:#edf7f1;color:#1a4633;border:1px solid #7baf97;border-radius:9px;padding:13px;}
+.case-recruit-progress {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:13px;}
+.case-recruit-progress>button {min-width:0;border:1px solid #8bc3a0;border-radius:5px;color:#216744;background:#d9efe1;min-height:34px;font:inherit;font-size:.67rem;font-weight:700;cursor:pointer;}
+.case-recruit-progress>button[aria-pressed="true"] {background:#128143;color:white;border-color:#128143;}
+.case-recruit-progress>button:hover {border-color:#177943;}
+.case-recruit-form>div:last-child {display:grid;gap:5px;min-height:86px;}
+.case-recruit-form>div:last-child small {color:#29784d;font-size:.54rem;font-weight:700;letter-spacing:.07em;}
+.case-recruit-form>div:last-child strong {font-size:.92rem;color:#143a29;}
+.case-recruit-form>div:last-child span {font-size:.69rem;line-height:1.45;color:#456b56;}
+.case-recruit-trust {display:flex;gap:6px;flex-wrap:wrap;margin-top:15px;}
+.case-recruit-trust span {border:1px solid #397b52;color:#9ad6a8;font-size:.54rem;padding:5px 7px;border-radius:20px;}
+.case-recruit-footer {border-top:1px solid #316c56;padding:10px 16px;color:#8cbba0;font-size:.6rem;line-height:1.6;}
+@media(max-width:900px) and (min-width:621px) {
+ .case-presentation-tabs button {flex-direction:column;align-items:flex-start;font-size:.72rem;gap:4px;}
+}
+@media(max-width:620px) {
+ .case-presentation-tabs {grid-template-columns:repeat(2,minmax(0,1fr));}
+ .case-presentation-tabs button:last-child {grid-column:1/-1;border-right:0;}
+ .case-presentation-tabs button {font-size:.7rem;min-height:47px;gap:8px;}
+ .case-recruit-head {padding:10px;gap:7px;}
+ .case-recruit-logo strong {font-size:.77rem;}
+ .case-recruit-head>small {font-size:.42rem;}
+}
