@@ -136,6 +136,14 @@ function SectorDetail({sector}){
         </div></div>
       </div></section>
       <SectorOffer sector={sector}/>
+      {sector.slug==='comercio'&&<section className="sector-proof sector-proof-commerce"><div className="sv-shell sector-proof-layout"><div>
+        <span>DESARROLLO COMERCIAL · MATERIAL EN REVISIÓN</span>
+        <h2>Notas de venta: <em>ordenar el proceso comercial.</em></h2>
+        <p>Estamos preparando una presentación del sistema desarrollado para un negocio del rubro de las paltas. El recorrido actual es ilustrativo; incorporaremos su video real cuando esté revisado y autorizado.</p>
+        <a href="/portafolio/ventas">Conocer el proyecto <Icon name="arrow" size={18}/></a>
+        </div><div className="sector-proof-visual" aria-hidden="true"><div><span>GESTIÓN / NOTAS DE VENTA</span><strong>Una venta con seguimiento.</strong><p>Registro · Revisión · Consulta</p><div className="sector-proof-signals"><span>Notas de venta</span><span>Proceso comercial</span><span>Material por incorporar</span></div>
+        <small>ILUSTRACIÓN CONCEPTUAL · SIN DATOS DE CLIENTES</small></div></div>
+      </div></section>}
       {sector.slug==='logistica' && <section className="sector-proof"><div className="sv-shell sector-proof-layout">
         <div><span>PROYECTO PROPIO VERIFICABLE</span>
           <h2>MR&B Control Tower: <em>la experiencia hecha software.</em></h2>
