@@ -85,3 +85,76 @@ Validar los cuatro capítulos en escritorio y teléfono, acceso directo a
 `/experience`, los links de salida hacia `/`, la navegación inferior,
 filtros, recorrido automatizado, demo de IA y variaciones de gráficos
 antes de fusionar el PR a `main`.
+
+## MUVORY 2.0 – portada cinematográfica y Servicios multipágina
+
+La nueva propuesta visual se desarrolla en una rama separada y **no cambia el
+formulario Web3Forms ni el sitio publicado hasta recibir aprobación visual**.
+
+- Portada: `src/CinematicHero.jsx` + `src/cinematic.css`. El Nexus es un SVG
+  original de bajo peso con CSS para luces, anillos y movimiento suave.
+  Cada etiqueta abre una página de servicio. Incluye control de pausa y
+  respeta `prefers-reduced-motion`.
+- Se sustituye la cuadrícula repetitiva de demostraciones en Inicio por una
+  lista editorial con acceso directo a páginas independientes.
+- `/servicios`: catálogo con navegación, elementos animados y enlaces reales.
+- `/servicios/software`, `/servicios/automatizacion`,
+  `/servicios/inteligencia-artificial`, `/servicios/datos` y
+  `/servicios/plataformas`: páginas con contexto, funciones posibles y
+  un recorrido de tres etapas. Todas las demos están identificadas como
+  **simulaciones**, sin métricas ni testimonios inventados.
+- El recorrido anterior `/experience` permanece disponible.
+- Los botones comerciales regresan a `/#contacto` (Web3Forms no se altera).
+- Sin dependencias nuevas, video pesado, imágenes externas ni copia de activos
+  de otros estudios.
+
+### Revisión pendiente antes de publicar
+
+Abrir la vista previa en **computador y teléfono**, probar cada ruta directa,
+el menú móvil, los vínculos a contacto, la navegación de demos, el botón de
+pausar el movimiento y `/experience`. Verificar que los formularios activos
+conserven su funcionamiento. Ejecutar `npm test` y `npm run build`.
+
+## Diferenciación por conocimiento del terreno — versión de prueba
+
+La propuesta incorpora una sección y rutas independientes centradas en tres áreas
+donde MUVORY dispone de conocimiento cercano a la operación:
+
+- `/sectores`: portada editorial con tres áreas, fotos **referenciales** y acceso
+  a subpáginas.
+- `/sectores/juridico`: seguimiento documental, expedientes, vencimientos y
+  tareas; estilo **cálido / papel / cobre**. No sustituye asesoría profesional.
+- `/sectores/logistica`: procesos reales de última milla, incidencias, bodega,
+  rutas y liquidaciones; estilo **azul oscuro / ámbar**.
+- `/sectores/comercio`: minimarket, stock, proveedores, reposición, caja
+  y movimientos; estilo **verde / salvia**.
+
+Las tres páginas tienen problemas operativos concretos y un ejemplo interactivo,
+siempre señalado como simulación sin datos reales. Se diferencian visualmente
+del catálogo genérico. Además, cada subpágina de servicios recibe una paleta
+distinta (software azul, automatización clara, IA violeta, datos azul eléctrico,
+plataformas beige).
+
+### Fotografías y material verídico
+
+Las tres fotos iniciales proceden de **Unsplash** y están identificadas en la
+interfaz como **imágenes referenciales**, con crédito y vínculo a la imagen.
+Licencia: https://unsplash.com/license
+
+- Jurídico: Shutter Speed, `rz_0EzMAmis`.
+- Transporte: Claudio Schwarz, `a85IYeAXgxU`.
+- Minimarket: Nathália Rosa, `rWMIbqmOxrY`.
+
+Las fotos **no representan operaciones, clientes o empleados de MUVORY**.
+Antes de publicar la versión definitiva conviene reemplazarlas por fotografías
+propias y autorizadas de los negocios correspondientes. Para videos se requiere
+material auténtico facilitado por el propietario, con permiso de publicación
+y sin datos personales visibles. No se incorporó metraje de terceros como prueba
+de trabajo real.
+
+### Validación de publicación
+
+Pruebas automáticas para rutas, textos de posicionamiento y créditos;
+comprobar visualmente escritorio/móvil, imágenes, estados de simulaciones,
+navegación hacia el formulario, contraste en paletas claras y oscuras.
+Mantener la rama sin fusionar mientras el propietario evalúa el diseño.
