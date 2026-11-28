@@ -187,3 +187,5 @@
 .case-live-demo .ml-lab{max-width:1050px}
 @media(max-width:950px){.pf-detail-demo-layout{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.pf-project-cover>.ml-preview{transition:none}.pf-project-cover:hover>.ml-preview{transform:none}}
+
+.pf-demo-mode{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 19px}.pf-demo-mode button{font:inherit;font-size:.83rem;font-weight:650;border:1px solid #357e84;border-radius:7px;color:#174c56;background:#fff;padding:10px 14px;cursor:pointer}.pf-demo-mode button[aria-pressed=true]{background:#123d49;color:#fff}.pf-demo-mode button:focus-visible{outline:3px solid #65cfc6;outline-offset:3px}
