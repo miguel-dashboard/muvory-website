@@ -189,3 +189,18 @@
 @media(prefers-reduced-motion:reduce){.pf-project-cover>.ml-preview{transition:none}.pf-project-cover:hover>.ml-preview{transform:none}}
 
 .pf-demo-mode{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 19px}.pf-demo-mode button{font:inherit;font-size:.83rem;font-weight:650;border:1px solid #357e84;border-radius:7px;color:#174c56;background:#fff;padding:10px 14px;cursor:pointer}.pf-demo-mode button[aria-pressed=true]{background:#123d49;color:#fff}.pf-demo-mode button:focus-visible{outline:3px solid #65cfc6;outline-offset:3px}
+
+/* Product portfolio: actual interface compositions, not generic icon tiles. */
+.pf-project-cover{padding:17px 14px 12px}
+.pf-project-cover-control{background:radial-gradient(ellipse at 75% 0%,#286174,#102a3b 65%,#091823)}
+.pf-project-cover-recruit{background:radial-gradient(ellipse at 75% 0%,#41795a,#173b2a 65%,#0a211a)}
+.pf-project-cover-ventas{background:radial-gradient(ellipse at 75% 0%,#8b6233,#48331d 65%,#251b11)}
+.pf-project-cover:hover{filter:none}
+.pf-project-cover>small{font-size:.62rem;letter-spacing:.09em;margin-top:12px}
+.pf-card-copy h3{font-weight:700;letter-spacing:-.035em}
+.pf-card-copy>a{border-bottom:0;background:#e5f1ef;padding:9px 13px;border-radius:6px;transition:background .18s}
+.pf-card-copy>a:hover{background:#d1e9e6}
+.pf-detail-art .ml-preview{max-width:680px}
+.pf-detail-art .ml-preview-body,.pf-detail-art .ml-recruit-preview,.pf-detail-art .ml-sales-preview{min-height:260px}
+.pf-detail-demo-layout{align-items:start}
+@media(max-width:650px){.pf-project-cover{padding:11px}.pf-detail-art .ml-preview-body,.pf-detail-art .ml-recruit-preview,.pf-detail-art .ml-sales-preview{min-height:180px}}
