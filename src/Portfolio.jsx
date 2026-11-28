@@ -31,7 +31,7 @@ export const projects = [
     name:'MR&B Recruit', category:'Landing y reclutamiento',
     mark:'RECRUIT',
     headline:'De una visita a una postulación organizada.',
-    description:'Una landing de captación de transportistas conectada conceptualmente al flujo de reclutamiento: vehículo, comuna, disponibilidad y operación de interés.',
+    description:'Captación y gestión de postulantes: desde una landing de transportistas hasta un pipeline de revisión y seguimiento.',
     problem:'Los interesados llegan por diferentes canales y los datos pueden quedar incompletos.',
     solution:'Un punto de entrada digital para estructurar las postulaciones y facilitar su revisión.',
     points:['Formulario de postulación','Selección de operación y vehículo','Información organizada para seguimiento'],
@@ -158,6 +158,7 @@ function PortfolioHome(){
 }
 
 function ProjectDetail({project}){
+ const [mode,setMode]=useState('lab');
  useEffect(()=>{document.title=project.name+' · Proyecto | MUVORY';window.scrollTo(0,0);},[project.slug]);
  return <div className={'sv-site pf-page pf-detail pf-detail-'+project.accent}>
    <a className="skip-link" href="#pf-main">Saltar al contenido</a><ServiceHeader/>
@@ -178,7 +179,8 @@ function ProjectDetail({project}){
      <section className="pf-detail-flow" id="demostracion"><div className="sv-shell">
        <div className="pf-flow-head"><span>CONOCE EL RECORRIDO</span><h2>Descubre cómo funciona <em>la idea.</em></h2><p>Prueba las funciones con datos ficticios. Esta demo interactiva no es una grabación real ni almacena datos fuera de la sesión.</p></div>
        {portfolioVideos[project.type] && <ProjectMedia project={project}/>}
-       <div className="pf-detail-demo-layout"><ProductLab type={project.type}/>
+       <div className="pf-demo-mode" role="group" aria-label="Modo de demostración"><button type="button" aria-pressed={mode==='lab'} onClick={()=>setMode('lab')}>Probar sistema</button><button type="button" aria-pressed={mode==='tour'} onClick={()=>setMode('tour')}>Recorrido animado</button></div>
+       <div className="pf-detail-demo-layout">{mode==='lab'?<ProductLab type={project.type}/>:<GuidedTour type={project.type}/>}
          <div className="pf-flow-copy"><span>FUNCIONES QUE ILUSTRAMOS</span><ul>{project.points.map((point,i)=><li key={point}><small>0{i+1}</small>{point}</li>)}</ul>
            <p>{project.type==='ventas'?'La grabación del sistema de notas de venta se incorporará únicamente tras revisar y autorizar el video proporcionado por el equipo.':'Podemos adaptar este enfoque a otras necesidades, sistemas y procesos.'}</p>
            {project.type==='recruit'&&<a href="/casos/control-tower#recorrido">Ver también Control Tower <Icon name="arrow" size={17}/></a>}
