@@ -178,3 +178,12 @@
 .pf-detail-demo-layout .case-recruit-mock,.pf-detail-art .case-recruit-mock {width:100%;min-width:0;}
 @media(max-width:950px){.pf-page .pf-project-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
 @media(max-width:650px){.pf-page .pf-project-grid{grid-template-columns:1fr;}.pf-project-cover{min-height:145px;}}
+
+.pf-project-cover{display:block;padding:11px;min-height:0}
+.pf-project-cover>.ml-preview{width:100%;transition:transform .2s}
+.pf-project-cover>small{margin-top:9px;justify-content:space-between}
+.pf-project-cover:hover>.ml-preview{transform:translateY(-2px)}
+.pf-detail-demo-layout{grid-template-columns:minmax(0,1.5fr) minmax(0,.65fr)}
+.case-live-demo .ml-lab{max-width:1050px}
+@media(max-width:950px){.pf-detail-demo-layout{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.pf-project-cover>.ml-preview{transition:none}.pf-project-cover:hover>.ml-preview{transform:none}}
