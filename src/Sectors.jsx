@@ -136,6 +136,17 @@ function SectorDetail({sector}){
         </div></div>
       </div></section>
       <SectorOffer sector={sector}/>
+      {sector.slug==='logistica' && <section className="sector-proof"><div className="sv-shell sector-proof-layout">
+        <div><span>PROYECTO PROPIO VERIFICABLE</span>
+          <h2>MR&B Control Tower: <em>la experiencia hecha software.</em></h2>
+          <p>El MVP desarrollado para MR&B permite organizar entregas, conductores, vehículos e incidencias, con seguimiento del origen de los problemas. Puedes conocer cómo se pensó y qué incluye sin acceder a datos internos.</p>
+          <a href="/casos/control-tower">Ver presentación del proyecto <Icon name="arrow" size={18}/></a>
+        </div>
+        <div className="sector-proof-visual" aria-hidden="true"><div><span>MR&B / CONTROL TOWER</span><strong>Una operación más visible.</strong>
+          <p>Entregas · Choferes · Vehículos</p><div className="sector-proof-signals"><span>Demoras en bodega</span><span>Incidencias</span><span>Prioridades</span></div>
+          <small>DIAGRAMA ILUSTRATIVO · BASADO EN EL REPOSITORIO</small></div></div>
+      </div></section>}
+
       <section className="sector-lab" id="sector-lab"><div className="sv-shell sector-lab-layout">
         <div className="sector-lab-copy"><span className="sector-section-tag">CÓMO FUNCIONARÍA</span><h2>Prueba una <em>situación realista.</em></h2><p>Esta demostración recorre una situación común del sector. Puedes cambiar de etapa y marcarla como revisada. No representa un software vendido ni un cliente real.</p>
           <ul>{sector.solutions.map(text=><li key={text}><Icon name="arrow" size={16}/>{text}</li>)}</ul>
