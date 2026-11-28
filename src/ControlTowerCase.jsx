@@ -91,7 +91,7 @@ function WorkflowMock(){
   </div>;
 }
 
-function RecruitLandingMock(){
+export function RecruitLandingMock(){
   const [stage,setStage]=useState(0);
   const steps=[
     {label:'Datos personales',detail:'Nombre, teléfono y comuna para iniciar una postulación.'},
@@ -142,7 +142,7 @@ function ProblemMock(){
   </div>;
 }
 
-export default function ControlTowerCase(){
+export default function ControlTowerCase({video=null}){
   const [slide,setSlide]=useState(0);
   const current=controlTowerChapters[slide];
   const setChapter=(next)=>setSlide((next+controlTowerChapters.length)%controlTowerChapters.length);
@@ -164,6 +164,7 @@ export default function ControlTowerCase(){
           <div className="case-hero-caption">Desarrollos propios MR&B · El recorrido utiliza vistas ilustrativas y datos ficticios para proteger la información de la operación.</div>
         </div>
       </section>
+      {video && <section className="case-presentation"><div className="sv-shell"><h2>Video del proyecto</h2><video controls playsInline preload="metadata" style={{width:'100%',maxWidth:1000}} aria-label="Video de MR&B Control Tower"><source src={video} type="video/mp4"/></video></div></section>}
       <section className="case-presentation" id="recorrido" aria-label="Presentación interactiva de MR&B Control Tower">
         <div className="sv-shell">
           <div className="case-presentation-head">
