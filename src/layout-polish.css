@@ -1,0 +1,227 @@
+/* MUVORY | Wide-screen rhythm and commercial offer polish.
+   Loaded last so the established responsive design is preserved. */
+
+/* Fill desktop displays without stretching paragraph line lengths. */
+@media (min-width: 1121px) {
+  .container,
+  .sv-shell {
+    width: calc(100% - clamp(64px, 6vw, 152px));
+    max-width: 1840px;
+  }
+  .site-header .nav-wrap,
+  .sv-header .sv-header-inner { min-height: 76px; }
+  .hero-cinematic .hero-grid {
+    min-height: clamp(515px, 69vh, 720px);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: clamp(38px, 4.5vw, 100px);
+  }
+  .hero-cinematic .hero-copy { padding-block: 47px; }
+  .hero-cinematic .hero-copy h1 {
+    max-width: 735px;
+    font-size: clamp(2.7rem, 2.9vw, 3.6rem);
+    line-height: 1.16;
+    letter-spacing: -.037em;
+    font-weight: 600;
+    margin-bottom: 22px;
+  }
+  .hero-cinematic .hero-description {
+    max-width: 640px;
+    font-size: clamp(.98rem, 1.02vw, 1.075rem);
+    line-height: 1.75;
+  }
+  .hero-cinematic .hero-actions { margin-top: 27px; }
+  .hero-cinematic .hero-note {
+    max-width: 600px;
+    line-height: 1.6;
+    margin-top: 21px;
+  }
+  .cinema-visual { width: 100%; max-width: 780px; justify-self: center; margin-inline: auto; }
+  .cinema-visual-frame {
+    width: 100%;
+    min-height: 330px;
+    max-height: 530px;
+    aspect-ratio: 1.18;
+  }
+  .cinema-nexus-svg { width: min(105%, 790px); }
+  .cinema-visual-caption { max-width: 650px; margin-top: 0; }
+  .section { padding-block: clamp(58px, 4.7vw, 88px); }
+  .section-heading { gap: clamp(28px, 4vw, 75px); }
+  .section-heading > p { max-width: 550px; }
+  .hero-footnote { padding-block: 16px; }
+}
+
+/* Type hierarchy feels intentional, not oversized, at all widths. */
+@media (min-width: 961px) {
+  .section-heading h2,
+  .about-intro h2,
+  .section-contact h2 { font-size: clamp(1.85rem, 2.3vw, 2.55rem); line-height: 1.23; }
+  .field-teaser-heading h3 { font-size: clamp(1.8rem, 2.38vw, 2.65rem); line-height: 1.26; }
+  .sv-site .sv-index-copy h1 { font-size: clamp(2.35rem, 2.9vw, 3.25rem); line-height: 1.17; }
+  .sv-site .sv-section-heading h2 { font-size: clamp(1.85rem, 2.3vw, 2.55rem); }
+  .sv-site .sv-detail-hero h1 { font-size: clamp(2.1rem, 2.65vw, 3.05rem); line-height: 1.2; max-width: 700px; }
+  .sv-site .sv-showcase-copy h3 { font-size: clamp(1.45rem, 1.9vw, 2.1rem); line-height: 1.25; }
+  .sv-site .sv-final-cta h2 { font-size: clamp(1.9rem, 2.4vw, 2.8rem); }
+  .sector-hub .sector-hub-hero h1 { font-size: clamp(2.45rem, 3.3vw, 3.9rem); line-height: 1.2; max-width: 1070px; }
+  .sector-hub .sector-hub-row-content h3 { font-size: clamp(1.65rem, 2.15vw, 2.4rem); }
+  .sector-detail .sector-detail-copy h1 { font-size: clamp(2.15rem, 2.8vw, 3.1rem); line-height: 1.2; }
+  .sector-detail .sector-friction-head h2,
+  .sector-detail .sector-lab-copy h2 { font-size: clamp(1.7rem, 2.1vw, 2.45rem); }
+  .sector-detail .sector-end h2 { font-size: clamp(1.8rem, 2.35vw, 2.65rem); }
+  .sector-hub .sector-hub-section-title h2 { font-size: clamp(1.65rem, 2.1vw, 2.4rem); }
+}
+@media (min-width: 1121px) {
+  .sv-index-hero-layout {
+    grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr);
+    gap: clamp(36px, 4.5vw, 90px);
+    min-height: 490px;
+  }
+  .sv-index-copy { padding-block: 52px; }
+  .sv-index-copy h1 { max-width: 625px; }
+  .sv-index-copy > p { max-width: 615px; }
+  .sv-studio { max-width: 790px; justify-self: stretch; }
+  .sv-detail-hero-grid { grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); min-height: 415px; gap: clamp(34px, 5vw, 100px); }
+  .sv-detail-hero-grid > div:first-child { padding-block: 25px 39px; }
+  .sv-detail-art .sv-unique-visual { max-width: 790px; min-height: 320px; }
+  .sv-showcase-row { gap: clamp(45px, 6vw, 130px); padding-block: 52px; }
+  .sv-showcase-copy { max-width: 620px; }
+  .sv-services-section { padding-block: 66px 85px; }
+  .sector-hub-hero { padding-block: 72px 67px; }
+  .sector-hub-index { padding-block: 68px 75px; }
+  .sector-hub-row { gap: clamp(40px, 6vw, 125px); padding-block: 34px; }
+  .sector-photo-tile { height: clamp(250px, 25vw, 430px); }
+  .sector-detail-layout { gap: clamp(35px, 5vw, 100px); }
+  .sector-detail-hero { padding-bottom: 47px; }
+  .sector-photo-hero { height: clamp(330px, 30vw, 510px); }
+  .sector-friction,.sector-lab,.sector-end { padding-block: 60px; }
+}
+
+/* Offer panels specify what could actually be built; these are scoped proposals,
+   not fabricated portfolio projects or promised performance figures. */
+.sector-offer {
+  padding: clamp(55px, 5vw, 80px) 0;
+  background: var(--sector-paper);
+  color: var(--sector-ink);
+  scroll-margin-top: 93px;
+}
+.sector-offer-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .75fr);
+  gap: clamp(24px, 5vw, 85px);
+  align-items: end;
+  padding-bottom: 27px;
+  border-bottom: 1px solid color-mix(in srgb, var(--sector-accent), transparent 65%);
+}
+.sector-offer-intro h2 {
+  max-width: 740px;
+  font-size: clamp(1.75rem, 2.4vw, 2.8rem);
+  line-height: 1.22;
+  letter-spacing: -.038em;
+  margin: 11px 0 0;
+}
+.sector-offer-intro > p {
+  max-width: 570px;
+  line-height: 1.75;
+  font-size: .92rem;
+  opacity: .83;
+  margin: 0;
+}
+.sector-offer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(17px, 3vw, 45px);
+  padding-block: 31px 35px;
+}
+.sector-offer-card {
+  min-width: 0;
+  padding-top: 18px;
+  border-top: 3px solid var(--sector-accent);
+}
+.sector-offer-number {
+  font-size: .63rem;
+  color: var(--sector-accent);
+  letter-spacing: .12em;
+  font-weight: 750;
+}
+.sector-offer-card h3 {
+  font-size: clamp(1.13rem, 1.45vw, 1.55rem);
+  line-height: 1.32;
+  letter-spacing: -.028em;
+  font-weight: 650;
+  margin: 14px 0 10px;
+}
+.sector-offer-card p {
+  line-height: 1.75;
+  font-size: .85rem;
+  opacity: .83;
+  margin: 0;
+}
+.sector-offer-bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  gap: clamp(17px, 3vw, 45px);
+  align-items: center;
+  padding: 25px 27px;
+  background: var(--sector-light);
+  border: 1px solid color-mix(in srgb, var(--sector-accent), transparent 65%);
+  border-radius: 10px;
+}
+.sector-offer-bottom > div > span {
+  color: var(--sector-accent);
+  font-size: .64rem;
+  letter-spacing: .10em;
+  font-weight: 750;
+}
+.sector-offer-bottom p {
+  margin: 9px 0 0;
+  font-size: .8rem;
+  line-height: 1.65;
+  opacity: .85;
+}
+.sector-offer-bottom a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  border-radius: 7px;
+  padding: 12px 16px;
+  min-height: 48px;
+  background: var(--sector-accent);
+  color: white;
+  font-size: .78rem;
+  font-weight: 750;
+  text-align: center;
+  white-space: nowrap;
+}
+.sector-tone-logistica .sector-offer-bottom a { color: #142634; }
+.sector-offer-bottom a:hover { filter: brightness(1.1); }
+
+/* Fit on medium notebook displays, then stack in the existing phone layout. */
+@media (max-width: 1120px) {
+  .sv-shell,.container { max-width: none; }
+  .sector-offer-bottom { grid-template-columns: 1fr 1fr; }
+  .sector-offer-bottom a { grid-column: 1 / -1; justify-self: start; }
+}
+@media (max-width: 960px) {
+  .hero-cinematic .hero-copy h1 { font-size: clamp(2.3rem, 5.1vw, 3rem); line-height: 1.18; letter-spacing: -.033em; }
+  .sector-offer-intro { grid-template-columns: 1fr; gap: 17px; }
+  .sector-offer-grid { gap: 17px; }
+  .sector-offer-card h3 { font-size: 1.14rem; }
+}
+@media (max-width: 620px) {
+  .hero-cinematic .hero-copy h1 { font-size: clamp(2rem, 8vw, 2.6rem); }
+  .hero-cinematic .hero-copy { padding-top: 36px; }
+  .sv-site .sv-index-copy h1 { font-size: clamp(2.05rem, 7.6vw, 2.65rem); }
+  .sv-site .sv-detail-hero h1 { font-size: clamp(1.95rem, 7.3vw, 2.5rem); }
+  .sector-hub .sector-hub-hero h1 { font-size: clamp(2rem, 7.8vw, 2.65rem); line-height: 1.19; }
+  .sector-detail .sector-detail-copy h1 { font-size: clamp(2rem, 7.65vw, 2.6rem); line-height: 1.2; }
+  .sector-offer { padding-block: 46px; }
+  .sector-offer-intro h2 { font-size: clamp(1.55rem, 6.6vw, 2.1rem); }
+  .sector-offer-grid { grid-template-columns: 1fr; gap: 21px; padding-block: 24px; }
+  .sector-offer-card { padding-top: 12px; }
+  .sector-offer-card h3 { font-size: 1.23rem; margin-block: 9px; }
+  .sector-offer-bottom { grid-template-columns: 1fr; padding: 21px; gap: 20px; }
+  .sector-offer-bottom a { grid-column: auto; width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sector-offer-bottom a { transition: none !important; }
+}
