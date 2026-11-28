@@ -33,3 +33,23 @@ test('player reuses the product UI and does not pretend to be actual footage',()
   assert.match(page,/id="film"/);
  }
 });
+
+test('cinema mode uses a native modal, keyboard and touch controls, and returns focus',()=>{
+ const film=readFileSync(new URL('../src/ProductFilm.jsx',import.meta.url),'utf8');
+ assert.match(film,/dialog\.showModal\(\)/);
+ assert.match(film,/onCancel/);
+ assert.match(film,/launchRef\.current\?\.focus/);
+ assert.match(film,/ArrowRight/);
+ assert.match(film,/onTouchEnd/);
+ const css=readFileSync(new URL('../src/product-film.css',import.meta.url),'utf8');
+ assert.match(css,/100dvh/);
+ assert.match(css,/prefers-reduced-motion/);
+});
+test('depth and navigation transitions are progressive enhancements',()=>{
+ const hero=readFileSync(new URL('../src/CinematicHero.jsx',import.meta.url),'utf8');
+ const css=readFileSync(new URL('../src/layout-polish.css',import.meta.url),'utf8');
+ assert.match(hero,/onPointerMove=\{trackDepth\}/);
+ assert.match(hero,/prefers-reduced-motion/);
+ assert.match(css,/@view-transition\s*\{\s*navigation: auto/);
+ assert.match(css,/prefers-reduced-motion/);
+});
