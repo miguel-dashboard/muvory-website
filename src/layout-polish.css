@@ -225,3 +225,14 @@
 @media (prefers-reduced-motion: reduce) {
   .sector-offer-bottom a { transition: none !important; }
 }
+
+/* Native same-origin page transitions: progressive enhancement, no routing changes. */
+@view-transition { navigation: auto; }
+::view-transition-old(root){animation:mv-page-out .16s ease both}
+::view-transition-new(root){animation:mv-page-in .25s ease-out both}
+@keyframes mv-page-out{to{opacity:0}}
+@keyframes mv-page-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){
+ @view-transition { navigation: none; }
+ ::view-transition-old(root),::view-transition-new(root){animation:none}
+}
