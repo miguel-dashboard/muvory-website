@@ -165,3 +165,16 @@
   .pf-card,.pf-tour-number,.pf-tour-number span,.pf-tour-caption,.pf-tour-bottom-bars span {animation:none!important;transition:none!important;}
   .pf-card:hover {transform:none;}
 }
+/* Portfolio is a directory; interactions belong inside each project. */
+.pf-page .pf-project-grid {grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;}
+.pf-project-cover {display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:16px;min-height:175px;padding:22px;background:linear-gradient(135deg,#0b2739,#081522);color:#b8f2fa;text-decoration:none;}
+.pf-project-cover-recruit {background:linear-gradient(135deg,#153e32,#081e18);color:#9aefbd;}
+.pf-project-cover-ventas {background:linear-gradient(135deg,#49321b,#251b0f);color:#ffd0a0;}
+.pf-project-cover>span {font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;}
+.pf-project-cover>strong {font-size:clamp(1rem,1.7vw,1.4rem);letter-spacing:.03em;}
+.pf-project-cover>small {display:flex;align-items:center;gap:8px;font-size:.65rem;font-weight:650;}
+.pf-project-cover:hover {filter:brightness(1.15);}
+.pf-card-copy h3 {font-size:clamp(1.2rem,1.7vw,1.7rem);}
+.pf-detail-demo-layout .case-recruit-mock,.pf-detail-art .case-recruit-mock {width:100%;min-width:0;}
+@media(max-width:950px){.pf-page .pf-project-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:650px){.pf-page .pf-project-grid{grid-template-columns:1fr;}.pf-project-cover{min-height:145px;}}
