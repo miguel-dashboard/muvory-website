@@ -15,29 +15,29 @@ export const controlTowerChapters = [
     id:'dashboard', number:'02', label:'Control Tower',
     kicker:'LA SOLUCIÓN · VISIBILIDAD OPERATIVA',
     title:'Una torre de control para tomar decisiones.',
-    intro:'El MVP MR&B Dashboard reúne entregas, choferes y vehículos, mostrando también incidencias, prioridades y fricciones operacionales.',
+    intro:'MR&B Control Tower reúne entregas, choferes y vehículos, incorporando el seguimiento de incidencias, prioridades y problemas operacionales.',
     details:['Estado general de las entregas','Tiempos de espera y salidas atrasadas','Problemas asociados a bodega y entregas críticas'],
   },
   {
     id:'trazabilidad', number:'03', label:'Trazabilidad',
     kicker:'CADA REGISTRO TIENE CONTEXTO',
     title:'Registrar qué ocurrió y dónde comenzó.',
-    intro:'El modelo de entregas contempla estados, prioridades, origen del problema y tipo de incidencia. Eso permite ir más allá del clásico “no entregado”.',
+    intro:'El control de entregas contempla estados, prioridades, origen del problema y tipo de incidencia. Eso permite ir más allá del clásico “no entregado”.',
     details:['Estados: pendiente, en ruta, entregada o incidencia','Origen: bodega, cliente, dirección, tráfico y otros','Observaciones y datos de la operación'],
   },
   {
     id:'captacion', number:'04', label:'Landing Recruit',
     kicker:'CAPTACIÓN DIGITAL · RECLUTAMIENTO LOGÍSTICO',
     title:'Una landing que convierte interés en postulaciones.',
-    intro:'Dentro del mismo repositorio existe una landing pública de MR&B Recruit. Su formulario solicita datos del transportista, vehículo, comuna y disponibilidad y está diseñado para enviar postulaciones al sistema.',
+    intro:'MR&B Recruit incorpora una landing de captación. Su formulario solicita datos del transportista, vehículo, comuna y disponibilidad y está diseñado para organizar las postulaciones.',
     details:['Formularios adaptados a móvil con campos de postulación','Selección de operación, tipo de vehículo y disponibilidad','Conexión prevista con la API de postulantes y seguimiento de campañas'],
   },
   {
-    id:'arquitectura', number:'05', label:'Cómo se construyó',
-    kicker:'DE LA OPERACIÓN AL CÓDIGO',
-    title:'Experiencia logística convertida en software.',
-    intro:'El repositorio contiene un panel React, backend Node.js con Express, modelos MongoDB y una landing React separada dentro de mrb-recruit-landing. Son componentes del ecosistema MR&B, con publicación y usos diferentes.',
-    details:['Dashboard y landing desarrollados en React','API Express para operaciones y postulantes','Persistencia MongoDB para datos operativos y reclutamiento'],
+    id:'valor', number:'05', label:'Qué aporta',
+    kicker:'EL OBJETIVO · MÁS CONTROL',
+    title:'Información útil, menos improvisación.',
+    intro:'Lo importante no es la tecnología que hay detrás, sino hacer visibles las decisiones diarias de la operación y ordenar el ingreso de nuevos transportistas.',
+    details:['Priorizar incidencias con contexto operativo','Reducir la información repartida entre mensajes','Ordenar la captación de colaboradores con un proceso claro'],
   },
 ];
 
@@ -110,17 +110,21 @@ function RecruitLandingMock(){
       </div>
       <div className="case-recruit-trust"><span>Evaluación por operación</span><span>Formulario adaptable</span><span>Sin cupo automático</span></div>
     </div>
-    <div className="case-recruit-footer">Modelo visual basado en la landing del repositorio. No recoge ni transmite información.</div>
+    <div className="case-recruit-footer">Demostración ilustrativa de MR&B Recruit. No recoge ni transmite información.</div>
   </div>;
 }
 
-function TechMock(){
-  return <div className="case-tech-mock" aria-label="Tecnologías confirmadas en el repositorio del MVP MR&B">
-    <div><span>01 / EXPERIENCIA</span><strong>React</strong><small>Panel y vistas operativas</small></div>
-    <Icon name="arrow" size={24}/>
-    <div><span>02 / API</span><strong>Node.js + Express</strong><small>Entregas, conductores y vehículos</small></div>
-    <Icon name="arrow" size={24}/>
-    <div><span>03 / DATOS</span><strong>MongoDB</strong><small>Registros y modelos operacionales</small></div>
+function ImpactMock(){
+  return <div className="case-friction-mock case-impact-mock" aria-label="Resumen ilustrativo del valor propuesto">
+    <span className="case-friction-kicker">ANTES / DESPUÉS · BENEFICIOS ESPERADOS</span>
+    {[
+      ['Visibilidad','Datos dispersos','Vista común de la operación'],
+      ['Incidencias','Problemas sin contexto','Registro del origen y seguimiento'],
+      ['Captación','Contactos sin clasificar','Postulaciones organizadas'],
+    ].map(([name,before,after],i)=><div key={name}>
+      <span>0{i+1}</span><div><strong>{name}</strong><p>{before}</p></div><small>{after}</small>
+    </div>)}
+    <div className="case-friction-question">Resultados a validar en cada implementación.</div>
   </div>;
 }
 
@@ -155,16 +159,16 @@ export default function ControlTowerCase(){
           <p>Dos desarrollos del ecosistema MR&B: una torre de control para la operación logística y una landing para captar transportistas. Una muestra de cómo el conocimiento del terreno se transforma en herramientas digitales.</p>
           <div className="case-hero-actions">
             <a href="#recorrido">Explorar el proyecto <Icon name="arrow" size={18}/></a>
-            <a href="https://github.com/miguel-dashboard/MRB-dashboard-MVP" target="_blank" rel="noopener noreferrer">Consultar repositorio <Icon name="arrowUp" size={16}/></a>
+            <a href="/portafolio">Ver más proyectos <Icon name="arrow" size={16}/></a>
           </div>
-          <div className="case-hero-caption">Dashboard y landing MR&B Recruit verificados en el repositorio GitHub. La landing está en una rama de desarrollo, no en main. Las vistas de esta presentación son recreaciones ilustrativas, sin datos operativos reales.</div>
+          <div className="case-hero-caption">Desarrollos propios MR&B · El recorrido utiliza vistas ilustrativas y datos ficticios para proteger la información de la operación.</div>
         </div>
       </section>
       <section className="case-presentation" id="recorrido" aria-label="Presentación interactiva de MR&B Control Tower">
         <div className="sv-shell">
           <div className="case-presentation-head">
             <div><span>RECORRIDO INTERACTIVO</span><h2>Conoce el proyecto en cinco pasos.</h2></div>
-            <p>Elige una etapa para explorar el problema, la torre de control, la landing de captación y cómo se desarrollaron.</p>
+            <p>Elige una etapa para descubrir el problema, la torre de control, la captación de transportistas y el valor de estas soluciones.</p>
           </div>
           <div className="case-presentation-tabs" role="group" aria-label="Capítulos del proyecto">
             {controlTowerChapters.map((part,index)=><button type="button" key={part.id} onClick={()=>setChapter(index)} aria-pressed={slide===index} aria-controls="case-stage">
@@ -178,9 +182,8 @@ export default function ControlTowerCase(){
               <p>{current.intro}</p>
               <ul>{current.details.map(detail=><li key={detail}><Icon name="check" size={16}/>{detail}</li>)}</ul>
             </div>
-            {current.id==='captacion'&&<a className="case-source-link" target="_blank" rel="noopener noreferrer" href="https://github.com/miguel-dashboard/MRB-dashboard-MVP/tree/feature/recruit-landing-starken-publish/mrb-recruit-landing">Ver código de la landing Recruit <Icon name="arrowUp" size={16}/></a>}
             <div className="case-stage-visual">
-              {slide===0?<ProblemMock/>:slide===1?<DashboardMock/>:slide===2?<WorkflowMock/>:slide===3?<RecruitLandingMock/>:<TechMock/>}
+              {slide===0?<ProblemMock/>:slide===1?<DashboardMock/>:slide===2?<WorkflowMock/>:slide===3?<RecruitLandingMock/>:<ImpactMock/>}
             </div>
           </div>
           <div className="case-presentation-foot">
