@@ -1,0 +1,234 @@
+/* MUVORY FIELD NOTES — 3 operational sectors, deliberately distinct from the SaaS theme.
+   Photography is licensed reference material, never represented as MUVORY customers. */
+
+.field-teaser {display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(35px,6vw,110px);align-items:start;}
+.field-teaser-heading>span {display:block;color:#8ae8dc;font-weight:750;font-size:.7rem;letter-spacing:.15em;}
+.field-teaser-heading h3 {font-family:'DM Sans',sans-serif;letter-spacing:-.038em;line-height:1.23;font-size:clamp(1.9rem,3.1vw,3.15rem);font-weight:600;margin:17px 0 18px;color:#f1faf9;}
+.field-teaser-heading h3 em {font-style:normal;color:#8be8dc;}
+.field-teaser-heading>p {color:#adc4cc;font-size:.92rem;line-height:1.8;max-width:440px;}
+.field-plain-link {display:inline-flex;align-items:center;gap:11px;color:#9cebdd;font-weight:700;font-size:.84rem;min-height:44px;margin-top:17px;border-bottom:1px solid #4b9191;}
+.field-teaser-list {display:grid;gap:11px;}
+.field-teaser-item {display:grid;grid-template-columns:145px minmax(0,1fr) 24px;gap:19px;align-items:center;min-height:128px;padding:10px 14px 10px 10px;border:1px solid #2f5861;border-radius:11px;background:#102733;color:#e9fbfa;transition:border-color .2s,transform .2s,background .2s;}
+.field-teaser-item:hover,.field-teaser-item:focus-visible {border-color:#9ddbcf;background:#153440;transform:translateX(3px);}
+.field-teaser-image {position:relative;width:145px;height:108px;overflow:hidden;border-radius:7px;background:linear-gradient(125deg,#476375,#162c38);}
+.field-teaser-image img {display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.7) contrast(1.08);}
+.field-teaser-image>span {position:absolute;bottom:0;left:0;right:0;padding:5px 4px;background:#051822cc;font-size:.47rem;letter-spacing:.06em;text-align:center;color:#c8dce0;}
+.field-teaser-text {min-width:0;display:grid;gap:7px;}
+.field-teaser-text small {font-size:.59rem;letter-spacing:.09em;color:#91cdc6;}
+.field-teaser-text strong {font-size:clamp(.95rem,1.5vw,1.18rem);font-weight:650;line-height:1.3;}
+.field-teaser-text>span {color:#aec9d0;font-size:.74rem;line-height:1.45;}
+.field-teaser-item>svg {color:#a1e9df;}
+
+/* Shared industry header */
+.sector-hub,.sector-detail {--sector-ink:#12202b;--sector-paper:#f2f0eb;--sector-accent:#177d86;--sector-light:#fff; color:var(--sector-ink);background:var(--sector-paper);}
+.sector-hub .sv-header,.sector-detail .sv-header {background:#061720ed;}
+.sector-hub .sv-footer,.sector-detail .sv-footer {background:#061720;}
+.sector-hub .sv-header .sv-nav a,.sector-detail .sv-header .sv-nav a {color:#d4e3e8;}
+.sector-hub .sv-header .brand,.sector-detail .sv-header .brand {color:#edfdfa;}
+.sector-hub .sv-footer,.sector-detail .sv-footer {color:#c1d5da;}
+.sector-hub .sv-footer a,.sector-detail .sv-footer a {color:#99eadf;}
+.sector-hub h1,.sector-hub h2,.sector-hub h3,
+.sector-detail h1,.sector-detail h2,.sector-detail h3 {
+  font-family:'DM Sans',sans-serif;letter-spacing:-.038em;font-weight:650;
+}
+.sector-hub :is(a,button):focus-visible,.sector-detail :is(a,button):focus-visible {outline:3px solid #2a8da4;outline-offset:3px;}
+#sector-content,#areas,#situaciones,#sector-lab {scroll-margin-top:93px;}
+
+/* Sector index: editorial magazine cover with alternate photos, not cards. */
+.sector-hub-hero {background:radial-gradient(ellipse at 90% -15%,#bfebe1,transparent 47%),#e9f1ed;padding:95px 0 80px;position:relative;overflow:hidden;}
+.sector-hub-eyebrow {display:block;font-size:.72rem;letter-spacing:.16em;color:#216a6a;font-weight:750;margin-bottom:20px;}
+.sector-hub-hero h1 {font-size:clamp(2.7rem,5vw,5.2rem);line-height:1.14;max-width:1050px;margin:0 0 23px;text-wrap:balance;}
+.sector-hub-hero h1 em {font-style:normal;color:#197d77;}
+.sector-hub-hero p {max-width:830px;font-size:clamp(1rem,1.32vw,1.17rem);line-height:1.83;color:#344c50;}
+.sector-hub-cta {display:inline-flex;gap:12px;align-items:center;min-height:49px;background:#0c4249;color:#fff;border-radius:8px;padding:12px 18px;font-weight:700;font-size:.85rem;margin-top:20px;}
+.sector-hub-cta:hover {background:#166773;}
+.sector-hub-small {font-size:.64rem;letter-spacing:.15em;color:#4a8182;margin-top:40px;font-weight:700;}
+.sector-hub-index {padding:80px 0 90px;background:#f1f2ed;}
+.sector-hub-section-title {border-bottom:1px solid #b1c7c5;margin-bottom:16px;padding-bottom:32px;display:flex;align-items:end;justify-content:space-between;gap:25px;}
+.sector-hub-section-title>span {font-size:.67rem;letter-spacing:.15em;color:#4a7d80;white-space:nowrap;}
+.sector-hub-section-title h2 {font-size:clamp(1.65rem,2.55vw,2.5rem);max-width:670px;margin:0;line-height:1.24;}
+.sector-hub-row {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(35px,7vw,112px);align-items:center;padding:45px 0;border-bottom:1px solid #c4d4d1;}
+.sector-hub-row:nth-child(even) .sector-photo {order:2;}
+.sector-hub-row:nth-child(even) .sector-hub-row-content {order:1;}
+.sector-hub-row-content small {font-size:.64rem;color:#2a8786;font-weight:750;letter-spacing:.13em;}
+.sector-hub-row-content h3 {font-size:clamp(1.9rem,3vw,3rem);line-height:1.19;margin:15px 0;}
+.sector-hub-row-content p {font-size:.95rem;line-height:1.82;color:#3d565c;max-width:530px;}
+.sector-hub-row-content a {display:inline-flex;align-items:center;gap:10px;margin-top:15px;color:#106c73;font-weight:700;min-height:43px;border-bottom:1px solid #82b5b0;}
+.sector-hub-row-content a:hover {color:#092831;}
+.sector-photo {margin:0;position:relative;background:#1c3a41;overflow:hidden;border-radius:10px;}
+.sector-photo>img {display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.7) contrast(1.05);transition:transform .7s ease;}
+.sector-hub-row:hover .sector-photo>img,.sector-photo:hover>img {transform:scale(1.04);}
+.sector-photo-tile {height:clamp(260px,31vw,425px);}
+.sector-photo-hero {height:clamp(350px,38vw,510px);}
+.sector-photo figcaption {position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:11px 15px;font-size:.59rem;line-height:1.4;background:#06151fc9;color:#dfebeb;}
+.sector-photo figcaption a {color:#b8f3e5;text-decoration:underline;text-underline-offset:2px;white-space:nowrap;}
+.sector-hub-else {background:#0e2b33;color:#effaf8;padding:77px 0;text-align:center;}
+.sector-hub-else span {color:#9be4dc;font-size:.68rem;letter-spacing:.12em;font-weight:750;}
+.sector-hub-else h2 {font-size:clamp(1.7rem,3vw,2.9rem);max-width:700px;margin:15px auto;}
+.sector-hub-else p {font-size:.95rem;line-height:1.7;max-width:670px;margin:0 auto 23px;color:#b4d0d3;}
+.sector-hub-else a {display:inline-flex;gap:11px;align-items:center;background:#8ee6d9;color:#062b31;padding:12px 18px;border-radius:8px;font-weight:700;font-size:.84rem;}
+
+/* Each niche is its own editorial theme. Legal = warm paper/copper.
+ Logistics = midnight/amber. Retail = pale sage/forest. */
+.sector-tone-juridico {
+  --sector-ink:#302723;--sector-paper:#f5f1eb;--sector-accent:#9c634b;--sector-light:#fffaf2;
+}
+.sector-tone-logistica {
+  --sector-ink:#edf3f5;--sector-paper:#101e2b;--sector-accent:#ffb76e;--sector-light:#172937;
+}
+.sector-tone-comercio {
+  --sector-ink:#173a31;--sector-paper:#eaf1e7;--sector-accent:#297b58;--sector-light:#f6faf3;
+}
+.sector-detail-hero {padding:25px 0 62px;background:var(--sector-paper);color:var(--sector-ink);}
+.sector-back {display:inline-flex;align-items:center;gap:10px;min-height:45px;color:var(--sector-accent);font-size:.8rem;font-weight:650;}
+.sector-back svg {transform:rotate(180deg);}
+.sector-detail-layout {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.91fr);align-items:center;gap:clamp(30px,5vw,100px);padding-top:23px;}
+.sector-detail-copy {padding:18px 0 35px;}
+.sector-detail-kicker {font-size:.7rem;font-weight:750;letter-spacing:.135em;color:var(--sector-accent);}
+.sector-detail-copy h1 {font-size:clamp(2.2rem,3.8vw,4.25rem);line-height:1.15;margin:19px 0 19px;text-wrap:balance;max-width:700px;}
+.sector-detail-copy>p {font-size:clamp(.96rem,1.17vw,1.1rem);line-height:1.82;max-width:625px;opacity:.84;}
+.sector-detail-actions {display:flex;gap:10px;flex-wrap:wrap;margin-top:30px;}
+.sector-button-main,.sector-button-alt {display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 17px;border-radius:8px;font-size:.82rem;font-weight:750;}
+.sector-button-main {background:var(--sector-accent);color:#fff;}
+.sector-button-alt {border:1px solid var(--sector-accent);color:var(--sector-accent);}
+.sector-tone-logistica .sector-button-main {color:#16202a;}
+.sector-button-main:hover {filter:brightness(1.12);}
+.sector-button-alt:hover {background:color-mix(in srgb,var(--sector-accent),transparent 90%);}
+.sector-tone-juridico .sector-photo {border-radius:4px;box-shadow:18px 18px 0 #ddcebf;}
+.sector-tone-comercio .sector-detail-layout {grid-template-columns:minmax(0,.84fr) minmax(0,1.16fr);}
+.sector-tone-comercio .sector-detail-copy {order:2;}
+.sector-tone-comercio .sector-photo {order:1;border-radius:30px 8px 30px 8px;box-shadow:-17px 16px 0 #c9dfcb;}
+.sector-tone-logistica .sector-detail-hero {background:#101e2b;}
+.sector-tone-logistica .sector-detail-layout {grid-template-columns:minmax(0,1.07fr) minmax(0,.93fr);}
+.sector-tone-logistica .sector-photo {border:1px solid #6b7374;border-radius:3px;box-shadow:16px 16px 0 #233a4c;}
+.sector-tone-logistica .sector-photo>img {filter:contrast(1.1) saturate(.67) sepia(.12);}
+.sector-tone-comercio .sector-photo>img {filter:saturate(.79);}
+.sector-tone-juridico .sector-photo>img {filter:sepia(.25) saturate(.65);}
+
+/* A genuine operational point of view: problem vs buildable solution. */
+.sector-friction {background:var(--sector-light);color:var(--sector-ink);padding:76px 0;}
+.sector-friction-head {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);align-items:end;gap:55px;margin-bottom:35px;}
+.sector-section-tag {font-size:.69rem;letter-spacing:.12em;font-weight:750;color:var(--sector-accent);}
+.sector-friction-head h2,.sector-lab-copy h2 {font-size:clamp(1.95rem,2.9vw,3rem);line-height:1.25;margin:13px 0 0;max-width:650px;}
+.sector-friction-head h2 em,.sector-lab-copy h2 em {font-style:normal;color:var(--sector-accent);}
+.sector-friction-head>p {font-size:.93rem;line-height:1.85;max-width:600px;opacity:.8;margin:0;}
+.sector-friction-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;}
+.sector-friction-list,.sector-solution-list {border-top:2px solid var(--sector-accent);padding:23px 22px 13px;background:color-mix(in srgb,var(--sector-paper),white 15%);}
+.sector-friction-label {font-weight:750;letter-spacing:.1em;font-size:.7rem;color:var(--sector-accent);}
+.sector-friction-list>div,.sector-solution-list>div {display:flex;align-items:center;gap:15px;border-bottom:1px solid color-mix(in srgb,var(--sector-accent),transparent 78%);padding:16px 0;min-height:67px;}
+.sector-friction-list small {color:var(--sector-accent);font-size:.75rem;font-weight:700;}
+.sector-friction-list p,.sector-solution-list p {margin:0;font-size:.85rem;line-height:1.55;font-weight:550;}
+.sector-solution-list svg {color:var(--sector-accent);flex-shrink:0;}
+.sector-tone-logistica .sector-friction {background:#1a2e3b;}
+.sector-tone-logistica .sector-friction-list,.sector-tone-logistica .sector-solution-list {background:#233846;}
+
+/* Sector demonstration is actually interactive, not a screenshot. */
+.sector-lab {padding:78px 0;background:var(--sector-paper);color:var(--sector-ink);}
+.sector-lab-layout {display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(26px,6vw,85px);align-items:center;}
+.sector-lab-copy>p {font-size:.92rem;line-height:1.8;max-width:530px;opacity:.85;margin-top:20px;}
+.sector-lab-copy ul {padding:0;margin:24px 0 0;list-style:none;display:grid;gap:12px;}
+.sector-lab-copy li {display:flex;align-items:center;gap:10px;font-size:.84rem;line-height:1.6;}
+.sector-lab-copy li svg {color:var(--sector-accent);flex-shrink:0;}
+.sector-demo {min-width:0;border:1px solid color-mix(in srgb,var(--sector-accent),transparent 48%);background:var(--sector-light);border-radius:11px;overflow:hidden;box-shadow:0 19px 45px #00000016;}
+.sector-demo-top {display:flex;justify-content:space-between;gap:10px;align-items:center;border-bottom:1px solid color-mix(in srgb,var(--sector-accent),transparent 70%);padding:13px 16px;font-size:.66rem;letter-spacing:.09em;color:var(--sector-accent);font-weight:700;}
+.sector-demo-badge {font-size:.6rem;padding:6px 7px;border:1px solid color-mix(in srgb,var(--sector-accent),transparent 65%);border-radius:4px;}
+.sector-demo-inside {padding:clamp(17px,2.4vw,28px);}
+.sector-demo-small {font-size:.65rem;letter-spacing:.13em;font-weight:750;color:var(--sector-accent);margin:0 0 7px;}
+.sector-demo h3 {font-size:1.38rem;font-weight:650;margin:0 0 19px;}
+.sector-demo-steps {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;}
+.sector-demo-steps button {display:flex;flex-direction:column;gap:10px;align-items:flex-start;text-align:left;min-width:0;padding:14px 11px;border:1px solid color-mix(in srgb,var(--sector-accent),transparent 65%);border-radius:7px;background:transparent;color:var(--sector-ink);font:inherit;min-height:102px;cursor:pointer;}
+.sector-demo-steps button[aria-pressed="true"] {background:color-mix(in srgb,var(--sector-accent),transparent 89%);border-color:var(--sector-accent);}
+.sector-demo-steps button:hover {border-color:var(--sector-accent);}
+.sector-demo-steps button>span {font-size:.69rem;color:var(--sector-accent);font-weight:750;}
+.sector-demo-steps button strong {font-size:.74rem;font-weight:650;line-height:1.3;}
+.sector-demo-steps button svg {align-self:flex-end;margin-top:auto;color:var(--sector-accent);}
+.sector-demo-result {border-top:1px solid color-mix(in srgb,var(--sector-accent),transparent 72%);margin-top:20px;padding-top:19px;}
+.sector-demo-state {display:flex;align-items:center;gap:9px;font-size:.71rem;letter-spacing:.04em;color:var(--sector-accent);margin-bottom:13px;}
+.sector-demo-state span {width:8px;height:8px;border-radius:50%;background:#d6a15d;}
+.sector-demo-state span.done {background:#3c9e6b;}
+.sector-demo-result>strong {display:block;font-size:1.02rem;margin:0 0 8px;}
+.sector-demo-result p {font-size:.78rem;line-height:1.7;opacity:.75;min-height:43px;margin:0 0 12px;}
+.sector-demo-result button {display:inline-flex;align-items:center;gap:9px;padding:10px 15px;border:none;border-radius:7px;min-height:43px;background:var(--sector-accent);color:white;font:inherit;font-size:.78rem;font-weight:700;cursor:pointer;}
+.sector-tone-logistica .sector-demo-result button {color:#172b33;}
+.sector-demo-note {font-size:.65rem;opacity:.65;margin:17px 0 0;line-height:1.5;}
+.sector-end {background:var(--sector-light);padding:90px 0;color:var(--sector-ink);}
+.sector-end h2 {font-size:clamp(2rem,3vw,3rem);line-height:1.22;max-width:840px;margin:15px 0 22px;}
+.sector-end p {max-width:730px;font-size:.88rem;line-height:1.75;opacity:.78;}
+.sector-end-buttons {display:flex;gap:14px;flex-wrap:wrap;margin-top:25px;}
+.sector-end-buttons a {min-height:45px;display:inline-flex;align-items:center;gap:10px;padding:12px 17px;color:var(--sector-accent);border:1px solid var(--sector-accent);border-radius:7px;font-size:.82rem;font-weight:750;}
+.sector-end-buttons a:first-child {background:var(--sector-accent);color:white;}
+.sector-tone-logistica .sector-end-buttons a:first-child {color:#172631;}
+.sector-end-buttons a:hover {filter:brightness(1.12);}
+
+/* Structural differences beyond just color. */
+.sector-tone-logistica .sector-friction-grid {grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);}
+.sector-tone-logistica .sector-friction-list,.sector-tone-logistica .sector-solution-list {border-top-width:4px;}
+.sector-tone-comercio .sector-lab-layout {grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
+.sector-tone-juridico .sector-demo-steps button {border-radius:2px;}
+.sector-tone-comercio .sector-demo {border-radius:20px;}
+.sector-tone-logistica .sector-demo {background:#152835;}
+
+@media(max-width:1040px) {
+  .field-teaser {gap:28px;grid-template-columns:1fr 1.2fr;}
+  .field-teaser-item {grid-template-columns:100px minmax(0,1fr) 19px;gap:12px;min-height:112px;}
+  .field-teaser-image {width:100px;height:92px;}
+  .sector-detail-layout {gap:30px;}
+  .sector-detail-copy h1 {font-size:clamp(2.2rem,4.2vw,3.6rem);}
+}
+@media(max-width:800px) {
+  .field-teaser {grid-template-columns:1fr;gap:23px;}
+  .field-teaser-heading>p {max-width:650px;}
+  .field-teaser-item {grid-template-columns:130px minmax(0,1fr) 23px;}
+  .field-teaser-image {width:130px;height:96px;}
+  .sector-hub-hero {padding:60px 0 58px;}
+  .sector-hub-hero h1 {font-size:clamp(2.45rem,6.5vw,3.9rem);}
+  .sector-hub-section-title {display:block;}
+  .sector-hub-section-title h2 {margin-top:11px;}
+  .sector-hub-row {gap:24px;}
+  .sector-detail-layout,.sector-tone-comercio .sector-detail-layout,.sector-tone-logistica .sector-detail-layout {display:flex;flex-direction:column;align-items:stretch;gap:25px;}
+  .sector-tone-comercio .sector-detail-copy,.sector-tone-comercio .sector-photo {order:initial;}
+  .sector-detail-copy {padding:0;}
+  .sector-detail-hero {padding-bottom:56px;}
+  .sector-photo-hero {height:clamp(300px,52vw,450px);}
+  .sector-friction-head {grid-template-columns:1fr;gap:16px;}
+  .sector-friction-head>p {max-width:720px;}
+  .sector-lab-layout,.sector-tone-comercio .sector-lab-layout {grid-template-columns:1fr;gap:25px;}
+}
+@media(max-width:620px) {
+  .field-teaser-heading h3 {font-size:clamp(1.8rem,7.5vw,2.4rem);}
+  .field-teaser-item {grid-template-columns:89px minmax(0,1fr) 18px;padding:8px;gap:9px;}
+  .field-teaser-image {width:89px;height:90px;}
+  .field-teaser-text small {font-size:.5rem;}
+  .field-teaser-text strong {font-size:.85rem;}
+  .field-teaser-text>span {font-size:.63rem;}
+  .sector-hub-hero h1 {font-size:clamp(2.2rem,9.2vw,3rem);}
+  .sector-hub-hero p {font-size:.94rem;}
+  .sector-hub-section-title h2 {font-size:clamp(1.7rem,7vw,2.3rem);}
+  .sector-hub-index {padding:54px 0;}
+  .sector-hub-row,.sector-hub-row:nth-child(even) {display:flex;flex-direction:column;gap:16px;align-items:stretch;padding:29px 0;}
+  .sector-hub-row:nth-child(even) .sector-photo,.sector-hub-row:nth-child(even) .sector-hub-row-content {order:initial;}
+  .sector-photo-tile {height:250px;}
+  .sector-hub-row-content h3 {font-size:1.9rem;margin:9px 0;}
+  .sector-hub-row-content p {font-size:.87rem;}
+  .sector-detail-copy h1 {font-size:clamp(2.15rem,8.9vw,3rem);}
+  .sector-detail-copy>p {font-size:.92rem;}
+  .sector-photo-hero {height:290px;}
+  .sector-photo figcaption {font-size:.51rem;gap:5px;padding:8px;}
+  .sector-photo figcaption a {font-size:.5rem;}
+  .sector-detail-actions {flex-direction:column;}
+  .sector-detail-actions a {width:100%;}
+  .sector-friction,.sector-lab,.sector-end {padding:56px 0;}
+  .sector-friction-head h2,.sector-lab-copy h2 {font-size:clamp(1.75rem,7.2vw,2.35rem);}
+  .sector-friction-grid,.sector-tone-logistica .sector-friction-grid {grid-template-columns:1fr;gap:13px;}
+  .sector-friction-list,.sector-solution-list {padding:17px;}
+  .sector-demo-steps {gap:5px;}
+  .sector-demo-steps button {min-height:97px;padding:9px 7px;}
+  .sector-demo-steps button strong {font-size:.63rem;}
+  .sector-demo-inside {padding:14px;}
+  .sector-demo-top {padding:12px 10px;font-size:.54rem;}
+  .sector-demo-badge {font-size:.48rem;}
+  .sector-end h2 {font-size:clamp(1.8rem,7vw,2.5rem);}
+}
+@media(prefers-reduced-motion:reduce) {
+  .sector-photo>img,.field-teaser-item {transition:none!important;transform:none!important;}
+}
