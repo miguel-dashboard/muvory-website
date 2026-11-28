@@ -14,7 +14,7 @@ test('portfolio has internal routes, home teaser, header link, three project-spe
  assert.match(app,/<PortfolioTeaser\s*\/>/);
  assert.match(header,/href="\/portafolio"/);
  for(const slug of ['control-tower','recruit','ventas']) assert.match(portfolio,new RegExp("slug:'"+slug+"'"));
- assert.match(portfolio,/href:'\/casos\/control-tower'/);
+ assert.match(portfolio,/href:'\/portafolio\/control-tower'/);
  assert.match(portfolio,/href:'\/portafolio\/recruit'/);
  assert.match(portfolio,/href:'\/portafolio\/ventas'/);
  assert.match(sectors,/href="\/portafolio\/ventas"/);
