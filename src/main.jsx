@@ -5,6 +5,7 @@ import Experience from './Experience.jsx';
 import Services from './Services.jsx';
 import Sectors from './Sectors.jsx';
 import './styles.css';
+import './layout-polish.css';
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
