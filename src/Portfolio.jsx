@@ -121,7 +121,7 @@ export function ProjectMedia({project,compact=false}){
 
 function ProjectCard({project}){
   return <article className={'pf-card pf-tone-'+project.accent}>
-    <a className="pf-card-media-link" href={project.href} aria-label={'Conocer el proyecto '+project.name}><ProjectMedia project={project} compact/></a>
+    <div className="pf-card-media-link"><ProjectMedia project={project} compact/></div>
     <div className="pf-card-copy">
       <span>{project.number} / {project.label}</span>
       <h3>{project.name}</h3>
