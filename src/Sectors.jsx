@@ -62,14 +62,14 @@ function SectorHub(){
       <section className="sector-hub-hero">
         <div className="sv-shell">
           <div className="sector-hub-eyebrow">TECNOLOGÍA DESDE LA OPERACIÓN · MUVORY</div>
-          <h1>No partimos del software.<br/><em>Partimos del problema real.</em></h1>
-          <p>En tres mundos que conocemos de cerca —la gestión jurídica, el transporte y el comercio de barrio— sabemos que los detalles operativos hacen la diferencia. Por eso primero escuchamos qué falla y después diseñamos la tecnología.</p>
+          <h1>Conocemos el trabajo real.<br/><em>Sabemos qué necesita mejorar.</em></h1>
+          <p>Nuestro conocimiento de la gestión jurídica, la última milla y el comercio nos permite detectar problemas concretos y proponer herramientas para resolverlos. La tecnología viene después de entender el trabajo.</p>
           <a href="#areas" className="sector-hub-cta">Conoce las tres áreas <Icon name="arrow" size={17}/></a>
           <div className="sector-hub-small">NUESTRO ENFOQUE NO SE LIMITA A ESTOS SECTORES</div>
         </div>
       </section>
       <section className="sector-hub-index" id="areas"><div className="sv-shell">
-        <div className="sector-hub-section-title"><span>01—03 / DESDE ADENTRO</span><h2>Tres realidades. Tres formas distintas de trabajar.</h2></div>
+        <div className="sector-hub-section-title"><span>01—03 / DESDE ADENTRO</span><h2>Tres sectores donde el conocimiento marca la diferencia.</h2></div>
         {sectors.map(sector=><article className={'sector-hub-row sector-hub-row-'+sector.slug} key={sector.slug}>
           <SectorPhoto sector={sector} kind="tile"/>
           <div className="sector-hub-row-content"><small>{sector.number} / {sector.tag}</small><h3>{sector.short}</h3><p>{sector.insight}</p>
@@ -80,6 +80,29 @@ function SectorHub(){
       <section className="sector-hub-else"><div className="sv-shell"><span>NO NOS LIMITAMOS A TRES INDUSTRIAS</span><h2>¿Tu desafío es diferente? Hablemos de él.</h2><p>El conocimiento práctico nos orienta. Las herramientas tecnológicas pueden adaptarse a muchas otras actividades.</p><a href="/servicios">Explorar todos los servicios <Icon name="arrow" size={18}/></a></div></section>
     </main><ServiceFooter/>
   </div>;
+}
+
+function SectorOffer({sector}){
+  const offer=sector.offer;
+  return <section className="sector-offer" id="propuesta">
+    <div className="sv-shell">
+      <div className="sector-offer-intro">
+        <div><span className="sector-section-tag">{offer.kicker}</span><h2>{offer.title}</h2></div>
+        <p>{offer.promise} Cada solución se define con el cliente según sus procesos, recursos y necesidades.</p>
+      </div>
+      <div className="sector-offer-grid">
+        {offer.scope.map((item,index)=><article className="sector-offer-card" key={item.title}>
+          <span className="sector-offer-number">0{index+1} / MÓDULO PROPUESTO</span>
+          <h3>{item.title}</h3><p>{item.text}</p>
+        </article>)}
+      </div>
+      <div className="sector-offer-bottom">
+        <div><span>PRIMERA IMPLEMENTACIÓN POSIBLE</span><p>{offer.pilot}</p></div>
+        <div><span>INDICADORES A OBSERVAR</span><p>{offer.measure}</p></div>
+        <a href="/#contacto">Solicitar una propuesta <Icon name="arrow" size={18}/></a>
+      </div>
+    </div>
+  </section>;
 }
 
 function SectorDetail({sector}){
@@ -96,7 +119,7 @@ function SectorDetail({sector}){
               <h1>{sector.title}</h1>
               <p>{sector.summary}</p>
               <div className="sector-detail-actions">
-                <a className="sector-button-main" href="#situaciones">Ver los problemas que resolvemos <Icon name="arrow" size={17}/></a>
+                <a className="sector-button-main" href="#propuesta">Ver propuesta de solución <Icon name="arrow" size={17}/></a>
                 <a className="sector-button-alt" href="/#contacto">Conversemos <Icon name="arrowUp" size={16}/></a>
               </div>
             </div>
@@ -105,18 +128,19 @@ function SectorDetail({sector}){
         </div>
       </section>
       <section id="situaciones" className="sector-friction"><div className="sv-shell">
-        <div className="sector-friction-head"><div><span className="sector-section-tag">LO QUE CONOCEMOS EN LA PRÁCTICA</span><h2>El problema suele estar <em>antes del resultado.</em></h2></div><p>{sector.insight}</p></div>
+        <div className="sector-friction-head"><div><span className="sector-section-tag">LO QUE CONOCEMOS EN LA PRÁCTICA</span><h2>Detectamos el problema. <em>Proponemos la solución.</em></h2></div><p>{sector.insight}</p></div>
         <div className="sector-friction-grid"><div className="sector-friction-list"><span className="sector-friction-label">DÓNDE SE PIERDE EL CONTROL</span>
           {sector.focus.map((str,i)=><div key={str}><small>0{i+1}</small><p>{str}</p></div>)}
         </div><div className="sector-solution-list"><span className="sector-friction-label">QUÉ PODEMOS CONSTRUIR</span>
           {sector.solutions.map((str,i)=><div key={str}><Icon name="check" size={18}/><p>{str}</p></div>)}
         </div></div>
       </div></section>
+      <SectorOffer sector={sector}/>
       <section className="sector-lab" id="sector-lab"><div className="sv-shell sector-lab-layout">
-        <div className="sector-lab-copy"><span className="sector-section-tag">DEL PROBLEMA A UNA HERRAMIENTA</span><h2>En vez de más planillas, <em>un proceso claro.</em></h2><p>Esta demostración recorre una situación común del sector. Puedes cambiar de etapa y marcarla como revisada. No representa un software vendido ni un cliente real.</p>
+        <div className="sector-lab-copy"><span className="sector-section-tag">CÓMO FUNCIONARÍA</span><h2>Prueba una <em>situación realista.</em></h2><p>Esta demostración recorre una situación común del sector. Puedes cambiar de etapa y marcarla como revisada. No representa un software vendido ni un cliente real.</p>
           <ul>{sector.solutions.map(text=><li key={text}><Icon name="arrow" size={16}/>{text}</li>)}</ul>
         </div><SectorDemo sector={sector}/></div></section>
-      <section className="sector-end"><div className="sv-shell"><span className="sector-section-tag">CONSTRUIMOS SEGÚN TU CONTEXTO</span><h2>Conoces tu trabajo.<br/>Hagamos que la tecnología te acompañe.</h2><p>{sector.disclaimer} Diseñamos cada proyecto a partir de un diagnóstico y un alcance acordado.</p><div className="sector-end-buttons"><a href="/#contacto">Cuéntanos tu necesidad <Icon name="arrow" size={17}/></a><a href="/sectores">Ver otros sectores</a></div></div></section>
+      <section className="sector-end"><div className="sv-shell"><span className="sector-section-tag">DIAGNÓSTICO Y DESARROLLO A MEDIDA</span><h2>Tu operación es única. <br/>La solución también debe serlo.</h2><p>{sector.disclaimer} Diseñamos cada proyecto a partir de un diagnóstico y un alcance acordado.</p><div className="sector-end-buttons"><a href="/#contacto">Cuéntanos tu necesidad <Icon name="arrow" size={17}/></a><a href="/sectores">Ver otros sectores</a></div></div></section>
     </main><ServiceFooter/>
   </div>;
 }
