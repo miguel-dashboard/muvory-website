@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import Icon from './Icon.jsx';
+import { ControlLab } from './ProductLab.jsx';
+import ProductFilm from './ProductFilm.jsx';
 import { ServiceHeader, ServiceFooter } from './Services.jsx';
 import './case-study.css';
 
@@ -91,7 +93,7 @@ function WorkflowMock(){
   </div>;
 }
 
-function RecruitLandingMock(){
+export function RecruitLandingMock(){
   const [stage,setStage]=useState(0);
   const steps=[
     {label:'Datos personales',detail:'Nombre, teléfono y comuna para iniciar una postulación.'},
@@ -142,28 +144,33 @@ function ProblemMock(){
   </div>;
 }
 
-export default function ControlTowerCase(){
+export default function ControlTowerCase({video=null}){
   const [slide,setSlide]=useState(0);
+  const [playing,setPlaying]=useState(false);
+  useEffect(()=>{if(!playing)return;const timer=window.setInterval(()=>setSlide(s=>(s+1)%controlTowerChapters.length),6500);return ()=>window.clearInterval(timer);},[playing]);
   const current=controlTowerChapters[slide];
-  const setChapter=(next)=>setSlide((next+controlTowerChapters.length)%controlTowerChapters.length);
-  useEffect(()=>{document.title='MR&B Control Tower · Caso de desarrollo | MUVORY';window.scrollTo(0,0)},[]);
+  const setChapter=(next)=>{setPlaying(false);setSlide((next+controlTowerChapters.length)%controlTowerChapters.length);};
+  useEffect(()=>{document.title='MR&B Control Tower · Caso de desarrollo | MUVORY';const anchor=window.location.hash.slice(1);if(['film','demo-control','recorrido'].includes(anchor)){const frame=window.requestAnimationFrame(()=>document.getElementById(anchor)?.scrollIntoView());return ()=>window.cancelAnimationFrame(frame);}window.scrollTo(0,0)},[]);
   return <div className="sv-site case-page">
     <a className="skip-link" href="#case-main">Saltar al contenido</a>
     <ServiceHeader/>
     <main id="case-main">
       <section className="case-hero">
         <div className="sv-shell case-hero-inner">
-          <a href="/sectores/logistica" className="case-back"><Icon name="arrow" size={16}/> Transporte y logística</a>
+          <a href="/portafolio" className="case-back"><Icon name="arrow" size={16}/> Todos los proyectos</a>
           <span className="case-eyebrow">DESARROLLO PROPIO · MR&B CONTROL TOWER · MVP</span>
           <h1>Del problema en la calle<br/><em>al control de la operación.</em></h1>
           <p>Dos desarrollos del ecosistema MR&B: una torre de control para la operación logística y una landing para captar transportistas. Una muestra de cómo el conocimiento del terreno se transforma en herramientas digitales.</p>
           <div className="case-hero-actions">
-            <a href="#recorrido">Explorar el proyecto <Icon name="arrow" size={18}/></a>
-            <a href="/portafolio">Ver más proyectos <Icon name="arrow" size={16}/></a>
+            <a href="#demo-control">Probar el sistema <Icon name="arrow" size={18}/></a>
+            <a href="#film">Ver recorrido animado <Icon name="arrow" size={16}/></a><a href="#recorrido">Conocer el caso <Icon name="arrow" size={16}/></a>
           </div>
           <div className="case-hero-caption">Desarrollos propios MR&B · El recorrido utiliza vistas ilustrativas y datos ficticios para proteger la información de la operación.</div>
         </div>
       </section>
+      {video && <section className="case-presentation"><div className="sv-shell"><h2>Video del proyecto</h2><video controls playsInline preload="metadata" style={{width:'100%',maxWidth:1000}} aria-label="Video de MR&B Control Tower"><source src={video} type="video/mp4"/></video></div></section>}
+      <section className="case-presentation mf-project-section" id="film"><div className="sv-shell"><div className="case-presentation-head"><div><span>PRODUCT STORIES</span><h2>Del problema a la decisión.</h2></div><p>Un recorrido de 24 segundos por la interfaz de demostración, con controles de reproducción.</p></div><ProductFilm type="control" onTry={()=>document.getElementById('demo-control')?.scrollIntoView()}/></div></section>
+      <section className="case-presentation case-live-demo" id="demo-control"><div className="sv-shell"><div className="case-presentation-head"><div><span>LABORATORIO INTERACTIVO</span><h2>Prueba la torre de control.</h2></div><p>Filtra entregas, selecciona una incidencia e identifica su origen. Simula su resolución y observa cómo cambian los indicadores.</p></div><ControlLab/></div></section>
       <section className="case-presentation" id="recorrido" aria-label="Presentación interactiva de MR&B Control Tower">
         <div className="sv-shell">
           <div className="case-presentation-head">
@@ -188,14 +195,14 @@ export default function ControlTowerCase(){
           </div>
           <div className="case-presentation-foot">
             <span>{String(slide+1).padStart(2,'0')} / 05</span>
-            <div><button type="button" onClick={()=>setChapter(slide-1)} aria-label="Ver capítulo anterior"><Icon name="arrow" size={20}/></button>
+            <div><button type="button" onClick={()=>setPlaying(v=>!v)} aria-pressed={playing}>{playing?'Pausar recorrido':'Reproducir recorrido'}</button><button type="button" onClick={()=>setChapter(slide-1)} aria-label="Ver capítulo anterior"><Icon name="arrow" size={20}/></button>
             <button type="button" onClick={()=>setChapter(slide+1)}>Siguiente capítulo <Icon name="arrow" size={18}/></button></div>
           </div>
         </div>
       </section>
       <section className="case-end">
         <div className="sv-shell case-end-layout"><div><span>TECNOLOGÍA CON CONOCIMIENTO REAL</span><h2>¿Tu operación tiene dificultades similares?</h2><p>Podemos analizar el proceso, identificar las fricciones y diseñar un sistema adecuado a tu organización. La torre de control y la landing Recruit son desarrollos del ecosistema MR&B; las vistas aquí son ilustrativas y no implican implementaciones comerciales equivalentes en terceros.</p></div>
-          <a href="/#contacto">Conversemos sobre tu operación <Icon name="arrow" size={17}/></a>
+          <a href="/contacto">Conversemos sobre tu operación <Icon name="arrow" size={17}/></a>
         </div>
       </section>
     </main><ServiceFooter/>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Icon from './Icon.jsx';
 
 const routes = [
@@ -80,10 +80,13 @@ function NexusArtwork(){
 export default function CinematicHero(){
   const [active,setActive]=useState(0);
   const [paused,setPaused]=useState(false);
+  const frameRef=useRef(null);
+  const resetDepth=()=>{frameRef.current?.style.setProperty('--nexus-x','0deg');frameRef.current?.style.setProperty('--nexus-y','0deg');};
+  const trackDepth=event=>{if(paused||event.pointerType!=='mouse'||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;const rect=event.currentTarget.getBoundingClientRect();event.currentTarget.style.setProperty('--nexus-x',((event.clientY-rect.top)/rect.height-.5)*-8+'deg');event.currentTarget.style.setProperty('--nexus-y',((event.clientX-rect.left)/rect.width-.5)*10+'deg');};
   return <div className={'cinema-visual'+(paused?' cinema-motion-paused':'')} aria-label="Explora las áreas de MUVORY">
-    <div className="cinema-visual-frame">
+    <div ref={frameRef} className="cinema-visual-frame" onPointerMove={trackDepth} onPointerLeave={resetDepth}>
       <span className="cinema-visual-label" aria-hidden="true"><span/> MUVORY / NEXUS</span>
-      <NexusArtwork/>
+      <div className="cinema-depth-layer"><NexusArtwork/></div>
       <div className="cinema-floating-links" aria-label="Explorar servicios">
         {routes.map((item,index)=><a
           key={item.slug}
@@ -97,7 +100,7 @@ export default function CinematicHero(){
     </div>
     <div className="cinema-visual-caption">
       <div><span className="cinema-caption-index">0{active+1} / 04</span><strong>{routes[active].title}</strong><p>{routes[active].description}</p></div>
-      <button type="button" className="cinema-motion-button" aria-pressed={paused} onClick={()=>setPaused(v=>!v)}>{paused?'Reanudar movimiento':'Pausar movimiento'}</button>
+      <button type="button" className="cinema-motion-button" aria-pressed={paused} onClick={()=>{resetDepth();setPaused(v=>!v);}}>{paused?'Reanudar movimiento':'Pausar movimiento'}</button>
     </div>
   </div>;
 }

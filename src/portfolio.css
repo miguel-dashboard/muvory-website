@@ -165,3 +165,44 @@
   .pf-card,.pf-tour-number,.pf-tour-number span,.pf-tour-caption,.pf-tour-bottom-bars span {animation:none!important;transition:none!important;}
   .pf-card:hover {transform:none;}
 }
+/* Portfolio is a directory; interactions belong inside each project. */
+.pf-page .pf-project-grid {grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;}
+.pf-project-cover {display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:16px;min-height:175px;padding:22px;background:linear-gradient(135deg,#0b2739,#081522);color:#b8f2fa;text-decoration:none;}
+.pf-project-cover-recruit {background:linear-gradient(135deg,#153e32,#081e18);color:#9aefbd;}
+.pf-project-cover-ventas {background:linear-gradient(135deg,#49321b,#251b0f);color:#ffd0a0;}
+.pf-project-cover>span {font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;}
+.pf-project-cover>strong {font-size:clamp(1rem,1.7vw,1.4rem);letter-spacing:.03em;}
+.pf-project-cover>small {display:flex;align-items:center;gap:8px;font-size:.65rem;font-weight:650;}
+.pf-project-cover:hover {filter:brightness(1.15);}
+.pf-card-copy h3 {font-size:clamp(1.2rem,1.7vw,1.7rem);}
+.pf-detail-demo-layout .case-recruit-mock,.pf-detail-art .case-recruit-mock {width:100%;min-width:0;}
+@media(max-width:950px){.pf-page .pf-project-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:650px){.pf-page .pf-project-grid{grid-template-columns:1fr;}.pf-project-cover{min-height:145px;}}
+
+.pf-project-cover{display:block;padding:11px;min-height:0}
+.pf-project-cover>.ml-preview{width:100%;transition:transform .2s}
+.pf-project-cover>small{margin-top:9px;justify-content:space-between}
+.pf-project-cover:hover>.ml-preview{transform:translateY(-2px)}
+.pf-detail-demo-layout{grid-template-columns:minmax(0,1.5fr) minmax(0,.65fr)}
+.case-live-demo .ml-lab{max-width:1050px}
+@media(max-width:950px){.pf-detail-demo-layout{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.pf-project-cover>.ml-preview{transition:none}.pf-project-cover:hover>.ml-preview{transform:none}}
+
+.pf-demo-mode{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 19px}.pf-demo-mode button{font:inherit;font-size:.83rem;font-weight:650;border:1px solid #357e84;border-radius:7px;color:#174c56;background:#fff;padding:10px 14px;cursor:pointer}.pf-demo-mode button[aria-pressed=true]{background:#123d49;color:#fff}.pf-demo-mode button:focus-visible{outline:3px solid #65cfc6;outline-offset:3px}
+
+/* Product portfolio: actual interface compositions, not generic icon tiles. */
+.pf-project-cover{padding:17px 14px 12px}
+.pf-project-cover-control{background:radial-gradient(ellipse at 75% 0%,#286174,#102a3b 65%,#091823)}
+.pf-project-cover-recruit{background:radial-gradient(ellipse at 75% 0%,#41795a,#173b2a 65%,#0a211a)}
+.pf-project-cover-ventas{background:radial-gradient(ellipse at 75% 0%,#8b6233,#48331d 65%,#251b11)}
+.pf-project-cover:hover{filter:none}
+.pf-project-cover>small{font-size:.62rem;letter-spacing:.09em;margin-top:12px}
+.pf-card-copy h3{font-weight:700;letter-spacing:-.035em}
+.pf-card-copy>a{border-bottom:0;background:#e5f1ef;padding:9px 13px;border-radius:6px;transition:background .18s}
+.pf-card-copy>a:hover{background:#d1e9e6}
+.pf-detail-art .ml-preview{max-width:680px}
+.pf-detail-art .ml-preview-body,.pf-detail-art .ml-recruit-preview,.pf-detail-art .ml-sales-preview{min-height:260px}
+.pf-detail-demo-layout{align-items:start}
+@media(max-width:650px){.pf-project-cover{padding:11px}.pf-detail-art .ml-preview-body,.pf-detail-art .ml-recruit-preview,.pf-detail-art .ml-sales-preview{min-height:180px}}
+
+.pf-card-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:auto}.pf-card-actions a{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;font-weight:700;color:#0b5a65;border-radius:6px;padding:9px 11px;background:#e5f1ef}.pf-card-actions a:hover{background:#d1e9e6}.pf-card-actions a:last-child{background:transparent;border:1px solid #aacdca}.pf-card-actions a:focus-visible{outline:3px solid #65cfc6;outline-offset:2px}

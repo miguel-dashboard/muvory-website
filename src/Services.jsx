@@ -15,12 +15,13 @@ export function ServiceHeader(){
       <nav id="sv-main-nav" className={open?'sv-nav sv-nav-open':'sv-nav'} aria-label="Navegación de servicios">
         <a href="/" onClick={()=>setOpen(false)}>Inicio</a>
         <a href="/servicios" onClick={()=>setOpen(false)}>Servicios</a>
-        <a href="/sectores" onClick={()=>setOpen(false)}>Sectores reales</a>
+        <a href="/sectores" onClick={()=>setOpen(false)}>Sectores</a>
         <a href="/portafolio" onClick={()=>setOpen(false)}>Proyectos</a>
         <a href="/experience" onClick={()=>setOpen(false)}>Experiencia</a>
-        <a href="/#nosotros" onClick={()=>setOpen(false)}>Nosotros</a>
+        <a href="/inteligencia-artificial" onClick={()=>setOpen(false)}>Inteligencia artificial</a>
+        <a href="/nosotros" onClick={()=>setOpen(false)}>Nosotros</a>
       </nav>
-      <a className="sv-header-cta" href="/#contacto">Hablemos <Icon name="arrowUp" size={16}/></a>
+      <a className="sv-header-cta" href="/contacto">Hablemos <Icon name="arrowUp" size={16}/></a>
     </div>
   </header>;
 }
@@ -77,7 +78,7 @@ function ServicesHome(){
       <section className="sv-hero sv-hero-index">
         <div className="sv-shell sv-index-hero-layout">
           <div className="sv-index-copy"><span className="sv-kicker"><span/>MUVORY / SERVICIOS</span><h1>Sistemas y automatización <em>para trabajar mejor.</em></h1><p>Construimos software a medida, automatizaciones e inteligencia artificial para reducir tareas manuales, organizar información y dar más control a tu operación.</p>
-          <div className="sv-hero-actions"><a className="sv-primary" href="#explorar">Explorar servicios <Icon name="arrow" size={18}/></a><a className="sv-secondary" href="/#contacto">Cuéntanos tu idea <Icon name="arrowUp" size={17}/></a></div>
+          <div className="sv-hero-actions"><a className="sv-primary" href="#explorar">Explorar servicios <Icon name="arrow" size={18}/></a><a className="sv-secondary" href="/contacto">Cuéntanos tu idea <Icon name="arrowUp" size={17}/></a></div>
           </div>
           <StudioPreview/>
         </div>
@@ -88,7 +89,7 @@ function ServicesHome(){
         <div className="sv-showcase">{services.map(service=><ServiceCard key={service.slug} service={service}/>)}</div>
         <div className="sv-sectors-invite"><div><span>EXPERIENCIA EN EL MUNDO REAL</span><strong>Tres sectores donde conocemos los problemas desde dentro.</strong><p>Abogados, transporte y minimarkets: experiencia práctica que usamos para diseñar sistemas más útiles y propuestas concretas.</p></div><a href="/sectores">Conocer nuestro enfoque <Icon name="arrow" size={18}/></a></div>
       </div></section>
-      <section className="sv-final-cta"><div className="sv-shell"><span className="sv-kicker">PROYECTOS CON IDENTIDAD PROPIA</span><h2>Tu problema merece una solución a medida.</h2><p>Podemos explorar tu idea desde cero. Lo importante es entender el problema antes de elegir una tecnología.</p><a className="sv-primary" href="/#contacto">Hablemos de tu desafío <Icon name="arrow" size={17}/></a></div></section>
+      <section className="sv-final-cta"><div className="sv-shell"><span className="sv-kicker">PROYECTOS CON IDENTIDAD PROPIA</span><h2>Tu problema merece una solución a medida.</h2><p>Podemos explorar tu idea desde cero. Lo importante es entender el problema antes de elegir una tecnología.</p><a className="sv-primary" href="/contacto">Hablemos de tu desafío <Icon name="arrow" size={17}/></a></div></section>
     </main>
     <ServiceFooter/>
   </div>;
@@ -101,7 +102,7 @@ function ServiceDetail({service}){
       <section className="sv-hero sv-detail-hero"><div className="sv-shell">
         <a className="sv-back" href="/servicios"><Icon name="arrow" size={17}/> Todos los servicios</a>
         <div className="sv-detail-hero-grid">
-          <div><span className="sv-kicker">{service.index} / {service.eyebrow}</span><h1>{service.title}</h1><p>{service.lead}</p><div className="sv-hero-actions"><a href="/#contacto" className="sv-primary">Cuéntanos tu proyecto <Icon name="arrow" size={18}/></a><a href="#laboratorio" className="sv-secondary">Ver ejemplo <Icon name="arrow" size={17}/></a></div></div>
+          <div><span className="sv-kicker">{service.index} / {service.eyebrow}</span><h1>{service.title}</h1><p>{service.lead}</p><div className="sv-hero-actions"><a href="/contacto" className="sv-primary">Cuéntanos tu proyecto <Icon name="arrow" size={18}/></a><a href="#laboratorio" className="sv-secondary">Ver ejemplo <Icon name="arrow" size={17}/></a></div></div>
           <div className="sv-detail-art"><ServiceVisual service={service}/></div>
         </div>
       </div></section>
@@ -117,7 +118,7 @@ function ServiceDetail({service}){
         </div><InteractivePreview service={service}/></div>
       </div></section>
       <section className="sv-next-services"><div className="sv-shell"><span className="sv-kicker">CONTINÚA EXPLORANDO</span><h2>Otras posibilidades para tu proyecto.</h2><div>{services.filter(item=>item.slug!==service.slug).slice(0,3).map(item=><a href={'/servicios/'+item.slug} key={item.slug}><Icon name={item.icon} size={20}/><span>{item.name}</span><Icon name="arrowUp" size={16}/></a>)}</div></div></section>
-      <section className="sv-final-cta"><div className="sv-shell"><span className="sv-kicker">DEMO ILUSTRATIVA · SOLUCIÓN REAL A DEFINIR</span><h2>Conversemos sobre lo que necesitas resolver.</h2><p>Cuéntanos qué necesitas. Revisaremos el contexto, el alcance y una posible ruta de trabajo.</p><a className="sv-primary" href="/#contacto">Conversar con MUVORY <Icon name="arrow" size={17}/></a></div></section>
+      <section className="sv-final-cta"><div className="sv-shell"><span className="sv-kicker">DEMO ILUSTRATIVA · SOLUCIÓN REAL A DEFINIR</span><h2>Conversemos sobre lo que necesitas resolver.</h2><p>Cuéntanos qué necesitas. Revisaremos el contexto, el alcance y una posible ruta de trabajo.</p><a className="sv-primary" href="/contacto">Conversar con MUVORY <Icon name="arrow" size={17}/></a></div></section>
     </main>
     <ServiceFooter/>
   </div>;

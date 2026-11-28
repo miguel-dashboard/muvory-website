@@ -186,3 +186,9 @@
 @media(max-width:600px) {
   .hero-cinematic .hero-copy h1 { font-size:clamp(2.2rem,9.2vw,2.95rem);line-height:1.16; }
 }
+
+/* Lightweight perspective: keeps the original SVG and all service links. */
+.cinema-visual-frame{perspective:1200px;--nexus-x:0deg;--nexus-y:0deg}
+.cinema-depth-layer{display:grid;place-items:center;width:100%;min-width:0;position:relative;z-index:1;transform:rotateX(var(--nexus-x)) rotateY(var(--nexus-y));transition:transform .22s ease-out;pointer-events:none}
+.cinema-motion-paused .cinema-depth-layer{transform:none;transition:none}
+@media(prefers-reduced-motion:reduce){.cinema-depth-layer{transform:none;transition:none}}

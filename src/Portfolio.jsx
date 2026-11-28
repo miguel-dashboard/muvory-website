@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import Icon from './Icon.jsx';
+import { ProductPreview, ProductLab } from './ProductLab.jsx';
+import ProductFilm from './ProductFilm.jsx';
 import { ServiceHeader, ServiceFooter } from './Services.jsx';
 import ControlTowerCase from './ControlTowerCase.jsx';
 import './portfolio.css';
@@ -30,7 +32,7 @@ export const projects = [
     name:'MR&B Recruit', category:'Landing y reclutamiento',
     mark:'RECRUIT',
     headline:'De una visita a una postulación organizada.',
-    description:'Una landing de captación de transportistas conectada conceptualmente al flujo de reclutamiento: vehículo, comuna, disponibilidad y operación de interés.',
+    description:'Captación y gestión de postulantes: desde una landing de transportistas hasta un pipeline de revisión y seguimiento.',
     problem:'Los interesados llegan por diferentes canales y los datos pueden quedar incompletos.',
     solution:'Un punto de entrada digital para estructurar las postulaciones y facilitar su revisión.',
     points:['Formulario de postulación','Selección de operación y vehículo','Información organizada para seguimiento'],
@@ -122,26 +124,18 @@ export function ProjectMedia({project,compact=false}){
 
 function ProjectCard({project}){
   return <article className={'pf-card pf-tone-'+project.accent}>
-    <div className="pf-card-media-link"><ProjectMedia project={project} compact/></div>
+    <a className={'pf-project-cover pf-project-cover-'+project.type} href={project.href} aria-label={'Explorar '+project.name}>
+      <ProductPreview type={project.type}/><small>VISTA ILUSTRATIVA <Icon name="arrowUp" size={15}/></small>
+    </a>
     <div className="pf-card-copy">
-      <span>{project.number} / {project.label}</span>
-      <h3>{project.name}</h3>
-      <p>{project.description}</p>
-      <a href={project.href}>Explorar el proyecto <Icon name="arrow" size={17}/></a>
+      <h3>{project.name}</h3><p>{project.description}</p>
+      <div className="pf-card-actions"><a href={project.href}>Explorar el proyecto <Icon name="arrow" size={17}/></a><a href={project.href+'#film'}><span aria-hidden="true">▶</span> Ver recorrido</a></div>
     </div>
   </article>;
 }
 
 export function PortfolioTeaser(){
- return <section className="pf-teaser" id="portafolio">
-   <div className="container">
-     <div className="pf-teaser-heading"><div><span>PROYECTOS Y DESARROLLOS</span><h2>Menos promesas.<br/><em>Más soluciones que mostrar.</em></h2></div><p>Dos desarrollos de MR&B y un sistema comercial cuyo video incorporaremos después de revisar su contenido. Explora ejemplos interactivos sin salir de MUVORY.</p></div>
-     <div className="pf-teaser-grid">
-       {projects.slice(0,2).map(project=><ProjectCard key={project.slug} project={project}/>)}
-     </div>
-     <a className="pf-teaser-all" href="/portafolio">Ver el portafolio completo <Icon name="arrow" size={18}/></a>
-   </div>
- </section>;
+  return <section className="home-projects" id="portafolio"><div className="container"><div className="home-section-head"><div><p className="section-kicker">PORTAFOLIO</p><h2>Del problema real <em>a la solución digital.</em></h2></div><a href="/portafolio">Ver todos los proyectos <Icon name="arrow" size={17}/></a></div><div className="pf-project-grid">{projects.map(project=><ProjectCard key={project.slug} project={project}/>)}</div></div></section>;
 }
 
 function PortfolioHome(){
@@ -155,17 +149,18 @@ function PortfolioHome(){
        <a href="#proyectos">Conocer los proyectos <Icon name="arrow" size={17}/></a>
      </div></section>
      <section className="pf-index" id="proyectos"><div className="sv-shell">
-       <div className="pf-index-intro"><span>PROYECTOS SELECCIONADOS</span><p>Las vistas interactivas son recreaciones con información ficticia. Los videos reales se incorporarán después de revisar y autorizar su publicación.</p></div>
+       <div className="pf-index-intro"><span>PROYECTOS SELECCIONADOS</span><p>Elige un proyecto para conocer su propósito y recorrer su demostración. Las simulaciones se distinguen del material real.</p></div>
        <div className="pf-project-grid">{projects.map(project=><ProjectCard key={project.slug} project={project}/>)}</div>
        <div className="pf-source-note"><Icon name="check" size={18}/>Distinguimos lo desarrollado, los prototipos y el material audiovisual pendiente. No publicamos información privada de clientes ni operaciones.</div>
      </div></section>
-     <section className="pf-end-cta"><div className="sv-shell"><div><span>HABLEMOS DE TU OPERACIÓN</span><h2>¿Qué parte de tu trabajo debería funcionar mejor?</h2></div><a href="/#contacto">Diseñemos tu solución <Icon name="arrow" size={17}/></a></div></section>
+     <section className="pf-end-cta"><div className="sv-shell"><div><span>HABLEMOS DE TU OPERACIÓN</span><h2>¿Qué parte de tu trabajo debería funcionar mejor?</h2></div><a href="/contacto">Diseñemos tu solución <Icon name="arrow" size={17}/></a></div></section>
    </main><ServiceFooter/>
  </div>;
 }
 
 function ProjectDetail({project}){
- useEffect(()=>{document.title=project.name+' · Proyecto | MUVORY';window.scrollTo(0,0);},[project.slug]);
+ const [mode,setMode]=useState(()=>window.location.hash==='#film'?'tour':'lab');
+ useEffect(()=>{document.title=project.name+' · Proyecto | MUVORY';const anchor=window.location.hash.slice(1);if(anchor==='film'||anchor==='demostracion'){const frame=window.requestAnimationFrame(()=>document.getElementById(anchor)?.scrollIntoView());return ()=>window.cancelAnimationFrame(frame);}window.scrollTo(0,0);},[project.slug]);
  return <div className={'sv-site pf-page pf-detail pf-detail-'+project.accent}>
    <a className="skip-link" href="#pf-main">Saltar al contenido</a><ServiceHeader/>
    <main id="pf-main">
@@ -175,30 +170,33 @@ function ProjectDetail({project}){
          <span>{project.number} / {project.label}</span>
          <h1>{project.headline}</h1>
          <p>{project.description}</p>
-         <div className="pf-detail-actions"><a href="#demostracion">Explorar recorrido <Icon name="arrow" size={17}/></a><a href="/#contacto">Hablemos de tu proyecto <Icon name="arrow" size={17}/></a></div>
-       </div><div className="pf-detail-art"><ProjectMedia project={project}/></div></div>
+         <div className="pf-detail-actions"><a href="#demostracion" onClick={()=>setMode('lab')}>Probar sistema <Icon name="arrow" size={17}/></a><a href="#film" onClick={()=>setMode('tour')}>Ver recorrido <Icon name="arrow" size={17}/></a><a href="/contacto">Hablemos de tu proyecto <Icon name="arrow" size={17}/></a></div>
+       </div><div className="pf-detail-art"><ProductPreview type={project.type}/></div></div>
      </div></section>
      <section className="pf-detail-story"><div className="sv-shell pf-story-grid">
        <div><span>EL PROBLEMA</span><h2>{project.problem}</h2></div>
        <div><span>NUESTRA RESPUESTA</span><p>{project.solution}</p><p>{project.detail}</p></div>
      </div></section>
      <section className="pf-detail-flow" id="demostracion"><div className="sv-shell">
-       <div className="pf-flow-head"><span>CONOCE EL RECORRIDO</span><h2>Descubre cómo funciona <em>la idea.</em></h2><p>Selecciona los pasos o pulsa reproducir. Este recorrido es interactivo; no es una grabación real del sistema ni almacena datos.</p></div>
-       <div className="pf-detail-demo-layout"><ProjectMedia project={project}/>
+       <div className="pf-flow-head"><span>CONOCE EL RECORRIDO</span><h2>Descubre cómo funciona <em>la idea.</em></h2><p>Prueba las funciones con datos ficticios. Esta demo interactiva no es una grabación real ni almacena datos fuera de la sesión.</p></div>
+       {portfolioVideos[project.type] && <ProjectMedia project={project}/>}
+       <div className="pf-demo-mode" role="group" aria-label="Modo de demostración"><button type="button" aria-pressed={mode==='lab'} onClick={()=>setMode('lab')}>Probar sistema</button><button type="button" aria-pressed={mode==='tour'} onClick={()=>setMode('tour')}>Recorrido animado</button></div>
+       <div id="film" className="mf-project-section">{mode==='tour'&&<ProductFilm type={project.type} onTry={()=>{setMode('lab');document.getElementById('demostracion')?.scrollIntoView();}}/>}</div>
+       {mode==='lab'&&<div className="pf-detail-demo-layout"><ProductLab type={project.type}/>
          <div className="pf-flow-copy"><span>FUNCIONES QUE ILUSTRAMOS</span><ul>{project.points.map((point,i)=><li key={point}><small>0{i+1}</small>{point}</li>)}</ul>
            <p>{project.type==='ventas'?'La grabación del sistema de notas de venta se incorporará únicamente tras revisar y autorizar el video proporcionado por el equipo.':'Podemos adaptar este enfoque a otras necesidades, sistemas y procesos.'}</p>
            {project.type==='recruit'&&<a href="/casos/control-tower#recorrido">Ver también Control Tower <Icon name="arrow" size={17}/></a>}
          </div>
-       </div>
+       </div>}
      </div></section>
-     <section className="pf-end-cta"><div className="sv-shell"><div><span>DESARROLLOS A MEDIDA</span><h2>Podemos estudiar tu proceso y construir una herramienta propia.</h2></div><a href="/#contacto">Solicitar conversación <Icon name="arrow" size={17}/></a></div></section>
+     <section className="pf-end-cta"><div className="sv-shell"><div><span>DESARROLLOS A MEDIDA</span><h2>Podemos estudiar tu proceso y construir una herramienta propia.</h2></div><a href="/contacto">Solicitar conversación <Icon name="arrow" size={17}/></a></div></section>
    </main><ServiceFooter/>
  </div>;
 }
 
 export default function Portfolio({slug}){
  if(!slug)return <PortfolioHome/>;
- if(slug==='control-tower')return <ControlTowerCase/>;
+ if(slug==='control-tower')return <ControlTowerCase video={portfolioVideos.control}/>;
  const project=getProject(slug);
  if(!project)return <div className="sv-site pf-page"><ServiceHeader/><main className="sv-shell pf-not-found"><h1>Proyecto no encontrado</h1><a href="/portafolio">Volver al portafolio</a></main><ServiceFooter/></div>;
  return <ProjectDetail project={project}/>;
