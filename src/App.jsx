@@ -8,6 +8,7 @@ import SolutionConfigurator from './SolutionConfigurator.jsx';
 import ContactForm from './ContactForm.jsx';
 import CommercialAssistant from './CommercialAssistant.jsx';
 import { PortfolioTeaser } from './Portfolio.jsx';
+import { services } from './services-data.js';
 import './home-hub.css';
 
 const methodology = [
@@ -73,7 +74,7 @@ function App() {
           <div className="hero-copy">
             <p className="eyebrow"><span aria-hidden="true" />SOFTWARE · AUTOMATIZACIÓN · IA · PLATAFORMAS</p>
             <h1>Tecnología que entiende <span>tu negocio.</span></h1>
-            <p className="hero-description">Desarrollamos sistemas a medida, automatizaciones e inteligencia artificial para resolver necesidades reales.</p>
+            <p className="hero-description">Desarrollamos software, automatizaciones e inteligencia artificial para resolver desafíos de operación, gestión y crecimiento.</p>
             <div className="hero-actions">
               <a className="button button-primary" href="/portafolio">Explorar nuestros proyectos <Icon name="arrow" size={17}/></a>
               <a className="button button-outline" href="/servicios">Conocer servicios</a>
@@ -87,12 +88,18 @@ function App() {
         <div className="container">
           <div className="home-directory-grid">
             <a className="home-door" href="/servicios"><span className="home-door-icon"><Icon name="layers" size={27}/></span><div><h2>Qué ofrecemos</h2><p>Software, automatización, IA, datos y plataformas.</p></div><Icon name="arrowUp" size={20}/></a>
-            <PortfolioTeaser />
+            <a className="home-door" href="/portafolio"><span className="home-door-icon"><Icon name="chart" size={27}/></span><div><h2>Nuestro trabajo</h2><p>Explora los sistemas que desarrollamos.</p></div><Icon name="arrowUp" size={20}/></a>
             <a className="home-door" href="/experience"><span className="home-door-icon"><Icon name="spark" size={27}/></span><div><h2>Experimenta</h2><p>Prueba nuestras demostraciones interactivas.</p></div><Icon name="arrowUp" size={20}/></a>
           </div>
           <div className="home-secondary-links"><a href="/sectores">Sectores y soluciones <Icon name="arrow" size={15}/></a><a href="/inteligencia-artificial">Inteligencia artificial <Icon name="arrow" size={15}/></a><a href="/nosotros">Conoce MUVORY <Icon name="arrow" size={15}/></a></div>
         </div>
       </section>
+      <section className="home-offers"><div className="container">
+        <div className="home-section-head"><div><p className="section-kicker">NUESTRAS ESPECIALIDADES</p><h2>Qué podemos <em>construir.</em></h2></div><a href="/servicios">Todos los servicios <Icon name="arrow" size={17}/></a></div>
+        <div className="home-offers-grid">{services.map((service,i)=><a key={service.slug} href={'/servicios/'+service.slug}><Icon name={service.icon} size={24}/><h3>{service.name}</h3><p>{['Sistemas que se adaptan a tu operación.','Conecta tareas y elimina pasos manuales.','Asistentes y análisis para trabajar mejor.','Convierte información en decisiones.','Experiencias digitales para tu negocio.'][i]}</p><Icon name="arrowUp" size={16}/></a>)}</div>
+      </div></section>
+      <PortfolioTeaser />
+      <section className="home-difference"><div className="container"><div><p className="section-kicker">NUESTRA FORMA DE TRABAJAR</p><h2>No solo desarrollamos. <em>Entendemos la operación.</em></h2><p>Combinamos experiencia práctica con ingeniería de software para resolver problemas concretos.</p></div><div className="home-difference-links"><a href="/nosotros">Cómo trabajamos <Icon name="arrow" size={17}/></a><a href="/sectores">Soluciones por sector <Icon name="arrow" size={17}/></a><a href="/experience">Prueba nuestra tecnología <Icon name="arrow" size={17}/></a></div></div></section>
       <section className="home-contact-strip"><div className="container"><div><h2>¿Qué te gustaría construir?</h2><p>Conversemos sobre tu proyecto.</p></div><a className="button button-primary" href="/contacto">Hablemos <Icon name="arrow" size={17}/></a></div></section>
       </>}
       {isAI && <section className="section section-agents section-anchor" id="agentes"><div className="container"><a className="home-back" href="/">← Inicio</a><AIAssistantShowcase /><a className="button button-primary" href="/contacto">Hablemos de tu solución <Icon name="arrow" size={17}/></a></div></section>}
