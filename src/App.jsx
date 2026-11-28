@@ -62,13 +62,13 @@ function App() {
         <div className="container hero-grid">
           <div className="hero-copy">
             <p className="eyebrow"><span aria-hidden="true" />SOFTWARE · AUTOMATIZACIÓN · IA · PLATAFORMAS</p>
-            <h1>Ideas ambiciosas.<br/><span>Tecnología que las hace posibles.</span></h1>
-            <p className="hero-description">Diseñamos software, conectamos procesos y creamos experiencias digitales que transforman necesidades reales en herramientas con propósito.</p>
+            <h1>Tecnología que entiende <span>tu negocio.</span></h1>
+            <p className="hero-description">Convertimos los problemas cotidianos de una operación en sistemas a medida, automatizaciones y herramientas con IA. Conocemos el trabajo desde dentro y diseñamos soluciones que realmente se puedan usar.</p>
             <div className="hero-actions">
-              <a className="button button-primary" href="/servicios">Descubrir servicios <Icon name="arrow" size={17}/></a>
-              <a className="button button-outline" href="#contacto">Cuéntanos tu proyecto</a>
+              <a className="button button-primary" href="/sectores">Explorar soluciones reales <Icon name="arrow" size={17}/></a>
+              <a className="button button-outline" href="#contacto">Cuéntanos qué necesitas resolver</a>
             </div>
-            <p className="hero-note">Nacido desde la operación. Construido para resolver.</p>
+            <p className="hero-note">Experiencia cercana en logística, gestión jurídica y comercio. Tecnología para muchos más sectores.</p>
           </div>
           <CinematicHero />
         </div>
@@ -78,8 +78,8 @@ function App() {
       <section className="section section-solutions section-anchor" id="soluciones">
         <div className="container">
           <div className="section-heading">
-            <div><p className="section-kicker">SERVICIOS CON IDENTIDAD PROPIA</p><h2>Un desafío distinto.<br /><em>Una solución propia.</em></h2></div>
-            <p>Elige lo que necesitas y entra en una experiencia creada para ese servicio. Cada opción tiene su propia página, enfoque y demostración.</p>
+            <div><p className="section-kicker">QUÉ PODEMOS DESARROLLAR</p><h2>Soluciones que simplifican <em>el trabajo real.</em></h2></div>
+            <p>Sistemas a medida, automatización, inteligencia artificial y plataformas digitales. Primero entendemos tu problema; después definimos qué conviene construir.</p>
           </div>
           <ServicesTeaser />
           <div className="experience-invite">
@@ -97,8 +97,8 @@ function App() {
         <span id="casos" className="anchor-alias" aria-hidden="true" /><span id="sectores" className="anchor-alias" aria-hidden="true" />
         <div className="container">
           <div className="section-heading">
-            <div><p className="section-kicker">NO PARTIMOS DE UNA PLANTILLA</p><h2>Conocimiento real.<br/><em>Software con sentido.</em></h2></div>
-            <p>Conocemos de cerca el trabajo jurídico, la logística de última milla y la operación de un minimarket. Esa experiencia cambia cómo diseñamos soluciones.</p>
+            <div><p className="section-kicker">NUESTRA MAYOR DIFERENCIA</p><h2>Experiencia en el negocio. <em>Soluciones desde dentro.</em></h2></div>
+            <p>Conocemos los problemas de estudios jurídicos, transporte y minimarkets. Los convertimos en propuestas de software prácticas, medibles y adaptadas a cada operación.</p>
           </div>
           <GroundedSectorTeaser />
         </div>
@@ -109,8 +109,8 @@ function App() {
       <section className="section section-about section-anchor" id="nosotros">
         <div className="container">
           <div className="about-intro">
-            <div><p className="section-kicker">SOMOS MUVORY TECHNOLOGIES</p><h2>La tecnología tiene sentido<br /><em>cuando te sirve.</em></h2></div>
-            <div className="about-copy"><p>Detrás de MUVORY hay experiencia directa en negocios y operaciones: conocemos lo que ocurre cuando una planilla no cuadra, una ruta falla o una tarea urgente se pierde entre mensajes.</p><p>Unimos ese conocimiento práctico con desarrollo de software para crear sistemas que respondan al trabajo real de las personas. Empezamos con el problema, no con una lista de tecnologías.</p></div>
+            <div><p className="section-kicker">POR QUÉ MUVORY</p><h2>Primero entendemos <em>tu operación.</em></h2></div>
+            <div className="about-copy"><p>Conocemos los problemas cotidianos de gestionar negocios: diferencias de inventario, retrasos de distribución y tareas que se pierden entre correos y planillas.</p><p>Combinamos esa experiencia práctica con ingeniería de software. Trabajamos con un diagnóstico, una propuesta de alcance claro y avances comprobables. Sin venderte funciones que no necesitas.</p></div>
           </div>
           <div className="principles"><span><Icon name="layers" size={20} /> Diseño y desarrollo a medida</span><span><Icon name="message" size={20} /> Comunicación clara</span><span><Icon name="workflow" size={20} /> Soluciones que evolucionan</span></div>
           <div className="methodology section-anchor" id="metodologia">
