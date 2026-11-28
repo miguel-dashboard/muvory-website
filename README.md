@@ -114,3 +114,47 @@ Abrir la vista previa en **computador y teléfono**, probar cada ruta directa,
 el menú móvil, los vínculos a contacto, la navegación de demos, el botón de
 pausar el movimiento y `/experience`. Verificar que los formularios activos
 conserven su funcionamiento. Ejecutar `npm test` y `npm run build`.
+
+## Diferenciación por conocimiento del terreno — versión de prueba
+
+La propuesta incorpora una sección y rutas independientes centradas en tres áreas
+donde MUVORY dispone de conocimiento cercano a la operación:
+
+- `/sectores`: portada editorial con tres áreas, fotos **referenciales** y acceso
+  a subpáginas.
+- `/sectores/juridico`: seguimiento documental, expedientes, vencimientos y
+  tareas; estilo **cálido / papel / cobre**. No sustituye asesoría profesional.
+- `/sectores/logistica`: procesos reales de última milla, incidencias, bodega,
+  rutas y liquidaciones; estilo **azul oscuro / ámbar**.
+- `/sectores/comercio`: minimarket, stock, proveedores, reposición, caja
+  y movimientos; estilo **verde / salvia**.
+
+Las tres páginas tienen problemas operativos concretos y un ejemplo interactivo,
+siempre señalado como simulación sin datos reales. Se diferencian visualmente
+del catálogo genérico. Además, cada subpágina de servicios recibe una paleta
+distinta (software azul, automatización clara, IA violeta, datos azul eléctrico,
+plataformas beige).
+
+### Fotografías y material verídico
+
+Las tres fotos iniciales proceden de **Unsplash** y están identificadas en la
+interfaz como **imágenes referenciales**, con crédito y vínculo a la imagen.
+Licencia: https://unsplash.com/license
+
+- Jurídico: Shutter Speed, `rz_0EzMAmis`.
+- Transporte: Claudio Schwarz, `a85IYeAXgxU`.
+- Minimarket: Nathália Rosa, `rWMIbqmOxrY`.
+
+Las fotos **no representan operaciones, clientes o empleados de MUVORY**.
+Antes de publicar la versión definitiva conviene reemplazarlas por fotografías
+propias y autorizadas de los negocios correspondientes. Para videos se requiere
+material auténtico facilitado por el propietario, con permiso de publicación
+y sin datos personales visibles. No se incorporó metraje de terceros como prueba
+de trabajo real.
+
+### Validación de publicación
+
+Pruebas automáticas para rutas, textos de posicionamiento y créditos;
+comprobar visualmente escritorio/móvil, imágenes, estados de simulaciones,
+navegación hacia el formulario, contraste en paletas claras y oscuras.
+Mantener la rama sin fusionar mientras el propietario evalúa el diseño.
