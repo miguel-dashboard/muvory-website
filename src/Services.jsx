@@ -16,6 +16,7 @@ export function ServiceHeader(){
         <a href="/" onClick={()=>setOpen(false)}>Inicio</a>
         <a href="/servicios" onClick={()=>setOpen(false)}>Servicios</a>
         <a href="/sectores" onClick={()=>setOpen(false)}>Sectores reales</a>
+        <a href="/portafolio" onClick={()=>setOpen(false)}>Proyectos</a>
         <a href="/experience" onClick={()=>setOpen(false)}>Experiencia</a>
         <a href="/#nosotros" onClick={()=>setOpen(false)}>Nosotros</a>
       </nav>
@@ -122,7 +123,7 @@ function ServiceDetail({service}){
   </div>;
 }
 export function ServiceFooter(){
-  return <footer className="sv-footer"><div className="sv-shell"><Brand footer href="/"/><p>Software · Automatización · IA · Experiencias digitales</p><a href="mailto:contacto@muvory.cl">contacto@muvory.cl</a><span>© {new Date().getFullYear()} MUVORY Technologies</span></div></footer>;
+  return <footer className="sv-footer"><div className="sv-shell"><Brand footer href="/"/><p>Software · Automatización · IA · Experiencias digitales</p><a href="/portafolio">Proyectos desarrollados</a><a href="mailto:contacto@muvory.cl">contacto@muvory.cl</a><span>© {new Date().getFullYear()} MUVORY Technologies</span></div></footer>;
 }
 export default function Services({slug}){
   const service=slug?getService(slug):null;
