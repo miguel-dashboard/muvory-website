@@ -94,7 +94,7 @@ function ServicesHome(){
 }
 function ServiceDetail({service}){
   useEffect(()=>{document.title=service.name+' | MUVORY Technologies';},[service.slug]);
-  return <div className="sv-site">
+  return <div className={'sv-site sv-service-tone-'+service.slug}>
     <ServiceHeader/>
     <main id="sv-content">
       <section className="sv-hero sv-detail-hero"><div className="sv-shell">
