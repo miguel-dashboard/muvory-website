@@ -73,3 +73,25 @@
 @media(max-width:800px){.home-projects .pf-project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.home-difference .container{grid-template-columns:1fr}.home-difference-links{max-width:480px}}
 @media(max-width:650px){.muvory-home-hub .container{width:calc(100% - 32px)}.muvory-home-hub .hero-cinematic .hero-grid{padding-block:22px}.muvory-home-hub .cinema-visual{max-width:350px}.muvory-home-hub .cinema-visual-frame{max-height:275px}.home-offers-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.home-projects .pf-project-grid{grid-template-columns:1fr}.home-section-head{align-items:flex-start;flex-direction:column;gap:12px}}
 @media(prefers-reduced-motion:reduce){.home-offers-grid>a{transition:none}}
+
+/* Premium home finish; do not alter navigation or page structure. */
+.muvory-home-hub .hero-cinematic{background:radial-gradient(ellipse at 76% 46%,#144653 0%,#0b2534 33%,#081722 74%)}
+.muvory-home-hub .hero-cinematic .hero-copy h1{font-weight:650;letter-spacing:-.043em;text-wrap:balance}
+.muvory-home-hub .hero-description{color:#c2d7de;font-size:clamp(.98rem,1.15vw,1.15rem);line-height:1.75}
+.muvory-home-hub .cinema-visual-frame{max-height:465px;aspect-ratio:1.28}
+.muvory-home-hub .cinema-nexus-svg{filter:drop-shadow(0 10px 30px #5dcfc524)}
+.home-directory{background:linear-gradient(110deg,#0d2632,#0b1e29);padding-block:28px}
+.home-directory-grid{gap:15px}
+.home-door{background:linear-gradient(135deg,#1b3a45,#102832 75%);border-color:#46616a;min-height:114px;box-shadow:0 7px 20px #0002;position:relative;overflow:hidden}
+.home-door:hover{background:linear-gradient(135deg,#244e59,#16313e 75%);box-shadow:0 10px 24px #0003}
+.home-door-icon{background:linear-gradient(145deg,#28505b,#173641);border:1px solid #54858b50}
+.home-door h2{font-weight:650;letter-spacing:-.025em}
+.home-offers-grid>a{background:linear-gradient(145deg,#16323e,#0d222d 85%);padding:20px 17px 24px;border-color:#34515e;box-shadow:0 8px 22px #0002}
+.home-offers-grid>a:hover{background:linear-gradient(145deg,#214955,#102e3a 85%)}
+.home-offers-grid>a>svg:first-child{box-sizing:content-box;background:#20434d;border:1px solid #6bd8d526;border-radius:8px;padding:8px}
+.home-section-head h2{font-weight:650;letter-spacing:-.04em}
+.home-projects{background:linear-gradient(145deg,#f2f7f6,#e6f0ef)}
+.home-projects .pf-card{border-radius:15px;box-shadow:0 12px 28px #183e4213}
+.home-difference{background:radial-gradient(ellipse at 20% 0%,#153642,#0a1c26 75%)}
+.home-contact-strip{background:#0a1a24}
+@media(max-width:650px){.muvory-home-hub .cinema-visual-frame{max-height:275px}.home-door{min-height:85px}.home-offers-grid>a{padding:15px 11px 18px}}
