@@ -177,7 +177,8 @@ function ProjectDetail({project}){
      </div></section>
      <section className="pf-detail-flow" id="demostracion"><div className="sv-shell">
        <div className="pf-flow-head"><span>CONOCE EL RECORRIDO</span><h2>Descubre cómo funciona <em>la idea.</em></h2><p>Selecciona los pasos o pulsa reproducir. Este recorrido es interactivo; no es una grabación real del sistema ni almacena datos.</p></div>
-       {project.type==='recruit' && portfolioVideos.recruit && <ProjectMedia project={project}/>}\n       <div className="pf-detail-demo-layout">{project.type==='recruit'?<RecruitLandingMock/>:<ProjectMedia project={project}/>}
+       {project.type==='recruit' && portfolioVideos.recruit && <ProjectMedia project={project}/>}
+       <div className="pf-detail-demo-layout">{project.type==='recruit'?<RecruitLandingMock/>:<ProjectMedia project={project}/>}
          <div className="pf-flow-copy"><span>FUNCIONES QUE ILUSTRAMOS</span><ul>{project.points.map((point,i)=><li key={point}><small>0{i+1}</small>{point}</li>)}</ul>
            <p>{project.type==='ventas'?'La grabación del sistema de notas de venta se incorporará únicamente tras revisar y autorizar el video proporcionado por el equipo.':'Podemos adaptar este enfoque a otras necesidades, sistemas y procesos.'}</p>
            {project.type==='recruit'&&<a href="/casos/control-tower#recorrido">Ver también Control Tower <Icon name="arrow" size={17}/></a>}
